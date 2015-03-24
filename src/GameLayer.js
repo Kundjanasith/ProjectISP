@@ -6,10 +6,14 @@ var GameLayer = cc.LayerColor.extend({
         this.red = new RED();
         this.red.setPosition(new cc.Point(125,400));
         this.addChild(this.red);
-
+        
+        this.addKeyboardHandlers( true );
         return true;
     },
     onKeyDown: function( e ) {
+        if(e===cc.KEY.s){
+            this.red.change('down');
+        }
    
     },
     onKeyUp: function( e ) {
