@@ -17,6 +17,9 @@ var GameLayer = cc.LayerColor.extend({
    
     },
     onKeyUp: function( e ) {
+        if(e===cc.KEY.s){
+            this.red.change('up');
+        }
 
     },
     addKeyboardHandlers: function() {
