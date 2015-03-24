@@ -13,6 +13,7 @@
     "jsList" : [
         "src/resource.js",
         "src/GameLayer.js",
-        "src/StartScene.js"
+        "src/StartScene.js",
+        "src/press/RED.js"
     ]
 }
