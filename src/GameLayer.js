@@ -53,7 +53,7 @@ var GameLayer = cc.LayerColor.extend({
         this.sts.setPosition(new cc.Point(800,400));
         this.addChild(this.sts);
 
-        this.createLife();
+        this.Heart = this.createLife();
         
         this.score = 0;
 
@@ -304,11 +304,14 @@ update: function(){
 },
 
 createLife: function(){
+    var Heart0 = [] ;
     for(var i=0 ; i<5 ; i++){
-        this.H1 = new Heart();
-        this.H1.setPosition( new cc.Point(800,275-(i*40)));
-        this.addChild(this.H1);
+        var H = new Heart();
+        H.setPosition( new cc.Point(800,275-(i*40)));
+        this.addChild(H);
+        Heart0.push(H);
     }
+    return Heart0;
 }
 
 
