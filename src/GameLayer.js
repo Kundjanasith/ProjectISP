@@ -85,14 +85,18 @@ var GameLayer = cc.LayerColor.extend({
             this.STATUS++;
                 if(this.STATUS%2===1){
                     this.sts.change('play');
-                    for(var i=0 ; this.noteRed.length ; i++){
-                          this.noteRed[i].scheduleUpdate();
+                    for(var i=0 ; i<this.noteRed.length ; i++){
+                        if(this.noteRed[i]!=null){
+                            this.noteRed[i].scheduleUpdate();
+                        }
                     }
                 }
                 if(this.STATUS%2===0){
                     this.sts.change('stop');
-                   for(var i=0 ; this.noteRed.length ; i++){
-                          this.noteRed[i].unscheduleUpdate();
+                   for(var i=0 ; i<this.noteRed.length ; i++){
+                        if(this.noteRed[i]!=null){
+                                this.noteRed[i].unscheduleUpdate();
+                        }
                     }
                 }
         }
@@ -137,14 +141,16 @@ var GameLayer = cc.LayerColor.extend({
     createNoteRed: function(){
         var note1 = [1,0,0,1,0,1,1,1,0,1,1,0,1,0,0,1,0,1,0];
         var noteRed = [];
+        cc.log(note1.length);
         for(var i=0 ; i<note1.length ; i++){
             if(note1[i]==1){
             var note = new NoteRed();
-            note.setPosition(new cc.Point(125,-50-(i*25)));
+            note.setPosition(new cc.Point(125,-50-(i*50)));
             noteRed.push(note);
             this.addChild(note);
             } 
         }
+
      return noteRed;
     }
 
