@@ -91,7 +91,7 @@ var GameLayer = cc.LayerColor.extend({
                             this.noteOrange[i].scheduleUpdate();
                         }
                     }
-                    for(var i=0 ; i<this.noteYellowlength ; i++){
+                    for(var i=0 ; i<this.noteYellow.length ; i++){
                         if(this.noteYellow[i]!=null){
                             this.noteYellow[i].scheduleUpdate();
                         }
@@ -111,7 +111,7 @@ var GameLayer = cc.LayerColor.extend({
                     }
                     for(var i=0 ; i<this.noteYellow.length ; i++){
                         if(this.noteYellow[i]!=null){
-                            this.noteYellow[i].scheduleUpdate();
+                                this.noteYellow[i].unscheduleUpdate();
                         }
                     }
                 }
