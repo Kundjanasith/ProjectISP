@@ -5,7 +5,8 @@ var GameLayer = cc.LayerColor.extend({
         
         this.Status = 0;
 
-        
+        this.noteRed = this.createNoteRed();
+
         this.noteOrange = new NOTEORANGE();
         this.noteOrange.setPosition(new cc.Point(225,-50));
         this.addChild(this.noteOrange);
@@ -55,6 +56,8 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild(this.sts);
 
         this.addKeyboardHandlers( true );
+
+
         return true;
     },
     onKeyDown: function( e ) {
@@ -80,7 +83,9 @@ var GameLayer = cc.LayerColor.extend({
             this.Status++;
                 if(this.Status%2===1){
                     this.sts.change('play');
-                    this.createNoteRed();
+                    for(var i=0 ; this.noteRed.length ; i++){
+                          this.noteRed[i].scheduleUpdate();
+                    }
                 }
                 if(this.Status%2===0){
                     this.sts.change('stop');
@@ -123,18 +128,17 @@ var GameLayer = cc.LayerColor.extend({
         }, this);
     },
     createNoteRed: function(){
-        
         var note1 = [1,0,0,1,0,1,1,1,0];
-        console.log(note1.length);
+        var noteRed = [];
         for(var i=0 ; i<note1.length ; i++){
             if(note1[i]==1){
-            var noteRed = new NOTERED();
-            noteRed.setPosition(new cc.Point(125,-50-(i*100)));
-            noteRed.scheduleUpdate();
-            this.addChild(noteRed);
+            var note = new NOTERED();
+            note.setPosition(new cc.Point(125,-50-(i*100)));
+            noteRed.push(note);
+            this.addChild(note);
             } 
         }
-
+     return noteRed;
     }
 
 });
