@@ -9,7 +9,7 @@
     update: function(){
         var pos = this.getPosition();
         this.setPosition( new cc.Point( pos.x, pos.y + this.speed ) );
-        if(pos.y>=375){
+        if(pos.y>=450){
             this.setPosition(new cc.Point( pos.x,-50));
         }
     }
