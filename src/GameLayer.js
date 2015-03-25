@@ -7,10 +7,8 @@ var GameLayer = cc.LayerColor.extend({
         this.STATUS = 0;
 
         this.noteRed = this.createNoteRed();
-
-        this.noteOrange = new NoteOrange();
-        this.noteOrange.setPosition(new cc.Point(225,-50));
-        this.addChild(this.noteOrange);
+        
+        this.noteOrange = this.createNoteOrange();
 
         this.noteYellow = new NoteYellow();
         this.noteYellow.setPosition(new cc.Point(325,-50));
@@ -90,12 +88,22 @@ var GameLayer = cc.LayerColor.extend({
                             this.noteRed[i].scheduleUpdate();
                         }
                     }
+                    for(var i=0 ; i<this.noteOrange.length ; i++){
+                        if(this.noteOrange[i]!=null){
+                            this.noteOrange[i].scheduleUpdate();
+                        }
+                    }
                 }
                 if(this.STATUS%2===0){
                     this.sts.change('stop');
                    for(var i=0 ; i<this.noteRed.length ; i++){
                         if(this.noteRed[i]!=null){
                                 this.noteRed[i].unscheduleUpdate();
+                        }
+                    }
+                    for(var i=0 ; i<this.noteOrange.length ; i++){
+                        if(this.noteOrange[i]!=null){
+                                this.noteOrange[i].unscheduleUpdate();
                         }
                     }
                 }
@@ -139,7 +147,7 @@ var GameLayer = cc.LayerColor.extend({
     },
     
     createNoteRed: function(){
-        var note1 = [1,0,0,1,0,1,1,1,0,1,1,0,1,0,0,1,0,1,0];
+        var note1 = [1,0,0,1,0,1,1,0,0,1,0,1,1,0,1,0,0,1,0,1,0];
         var noteRed = [];
         cc.log(note1.length);
         for(var i=0 ; i<note1.length ; i++){
@@ -150,8 +158,22 @@ var GameLayer = cc.LayerColor.extend({
             this.addChild(note);
             } 
         }
-
      return noteRed;
+    },
+
+    createNoteOrange: function(){
+        var note1 = [1,0,0,1,0,1,1,0,0,1,0,1,1,0,1,0,0,1,0,1,0];
+        var noteOrange = [];
+        cc.log(note1.length);
+        for(var i=0 ; i<note1.length ; i++){
+            if(note1[i]==0){
+            var note = new NoteOrange();
+            note.setPosition(new cc.Point(225,-50-(i*75)));
+            noteOrange.push(note);
+            this.addChild(note);
+            } 
+        }
+     return noteOrange;
     }
 
 });

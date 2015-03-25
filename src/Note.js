@@ -15,8 +15,13 @@
 var NoteOrange = cc.Sprite.extend({
 
     ctor: function() {
+        this.speed = 5;
         this._super();
         this.initWithFile( 'res/note/NoteOrange.png' );
+    },
+
+    update: function(){
+        this.setPosition( new cc.Point( this.getPosition().x, this.getPosition().y + this.speed ) );
     }
     
 }); 
