@@ -70,6 +70,10 @@ var GameLayer = cc.LayerColor.extend({
         this.StimeLabel.setPosition( new cc.Point( 750, 120 ) );
         this.addChild( this.StimeLabel );
 
+        this.EtimeLabel = cc.LabelTTF.create( 'Ended Time :' , 'Arial', 20 );
+        this.EtimeLabel.setPosition( new cc.Point( 750, 40 ) );
+        this.addChild( this.EtimeLabel );
+
         this.sec = new Date().getSeconds();
         this.min = new Date().getMinutes();
         this.hr = new Date().getHours();
@@ -91,6 +95,11 @@ var GameLayer = cc.LayerColor.extend({
         this.timeLabel = cc.LabelTTF.create( this.hr+' : '+this.min+' : '+this.sec, 'Arial', 20 );
         this.timeLabel.setPosition( new cc.Point( 800, 60 ) );
         this.addChild( this.timeLabel );
+
+        this.timeLabel1 = cc.LabelTTF.create( '- - : - - : - -', 'Arial', 20 );
+        this.timeLabel1.setPosition( new cc.Point( 800, 20 ) );
+        this.addChild( this.timeLabel1 );
+
         
         this.scheduleUpdate();
 
