@@ -53,10 +53,11 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild(this.sts);
         
         this.score = 0;
-        
+
         this.scoreLabel = cc.LabelTTF.create( 'Score : '+this.score , 'Arial', 20 );
         this.scoreLabel.setPosition( new cc.Point( 800, 300 ) );
         this.addChild( this.scoreLabel );
+        // this.scoreLabel.scheduleUpdate();
 
         this.addKeyboardHandlers( true );
 
@@ -67,6 +68,12 @@ var GameLayer = cc.LayerColor.extend({
     onKeyDown: function( e ) {
         if(e===cc.KEY.s){
             this.red.change('down');
+            for(var i=0 ; i<this.noteRed.length ; i++){
+                 if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
+                    this.score++;
+                    cc.log(this.score);
+                 }
+            }
         }
         if(e===cc.KEY.d){
             this.orange.change('down');
