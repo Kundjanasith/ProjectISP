@@ -22,6 +22,7 @@
         "src/note/NOTERED.js",
         "src/note/NOTEORANGE.js",
         "src/note/NOTEYELLOW.js",
-        "src/note/NOTEGREEN.js"
+        "src/note/NOTEGREEN.js",
+        "src/note/NOTEBLUE.js"
     ]
 }
