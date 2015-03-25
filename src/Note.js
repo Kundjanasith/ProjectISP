@@ -7,7 +7,11 @@
     },
 
     update: function(){
-        this.setPosition( new cc.Point( this.getPosition().x, this.getPosition().y + this.speed ) );
+        var pos = this.getPosition();
+        this.setPosition( new cc.Point( pos.x, pos.y + this.speed ) );
+        if(pos.y>=375){
+            this.setPosition(new cc.Point( pos.x,-50));
+        }
     }
     
 }); 
