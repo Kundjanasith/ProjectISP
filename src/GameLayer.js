@@ -71,6 +71,7 @@ var GameLayer = cc.LayerColor.extend({
             for(var i=0 ; i<this.noteRed.length ; i++){
                  if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
                     this.score++;
+                    this.scoreLabel.setString('Score : '+this.score);
                     cc.log(this.score);
                  }
             }
