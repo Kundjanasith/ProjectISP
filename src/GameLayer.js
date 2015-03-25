@@ -4,55 +4,55 @@ var GameLayer = cc.LayerColor.extend({
         this._super( new cc.Color( 195, 195, 195, 0) );
         this.setPosition( new cc.Point( 0, 0 ) );
 
-        this.Status = 0;
+        this.STATUS = 0;
 
         this.noteRed = this.createNoteRed();
 
-        this.noteOrange = new NOTEORANGE();
+        this.noteOrange = new NoteOrange();
         this.noteOrange.setPosition(new cc.Point(225,-50));
         this.addChild(this.noteOrange);
 
-        this.noteYellow = new NOTEYELLOW();
+        this.noteYellow = new NoteYellow();
         this.noteYellow.setPosition(new cc.Point(325,-50));
         this.addChild(this.noteYellow);
 
-        this.noteGreen = new NOTEGREEN();
+        this.noteGreen = new NoteGreen();
         this.noteGreen.setPosition(new cc.Point(425,-50));
         this.addChild(this.noteGreen);
         
-        this.noteBlue= new NOTEBLUE();
+        this.noteBlue= new NoteBlue();
         this.noteBlue.setPosition(new cc.Point(525,-50));
         this.addChild(this.noteBlue);
 
-        this.noteViolet= new NOTEVIOLET();
+        this.noteViolet= new NoteViolet();
         this.noteViolet.setPosition(new cc.Point(625,-50));
         this.addChild(this.noteViolet);
 
-        this.red = new RED();
+        this.red = new Red();
         this.red.setPosition(new cc.Point(125,400));
         this.addChild(this.red);
 
-        this.orange = new ORANGE();
+        this.orange = new Orange();
         this.orange.setPosition(new cc.Point(225,400));
         this.addChild(this.orange);
 
-        this.yellow = new YELLOW();
+        this.yellow = new Yellow();
         this.yellow.setPosition(new cc.Point(325,400));
         this.addChild(this.yellow);
 
-        this.green = new GREEN();
+        this.green = new Green();
         this.green.setPosition(new cc.Point(425,400));
         this.addChild(this.green);
 
-        this.blue = new BLUE();
+        this.blue = new Blue();
         this.blue.setPosition(new cc.Point(525,400));
         this.addChild(this.blue);
 
-        this.violet = new VIOLET();
+        this.violet = new Violet();
         this.violet.setPosition(new cc.Point(625,400));
         this.addChild(this.violet);
 
-        this.sts = new STATUS();
+        this.sts = new Status();
         this.sts.setPosition(new cc.Point(800,400));
         this.addChild(this.sts);
 
@@ -82,14 +82,14 @@ var GameLayer = cc.LayerColor.extend({
             this.violet.change('down');
         }
         if(e===cc.KEY.enter){
-            this.Status++;
-                if(this.Status%2===1){
+            this.STATUS++;
+                if(this.STATUS%2===1){
                     this.sts.change('play');
                     for(var i=0 ; this.noteRed.length ; i++){
                           this.noteRed[i].scheduleUpdate();
                     }
                 }
-                if(this.Status%2===0){
+                if(this.STATUS%2===0){
                     this.sts.change('stop');
                    for(var i=0 ; this.noteRed.length ; i++){
                           this.noteRed[i].unscheduleUpdate();
@@ -139,7 +139,7 @@ var GameLayer = cc.LayerColor.extend({
         var noteRed = [];
         for(var i=0 ; i<note1.length ; i++){
             if(note1[i]==1){
-            var note = new NOTERED();
+            var note = new NoteRed();
             note.setPosition(new cc.Point(125,-50-(i*25)));
             noteRed.push(note);
             this.addChild(note);

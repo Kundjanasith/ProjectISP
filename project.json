@@ -13,18 +13,8 @@
     "jsList" : [
         "src/GameLayer.js",
         "src/StartScene.js",
-        "src/press/RED.js",
-        "src/press/ORANGE.js",
-        "src/press/YELLOW.js",
-        "src/press/GREEN.js",
-        "src/press/BLUE.js",
-        "src/press/VIOLET.js",
-        "src/note/NOTERED.js",
-        "src/note/NOTEORANGE.js",
-        "src/note/NOTEYELLOW.js",
-        "src/note/NOTEGREEN.js",
-        "src/note/NOTEBLUE.js",
-        "src/note/NOTEVIOLET.js",
+        "src/Press.js",
+        "src/Note.js",
         "src/Status.js" 
       ]
 }

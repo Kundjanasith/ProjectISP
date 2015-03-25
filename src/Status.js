@@ -1,4 +1,4 @@
- var STATUS = cc.Sprite.extend({
+ var Status= cc.Sprite.extend({
 
     ctor: function() {
         this._super();
