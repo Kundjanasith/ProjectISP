@@ -23,7 +23,11 @@
         "src/note/NOTEORANGE.js",
         "src/note/NOTEYELLOW.js",
         "src/note/NOTEGREEN.js",
+<<<<<<< HEAD
         "src/note/NOTEBLUE.js",
         "src/note/NOTEVIOLET.js" 
+=======
+        "src/note/NOTEBLUE.js"
+>>>>>>> parent of 64dfcb6... add actor function in NOTEVIOLETjs
     ]
 }
