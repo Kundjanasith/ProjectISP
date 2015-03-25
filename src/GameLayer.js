@@ -8,8 +8,7 @@ var GameLayer = cc.LayerColor.extend({
         this.noteRed = new NOTERED();
         this.noteRed.setPosition(new cc.Point(125,5));
         this.addChild(this.noteRed);
-        this.noteRed.scheduleUpdate();
-
+        
         this.noteOrange = new NOTEORANGE();
         this.noteOrange.setPosition(new cc.Point(225,5));
         this.addChild(this.noteOrange);
@@ -29,7 +28,7 @@ var GameLayer = cc.LayerColor.extend({
         this.noteViolet= new NOTEVIOLET();
         this.noteViolet.setPosition(new cc.Point(625,5));
         this.addChild(this.noteViolet);
-        
+
         this.red = new RED();
         this.red.setPosition(new cc.Point(125,400));
         this.addChild(this.red);
@@ -84,8 +83,14 @@ var GameLayer = cc.LayerColor.extend({
         }
         if(e===cc.KEY.enter){
             this.Status++;
-                if(this.Status%2===1)this.sts.change('play');
-                if(this.Status%2===0)this.sts.change('stop');
+                if(this.Status%2===1){
+                    this.sts.change('play');
+                    this.noteRed.scheduleUpdate();
+                }
+                if(this.Status%2===0){
+                    this.sts.change('stop');
+                    this.noteRed.unscheduleUpdate();
+                }
         }
    
     },
