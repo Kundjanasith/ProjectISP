@@ -5,30 +5,6 @@ var GameLayer = cc.LayerColor.extend({
         
         this.Status = 0;
 
-        this.red = new RED();
-        this.red.setPosition(new cc.Point(125,400));
-        this.addChild(this.red);
-
-        this.orange = new ORANGE();
-        this.orange.setPosition(new cc.Point(225,400));
-        this.addChild(this.orange);
-
-        this.yellow = new YELLOW();
-        this.yellow.setPosition(new cc.Point(325,400));
-        this.addChild(this.yellow);
-
-        this.green = new GREEN();
-        this.green.setPosition(new cc.Point(425,400));
-        this.addChild(this.green);
-
-        this.blue = new BLUE();
-        this.blue.setPosition(new cc.Point(525,400));
-        this.addChild(this.blue);
-
-        this.violet = new VIOLET();
-        this.violet.setPosition(new cc.Point(625,400));
-        this.addChild(this.violet);
-
         this.noteRed = new NOTERED();
         this.noteRed.setPosition(new cc.Point(125,5));
         this.addChild(this.noteRed);
@@ -53,6 +29,32 @@ var GameLayer = cc.LayerColor.extend({
         this.noteViolet= new NOTEVIOLET();
         this.noteViolet.setPosition(new cc.Point(625,5));
         this.addChild(this.noteViolet);
+        
+        this.red = new RED();
+        this.red.setPosition(new cc.Point(125,400));
+        this.addChild(this.red);
+
+        this.orange = new ORANGE();
+        this.orange.setPosition(new cc.Point(225,400));
+        this.addChild(this.orange);
+
+        this.yellow = new YELLOW();
+        this.yellow.setPosition(new cc.Point(325,400));
+        this.addChild(this.yellow);
+
+        this.green = new GREEN();
+        this.green.setPosition(new cc.Point(425,400));
+        this.addChild(this.green);
+
+        this.blue = new BLUE();
+        this.blue.setPosition(new cc.Point(525,400));
+        this.addChild(this.blue);
+
+        this.violet = new VIOLET();
+        this.violet.setPosition(new cc.Point(625,400));
+        this.addChild(this.violet);
+
+
 
         this.sts = new STATUS();
         this.sts.setPosition(new cc.Point(800,400));
