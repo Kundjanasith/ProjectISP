@@ -63,11 +63,11 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild( this.lifeLabel );
 
         this.CtimeLabel = cc.LabelTTF.create( 'Current Time :' , 'Arial', 20 );
-        this.CtimeLabel.setPosition( new cc.Point( 750, 40 ) );
+        this.CtimeLabel.setPosition( new cc.Point( 750, 80 ) );
         this.addChild( this.CtimeLabel );
 
         this.StimeLabel = cc.LabelTTF.create( 'Started Time :' , 'Arial', 20 );
-        this.StimeLabel.setPosition( new cc.Point( 750, 80 ) );
+        this.StimeLabel.setPosition( new cc.Point( 750, 120 ) );
         this.addChild( this.StimeLabel );
 
         this.sec = new Date().getSeconds();
@@ -85,11 +85,11 @@ var GameLayer = cc.LayerColor.extend({
         }
 
         this.timeLabel0 = cc.LabelTTF.create( this.hr+' : '+this.min+' : '+this.sec, 'Arial', 20 );
-        this.timeLabel0.setPosition( new cc.Point( 800, 60 ) );
+        this.timeLabel0.setPosition( new cc.Point( 800, 100 ) );
         this.addChild( this.timeLabel0 );
 
         this.timeLabel = cc.LabelTTF.create( this.hr+' : '+this.min+' : '+this.sec, 'Arial', 20 );
-        this.timeLabel.setPosition( new cc.Point( 800, 20 ) );
+        this.timeLabel.setPosition( new cc.Point( 800, 60 ) );
         this.addChild( this.timeLabel );
         
         this.scheduleUpdate();
