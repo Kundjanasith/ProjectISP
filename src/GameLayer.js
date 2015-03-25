@@ -22,6 +22,10 @@ var GameLayer = cc.LayerColor.extend({
         this.blue = new BLUE();
         this.blue.setPosition(new cc.Point(525,400));
         this.addChild(this.blue);
+
+        this.violet = new VIOLET();
+        this.violet.setPosition(new cc.Point(625,400));
+        this.addChild(this.violet);
         
         this.addKeyboardHandlers( true );
         return true;
