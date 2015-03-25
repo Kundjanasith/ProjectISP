@@ -58,6 +58,10 @@ var GameLayer = cc.LayerColor.extend({
         this.scoreLabel.setPosition( new cc.Point( 800, 300 ) );
         this.addChild( this.scoreLabel );
 
+        cc.log('Second: ' + new Date().getSeconds());
+        cc.log('Minute: ' + new Date().getMinutes());
+        cc.log('Hour: ' + new Date().getHours());
+
         this.addKeyboardHandlers( true );
 
 
