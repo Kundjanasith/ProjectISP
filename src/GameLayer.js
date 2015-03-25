@@ -5,6 +5,7 @@ var GameLayer = cc.LayerColor.extend({
         this.setPosition( new cc.Point( 0, 0 ) );
 
         this.STATUS = 0;
+        this.st = false;
 
         this.noteRed = this.createNoteRed();
         
@@ -63,37 +64,41 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild( this.lifeLabel );
 
         this.CtimeLabel = cc.LabelTTF.create( 'Current Time :' , 'Arial', 20 );
-        this.CtimeLabel.setPosition( new cc.Point( 750, 80 ) );
+        this.CtimeLabel.setPosition( new cc.Point( 750, 120 ) );
         this.addChild( this.CtimeLabel );
 
         this.StimeLabel = cc.LabelTTF.create( 'Started Time :' , 'Arial', 20 );
-        this.StimeLabel.setPosition( new cc.Point( 750, 120 ) );
+        this.StimeLabel.setPosition( new cc.Point( 750, 80 ) );
         this.addChild( this.StimeLabel );
 
-        this.EtimeLabel = cc.LabelTTF.create( 'Ended Time :' , 'Arial', 20 );
+        this.EtimeLabel = cc.LabelTTF.create( 'Your Time    :' , 'Arial', 20 );
         this.EtimeLabel.setPosition( new cc.Point( 750, 40 ) );
         this.addChild( this.EtimeLabel );
 
-        this.sec = new Date().getSeconds();
-        this.min = new Date().getMinutes();
-        this.hr = new Date().getHours();
+        var sec = new Date().getSeconds();
+        var min = new Date().getMinutes();
+        var hr = new Date().getHours();
 
-        if(this.sec<10){
-            this.sec='0'+this.sec;
+        this.hr = 0;
+        this.min = 0;
+        this.sec = 0;
+
+        if(sec<10){
+            sec='0'+sec;
         }
-         if(this.min<10){
-            this.min='0'+this.min;
+        if(min<10){
+            min='0'+min;
         }
-         if(this.hr<10){
-            this.hr='0'+this.hr;
+        if(hr<10){
+            hr='0'+hr;
         }
 
-        this.timeLabel0 = cc.LabelTTF.create( this.hr+' : '+this.min+' : '+this.sec, 'Arial', 20 );
-        this.timeLabel0.setPosition( new cc.Point( 800, 100 ) );
+        this.timeLabel0 = cc.LabelTTF.create( '- - : - - : - -', 'Arial', 20 );
+        this.timeLabel0.setPosition( new cc.Point( 800, 60 ) );
         this.addChild( this.timeLabel0 );
 
-        this.timeLabel = cc.LabelTTF.create( this.hr+' : '+this.min+' : '+this.sec, 'Arial', 20 );
-        this.timeLabel.setPosition( new cc.Point( 800, 60 ) );
+        this.timeLabel = cc.LabelTTF.create( hr+' : '+min+' : '+sec, 'Arial', 20 );
+        this.timeLabel.setPosition( new cc.Point( 800, 100 ) );
         this.addChild( this.timeLabel );
 
         this.timeLabel1 = cc.LabelTTF.create( '- - : - - : - -', 'Arial', 20 );
@@ -113,174 +118,220 @@ var GameLayer = cc.LayerColor.extend({
         if(e===cc.KEY.s){
             this.red.change('down');
             for(var i=0 ; i<this.noteRed.length ; i++){
-                 if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
-                    this.score++;
-                    this.scoreLabel.setString('Score : '+this.score);
-                 }
+               if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
+                this.score++;
+                this.scoreLabel.setString('Score : '+this.score);
             }
         }
-        if(e===cc.KEY.d){
-            this.orange.change('down');
-        }
-        if(e===cc.KEY.f){
-            this.yellow.change('down');
-        }
-        if(e===cc.KEY.j){
-            this.green.change('down');
-        }
-        if(e===cc.KEY.k){
-            this.blue.change('down');
-        }
-        if(e===cc.KEY.l){
-            this.violet.change('down');
-        }
-        if(e===cc.KEY.enter){
-            this.STATUS++;
-                if(this.STATUS%2===1){
-                    this.sts.change('play');
-                    for(var i=0 ; i<this.noteRed.length ; i++){
-                        if(this.noteRed[i]!=null){
-                            this.noteRed[i].scheduleUpdate();
-                        }
-                    }
-                    for(var i=0 ; i<this.noteOrange.length ; i++){
-                        if(this.noteOrange[i]!=null){
-                            this.noteOrange[i].scheduleUpdate();
-                        }
-                    }
-                    for(var i=0 ; i<this.noteYellow.length ; i++){
-                        if(this.noteYellow[i]!=null){
-                            this.noteYellow[i].scheduleUpdate();
-                        }
-                    }
-                }
-                if(this.STATUS%2===0){
-                    this.sts.change('stop');
-                   for(var i=0 ; i<this.noteRed.length ; i++){
-                        if(this.noteRed[i]!=null){
-                                this.noteRed[i].unscheduleUpdate();
-                        }
-                    }
-                    for(var i=0 ; i<this.noteOrange.length ; i++){
-                        if(this.noteOrange[i]!=null){
-                                this.noteOrange[i].unscheduleUpdate();
-                        }
-                    }
-                    for(var i=0 ; i<this.noteYellow.length ; i++){
-                        if(this.noteYellow[i]!=null){
-                                this.noteYellow[i].unscheduleUpdate();
-                        }
-                    }
-                }
-        }
-   
-    },
+    }
+    if(e===cc.KEY.d){
+        this.orange.change('down');
+    }
+    if(e===cc.KEY.f){
+        this.yellow.change('down');
+    }
+    if(e===cc.KEY.j){
+        this.green.change('down');
+    }
+    if(e===cc.KEY.k){
+        this.blue.change('down');
+    }
+    if(e===cc.KEY.l){
+        this.violet.change('down');
+    }
+    if(e===cc.KEY.enter){
+        this.STATUS++;
+        if(this.STATUS===1){
+            var sec = new Date().getSeconds();
+            var min = new Date().getMinutes();
+            var hr = new Date().getHours();
 
-    onKeyUp: function( e ) {
-        if(e===cc.KEY.s){
-            this.red.change('up');
-        }
-        if(e===cc.KEY.d){
-            this.orange.change('up');
-        }
-        if(e===cc.KEY.f){
-            this.yellow.change('up');
-        }
-        if(e===cc.KEY.j){
-            this.green.change('up');
-        }
-        if(e===cc.KEY.k){
-            this.blue.change('up');
-        }
-        if(e===cc.KEY.l){
-            this.violet.change('up');
-        }
+            this.hr = hr;
+            this.min = min;
+            this.sec = sec;
 
-    },
-
-    addKeyboardHandlers: function() {
-        var self = this;
-        cc.eventManager.addListener({
-            event: cc.EventListener.KEYBOARD,
-            onKeyPressed : function( e ) {
-                self.onKeyDown( e );
-            },
-            onKeyReleased: function( e ) {
-                self.onKeyUp( e );
+            if(sec<10){
+                sec='0'+sec;
             }
-        }, this);
-    },
-    
-    createNoteRed: function(){
-        var note1 = [1,0,0,1,0,1,1,0,0,1,0,1,1,0,1,0,0,1,0,1,0];
-        var noteRed = [];
-        cc.log(note1.length);
-        for(var i=0 ; i<note1.length ; i++){
-            if(note1[i]==1){
+            if(min<10){
+                min='0'+min;
+            }
+            if(hr<10){
+                hr='0'+hr;
+            }
+            this.timeLabel0.setString( hr +' : '+ min+' : '+ sec, 'Arial', 20 );
+
+        }
+        if(this.STATUS%2===1){
+            this.sts.change('play');
+            this.st = true;
+            for(var i=0 ; i<this.noteRed.length ; i++){
+                if(this.noteRed[i]!=null){
+                    this.noteRed[i].scheduleUpdate();
+                }
+            }
+            for(var i=0 ; i<this.noteOrange.length ; i++){
+                if(this.noteOrange[i]!=null){
+                    this.noteOrange[i].scheduleUpdate();
+                }
+            }
+            for(var i=0 ; i<this.noteYellow.length ; i++){
+                if(this.noteYellow[i]!=null){
+                    this.noteYellow[i].scheduleUpdate();
+                }
+            }
+        }
+        if(this.STATUS%2===0){
+            this.sts.change('stop');
+            this.st = false;
+            for(var i=0 ; i<this.noteRed.length ; i++){
+                if(this.noteRed[i]!=null){
+                    this.noteRed[i].unscheduleUpdate();
+                }
+            }
+            for(var i=0 ; i<this.noteOrange.length ; i++){
+                if(this.noteOrange[i]!=null){
+                    this.noteOrange[i].unscheduleUpdate();
+                }
+            }
+            for(var i=0 ; i<this.noteYellow.length ; i++){
+                if(this.noteYellow[i]!=null){
+                    this.noteYellow[i].unscheduleUpdate();
+                }
+            }
+        }
+    }
+
+},
+
+onKeyUp: function( e ) {
+    if(e===cc.KEY.s){
+        this.red.change('up');
+    }
+    if(e===cc.KEY.d){
+        this.orange.change('up');
+    }
+    if(e===cc.KEY.f){
+        this.yellow.change('up');
+    }
+    if(e===cc.KEY.j){
+        this.green.change('up');
+    }
+    if(e===cc.KEY.k){
+        this.blue.change('up');
+    }
+    if(e===cc.KEY.l){
+        this.violet.change('up');
+    }
+
+},
+
+addKeyboardHandlers: function() {
+    var self = this;
+    cc.eventManager.addListener({
+        event: cc.EventListener.KEYBOARD,
+        onKeyPressed : function( e ) {
+            self.onKeyDown( e );
+        },
+        onKeyReleased: function( e ) {
+            self.onKeyUp( e );
+        }
+    }, this);
+},
+
+createNoteRed: function(){
+    var note1 = [1,0,0,1,0,1,1,0,0,1,0,1,1,0,1,0,0,1,0,1,0];
+    var noteRed = [];
+    cc.log(note1.length);
+    for(var i=0 ; i<note1.length ; i++){
+        if(note1[i]==1){
             var note = new NoteRed();
             note.setPosition(new cc.Point(125,-50-(i*75)));
             noteRed.push(note);
             this.addChild(note);
-            } 
-        }
-     return noteRed;
-    },
+        } 
+    }
+    return noteRed;
+},
 
-    createNoteOrange: function(){
-        var note1 = [1,0,0,1,0,1,1,0,0,1,0,1,1,0,1,0,0,1,0,1,0];
-        var noteOrange = [];
-        cc.log(note1.length);
-        for(var i=0 ; i<note1.length ; i++){
-            if(note1[i]==0){
+createNoteOrange: function(){
+    var note1 = [1,0,0,1,0,1,1,0,0,1,0,1,1,0,1,0,0,1,0,1,0];
+    var noteOrange = [];
+    cc.log(note1.length);
+    for(var i=0 ; i<note1.length ; i++){
+        if(note1[i]==0){
             var note = new NoteOrange();
             note.setPosition(new cc.Point(225,-50-(i*75)));
             noteOrange.push(note);
             this.addChild(note);
-            } 
-        }
-     return noteOrange;
-    },
+        } 
+    }
+    return noteOrange;
+},
 
-    createNoteYellow: function(){
-        var note1 = [];
-        for(var i=0 ; i<100 ; i++){
-            var x = Math.random();
-            if(x*10<5){
-                note1.push(1);
-            }
-            else{
-                note1.push(0);
-            }
+createNoteYellow: function(){
+    var note1 = [];
+    for(var i=0 ; i<100 ; i++){
+        var x = Math.random();
+        if(x*10<5){
+            note1.push(1);
         }
-        var noteYellow = [];
-        cc.log(note1.length);
-        for(var i=0 ; i<note1.length ; i++){
-            if(note1[i]==0){
+        else{
+            note1.push(0);
+        }
+    }
+    var noteYellow = [];
+    cc.log(note1.length);
+    for(var i=0 ; i<note1.length ; i++){
+        if(note1[i]==0){
             var note = new NoteYellow();
             note.setPosition(new cc.Point(325,-50-(i*75)));
             noteYellow.push(note);
             this.addChild(note);
-            } 
-        }
-     return noteYellow;
-    },
-
-    update: function(){
-        this.sec = new Date().getSeconds();
-        this.min = new Date().getMinutes();
-        this.hr = new Date().getHours();
-        if(this.sec<10){
-            this.sec='0'+this.sec;
-        }
-         if(this.min<10){
-            this.min='0'+this.min;
-        }
-         if(this.hr<10){
-            this.hr='0'+this.hr;
-        }
-        this.timeLabel.setString( this.hr+' : '+this.min+' : '+this.sec, 'Arial', 20 );
+        } 
     }
+    return noteYellow;
+},
 
+update: function(){
+    var sec = new Date().getSeconds();
+    var min = new Date().getMinutes();
+    var hr = new Date().getHours();
+    if(sec<10){
+        sec='0'+sec;
+    }
+    if(min<10){
+        min='0'+min;
+    }
+    if(hr<10){
+       hr='0'+ hr;
+   }
+   this.timeLabel.setString( hr +' : '+ min+' : '+ sec, 'Arial', 20 );
+
+   this.countWatch(this.st);
+},
+
+countWatch:function(st){ 
+  if(st){
+    cc.log('p');
+      var sec = new Date().getSeconds()-this.sec;
+      var min = new Date().getMinutes()-this.min;
+      var hr = new Date().getHours()-this.hr;
+
+    if(sec<10){
+        sec='0'+sec;
+    }
+    if(min<10){
+        min='0'+min;
+    }
+    if(hr<10){
+       hr='0'+ hr;
+   }
+
+      this.timeLabel1.setString( hr +' : '+ min+' : '+ sec, 'Arial', 20 );
+
+  }
+}
 
 
 });
