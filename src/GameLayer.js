@@ -34,6 +34,10 @@ var GameLayer = cc.LayerColor.extend({
         this.noteOrange = new NOTEORANGE();
         this.noteOrange.setPosition(new cc.Point(225,5));
         this.addChild(this.noteOrange);
+
+        this.noteYellow = new NOTEYELLOW();
+        this.noteYellow.setPosition(new cc.Point(325,5));
+        this.addChild(this.noteYellow);
         
         this.addKeyboardHandlers( true );
         return true;
