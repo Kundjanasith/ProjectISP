@@ -47,6 +47,10 @@ var GameLayer = cc.LayerColor.extend({
         this.noteBlue.setPosition(new cc.Point(525,5));
         this.addChild(this.noteBlue);
 
+        this.noteViolet= new NOTEVIOLET();
+        this.noteViolet.setPosition(new cc.Point(625,5));
+        this.addChild(this.noteViolet);
+
         this.addKeyboardHandlers( true );
         return true;
     },
