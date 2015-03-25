@@ -77,6 +77,9 @@ var GameLayer = cc.LayerColor.extend({
         if(e===cc.KEY.l){
             this.violet.change('down');
         }
+        if(e===cc.KEY.enter){
+            this.sts.change('play');
+        }
    
     },
     onKeyUp: function( e ) {
