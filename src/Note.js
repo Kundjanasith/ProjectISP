@@ -1,4 +1,4 @@
- var NoteRed = cc.Sprite.extend({
+f var NoteRed = cc.Sprite.extend({
 
     ctor: function() {
         this.speed = 5;
@@ -30,8 +30,13 @@ var NoteOrange = cc.Sprite.extend({
 var NoteYellow = cc.Sprite.extend({
 
     ctor: function() {
+        this.speed = 5;
         this._super();
         this.initWithFile( 'res/note/NoteYellow.png' );
+    },
+
+    update: function(){
+        this.setPosition( new cc.Point( this.getPosition().x, this.getPosition().y + this.speed ) );
     }
     
 }); 

@@ -10,9 +10,7 @@ var GameLayer = cc.LayerColor.extend({
         
         this.noteOrange = this.createNoteOrange();
 
-        this.noteYellow = new NoteYellow();
-        this.noteYellow.setPosition(new cc.Point(325,-50));
-        this.addChild(this.noteYellow);
+        this.noteYellow = this.createNoteYellow();
 
         this.noteGreen = new NoteGreen();
         this.noteGreen.setPosition(new cc.Point(425,-50));
@@ -93,6 +91,11 @@ var GameLayer = cc.LayerColor.extend({
                             this.noteOrange[i].scheduleUpdate();
                         }
                     }
+                    for(var i=0 ; i<this.noteYellowlength ; i++){
+                        if(this.noteYellow[i]!=null){
+                            this.noteYellow[i].scheduleUpdate();
+                        }
+                    }
                 }
                 if(this.STATUS%2===0){
                     this.sts.change('stop');
@@ -104,6 +107,11 @@ var GameLayer = cc.LayerColor.extend({
                     for(var i=0 ; i<this.noteOrange.length ; i++){
                         if(this.noteOrange[i]!=null){
                                 this.noteOrange[i].unscheduleUpdate();
+                        }
+                    }
+                    for(var i=0 ; i<this.noteYellow.length ; i++){
+                        if(this.noteYellow[i]!=null){
+                            this.noteYellow[i].scheduleUpdate();
                         }
                     }
                 }
@@ -174,6 +182,21 @@ var GameLayer = cc.LayerColor.extend({
             } 
         }
      return noteOrange;
+    },
+
+    createNoteYellow: function(){
+        var note1 = [1,0,0,1,0,1,1,0,0,1,0,1,1,0,1,0,0,1,0,1,0];
+        var noteYellow = [];
+        cc.log(note1.length);
+        for(var i=0 ; i<note1.length ; i++){
+            if(note1[i]==0){
+            var note = new NoteYellow();
+            note.setPosition(new cc.Point(225,-50-(i*75)));
+            noteYellow.push(note);
+            this.addChild(note);
+            } 
+        }
+     return noteYellow;
     }
 
 });
