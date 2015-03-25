@@ -3,6 +3,8 @@ var GameLayer = cc.LayerColor.extend({
         this._super( new cc.Color( 195, 195, 195, 0) );
         this.setPosition( new cc.Point( 0, 0 ) );
         
+        this.Status = 0;
+
         this.red = new RED();
         this.red.setPosition(new cc.Point(125,400));
         this.addChild(this.red);
@@ -78,7 +80,9 @@ var GameLayer = cc.LayerColor.extend({
             this.violet.change('down');
         }
         if(e===cc.KEY.enter){
-            this.sts.change('play');
+            this.Status++;
+                if(this.Status%2===1)this.sts.change('play');
+                if(this.Status%2===0)this.sts.change('stop');
         }
    
     },
