@@ -21,6 +21,7 @@
         "src/press/VIOLET.js",
         "src/note/NOTERED.js",
         "src/note/NOTEORANGE.js",
-        "src/note/NOTEYELLOW.js"
+        "src/note/NOTEYELLOW.js",
+        "src/note/NOTEGREEN.js"
     ]
 }
