@@ -43,7 +43,7 @@ var GameLayer = cc.LayerColor.extend({
         this.noteGreen.setPosition(new cc.Point(425,5));
         this.addChild(this.noteGreen);
         
-        this.noteBLue= new NOTEBLUE();
+        this.noteBlue= new NOTEBLUE();
         this.noteBlue.setPosition(new cc.Point(525,5));
         this.addChild(this.noteBlue);
 
