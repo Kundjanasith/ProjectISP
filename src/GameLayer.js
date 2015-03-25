@@ -5,28 +5,25 @@ var GameLayer = cc.LayerColor.extend({
         
         this.Status = 0;
 
-        this.noteRed = new NOTERED();
-        this.noteRed.setPosition(new cc.Point(125,5));
-        this.addChild(this.noteRed);
         
         this.noteOrange = new NOTEORANGE();
-        this.noteOrange.setPosition(new cc.Point(225,5));
+        this.noteOrange.setPosition(new cc.Point(225,-50));
         this.addChild(this.noteOrange);
 
         this.noteYellow = new NOTEYELLOW();
-        this.noteYellow.setPosition(new cc.Point(325,5));
+        this.noteYellow.setPosition(new cc.Point(325,-50));
         this.addChild(this.noteYellow);
 
         this.noteGreen = new NOTEGREEN();
-        this.noteGreen.setPosition(new cc.Point(425,5));
+        this.noteGreen.setPosition(new cc.Point(425,-50));
         this.addChild(this.noteGreen);
         
         this.noteBlue= new NOTEBLUE();
-        this.noteBlue.setPosition(new cc.Point(525,5));
+        this.noteBlue.setPosition(new cc.Point(525,-50));
         this.addChild(this.noteBlue);
 
         this.noteViolet= new NOTEVIOLET();
-        this.noteViolet.setPosition(new cc.Point(625,5));
+        this.noteViolet.setPosition(new cc.Point(625,-50));
         this.addChild(this.noteViolet);
 
         this.red = new RED();
@@ -52,8 +49,6 @@ var GameLayer = cc.LayerColor.extend({
         this.violet = new VIOLET();
         this.violet.setPosition(new cc.Point(625,400));
         this.addChild(this.violet);
-
-
 
         this.sts = new STATUS();
         this.sts.setPosition(new cc.Point(800,400));
@@ -85,7 +80,7 @@ var GameLayer = cc.LayerColor.extend({
             this.Status++;
                 if(this.Status%2===1){
                     this.sts.change('play');
-                    this.noteRed.scheduleUpdate();
+                    this.createNoteRed();
                 }
                 if(this.Status%2===0){
                     this.sts.change('stop');
@@ -126,6 +121,20 @@ var GameLayer = cc.LayerColor.extend({
                 self.onKeyUp( e );
             }
         }, this);
+    },
+    createNoteRed: function(){
+        
+        var note1 = [1,0,0,1,0,1,1,1,0];
+        console.log(note1.length);
+        for(var i=0 ; i<note1.length ; i++){
+            if(note1[i]==1){
+            var noteRed = new NOTERED();
+            noteRed.setPosition(new cc.Point(125,-50-(i*100)));
+            noteRed.scheduleUpdate();
+            this.addChild(noteRed);
+            } 
+        }
+
     }
 
 });
