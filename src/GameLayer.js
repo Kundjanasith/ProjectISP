@@ -5,7 +5,6 @@ var GameLayer = cc.LayerColor.extend({
         this.setPosition( new cc.Point( 0, 0 ) );
 
         this.STATUS = 0;
-        this.st = false;
 
         this.noteRed = this.createNoteRed();
         
@@ -157,9 +156,9 @@ var GameLayer = cc.LayerColor.extend({
             this.timeLabel0.setString( hr +' : '+ min+' : '+ sec, 'Arial', 20 );
 
         }
-        if(this.STATUS%2===1){
+        // if(this.STATUS%2===1){
             this.sts.change('play');
-            this.st = true;
+            this.scheduleUpdate();
             for(var i=0 ; i<this.noteRed.length ; i++){
                 if(this.noteRed[i]!=null){
                     this.noteRed[i].scheduleUpdate();
@@ -175,26 +174,26 @@ var GameLayer = cc.LayerColor.extend({
                     this.noteYellow[i].scheduleUpdate();
                 }
             }
-        }
-        if(this.STATUS%2===0){
-            this.sts.change('stop');
-            this.st = false;
-            for(var i=0 ; i<this.noteRed.length ; i++){
-                if(this.noteRed[i]!=null){
-                    this.noteRed[i].unscheduleUpdate();
-                }
-            }
-            for(var i=0 ; i<this.noteOrange.length ; i++){
-                if(this.noteOrange[i]!=null){
-                    this.noteOrange[i].unscheduleUpdate();
-                }
-            }
-            for(var i=0 ; i<this.noteYellow.length ; i++){
-                if(this.noteYellow[i]!=null){
-                    this.noteYellow[i].unscheduleUpdate();
-                }
-            }
-        }
+        // }
+        // if(this.STATUS%2===0){
+        //     this.sts.change('stop');
+        //     this.unscheduleUpdate();
+        //     for(var i=0 ; i<this.noteRed.length ; i++){
+        //         if(this.noteRed[i]!=null){
+        //             this.noteRed[i].unscheduleUpdate();
+        //         }
+        //     }
+        //     for(var i=0 ; i<this.noteOrange.length ; i++){
+        //         if(this.noteOrange[i]!=null){
+        //             this.noteOrange[i].unscheduleUpdate();
+        //         }
+        //     }
+        //     for(var i=0 ; i<this.noteYellow.length ; i++){
+        //         if(this.noteYellow[i]!=null){
+        //             this.noteYellow[i].unscheduleUpdate();
+        //         }
+        //     }
+        // }
     }
 
 },
