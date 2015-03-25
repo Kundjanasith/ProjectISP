@@ -65,15 +65,17 @@ var GameLayer = cc.LayerColor.extend({
         this.lifeLabel.setPosition( new cc.Point( 750, 275 ) );
         this.addChild( this.lifeLabel );
 
-        this.CtimeLabel = cc.LabelTTF.create( 'Current Time :' , 'Arial', 20 );
+        this.CtimeLabel = cc.LabelTTF.create( 'Your Time :' , 'Arial', 20 );
         this.CtimeLabel.setPosition( new cc.Point( 750, 40 ) );
         this.addChild( this.CtimeLabel );
 
         this.StimeLabel = cc.LabelTTF.create( 'Started Time :' , 'Arial', 20 );
         this.StimeLabel.setPosition( new cc.Point( 750, 80 ) );
         this.addChild( this.StimeLabel );
-
-
+        
+        this.hr = 0 ;
+        this.min = 0;
+        this.sec = 0;
 
         var sec = new Date().getSeconds();
         var min = new Date().getMinutes();
@@ -93,7 +95,7 @@ var GameLayer = cc.LayerColor.extend({
         this.timeLabel0.setPosition( new cc.Point( 800, 60 ) );
         this.addChild( this.timeLabel0 );
 
-        this.timeLabel = cc.LabelTTF.create( hr+' : '+min+' : '+sec, 'Arial', 20 );
+        this.timeLabel = cc.LabelTTF.create( '- - : - - : - -', 'Arial', 20 );
         this.timeLabel.setPosition( new cc.Point( 800, 20 ) );
         this.addChild( this.timeLabel );
 
@@ -287,19 +289,38 @@ createNoteYellow: function(){
 },
 
 update: function(){
-    var sec = new Date().getSeconds();
-    var min = new Date().getMinutes();
-    var hr = new Date().getHours();
-    if(sec<10){
-        sec='0'+sec;
+    if(this.STATUS!=0){
+        var sec = new Date().getSeconds();
+        var min = new Date().getMinutes();
+        var hr = new Date().getHours();
+
+        var duration0 = (this.sec)+(this.min*60)+(this.hr*3600);
+        var duration1 = sec+(min*60)+(hr*3600);
+
+        cc.log(this.hr+":"+this.min+":"+this.sec);
+        cc.log(hr+":"+min+":"+sec);
+
+        cc.log(duration0);
+        cc.log(duration1);
+
+        var duration = duration1-duration0;
+
+        var h = Math.floor(duration/3600);
+        var m = Math.floor(duration/60);
+        var s = Math.floor(duration%60);
+
+        if(s<10){
+            s='0'+s;
+        }
+        if(m<10){
+            m='0'+m;
+        }
+        if(h<10){
+            h='0'+h;
+        }
+
+        this.timeLabel.setString( h+' : '+ m+' : '+ s, 'Arial', 60 );
     }
-    if(min<10){
-        min='0'+min;
-    }
-    if(hr<10){
-       hr='0'+ hr;
-   }
-   this.timeLabel.setString( hr +' : '+ min+' : '+ sec, 'Arial', 60 );
 
 },
 
