@@ -18,6 +18,7 @@
         "src/press/YELLOW.js",
         "src/press/GREEN.js",
         "src/press/BLUE.js",
-        "src/press/VIOLET.js"
+        "src/press/VIOLET.js",
+        "src/note/NOTERED.js"
     ]
 }
