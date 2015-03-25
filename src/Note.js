@@ -1,4 +1,4 @@
-f var NoteRed = cc.Sprite.extend({
+ var NoteRed = cc.Sprite.extend({
 
     ctor: function() {
         this.speed = 5;
