@@ -64,24 +64,18 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild( this.lifeLabel );
 
         this.CtimeLabel = cc.LabelTTF.create( 'Current Time :' , 'Arial', 20 );
-        this.CtimeLabel.setPosition( new cc.Point( 750, 120 ) );
+        this.CtimeLabel.setPosition( new cc.Point( 750, 40 ) );
         this.addChild( this.CtimeLabel );
 
         this.StimeLabel = cc.LabelTTF.create( 'Started Time :' , 'Arial', 20 );
         this.StimeLabel.setPosition( new cc.Point( 750, 80 ) );
         this.addChild( this.StimeLabel );
 
-        this.EtimeLabel = cc.LabelTTF.create( 'Your Time    :' , 'Arial', 20 );
-        this.EtimeLabel.setPosition( new cc.Point( 750, 40 ) );
-        this.addChild( this.EtimeLabel );
+
 
         var sec = new Date().getSeconds();
         var min = new Date().getMinutes();
         var hr = new Date().getHours();
-
-        this.hr = 0;
-        this.min = 0;
-        this.sec = 0;
 
         if(sec<10){
             sec='0'+sec;
@@ -98,12 +92,9 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild( this.timeLabel0 );
 
         this.timeLabel = cc.LabelTTF.create( hr+' : '+min+' : '+sec, 'Arial', 20 );
-        this.timeLabel.setPosition( new cc.Point( 800, 100 ) );
+        this.timeLabel.setPosition( new cc.Point( 800, 20 ) );
         this.addChild( this.timeLabel );
 
-        this.timeLabel1 = cc.LabelTTF.create( '- - : - - : - -', 'Arial', 20 );
-        this.timeLabel1.setPosition( new cc.Point( 800, 20 ) );
-        this.addChild( this.timeLabel1 );
 
         
         this.scheduleUpdate();
@@ -118,7 +109,7 @@ var GameLayer = cc.LayerColor.extend({
         if(e===cc.KEY.s){
             this.red.change('down');
             for(var i=0 ; i<this.noteRed.length ; i++){
-               if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
+             if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
                 this.score++;
                 this.scoreLabel.setString('Score : '+this.score);
             }
@@ -304,34 +295,12 @@ update: function(){
         min='0'+min;
     }
     if(hr<10){
-       hr='0'+ hr;
-   }
-   this.timeLabel.setString( hr +' : '+ min+' : '+ sec, 'Arial', 20 );
+     hr='0'+ hr;
+ }
+ this.timeLabel.setString( hr +' : '+ min+' : '+ sec, 'Arial', 20 );
 
-   this.countWatch(this.st);
 },
 
-countWatch:function(st){ 
-  if(st){
-    cc.log('p');
-      var sec = new Date().getSeconds()-this.sec;
-      var min = new Date().getMinutes()-this.min;
-      var hr = new Date().getHours()-this.hr;
-
-    if(sec<10){
-        sec='0'+sec;
-    }
-    if(min<10){
-        min='0'+min;
-    }
-    if(hr<10){
-       hr='0'+ hr;
-   }
-
-      this.timeLabel1.setString( hr +' : '+ min+' : '+ sec, 'Arial', 20 );
-
-  }
-}
 
 
 });
