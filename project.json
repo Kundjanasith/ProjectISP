@@ -16,6 +16,7 @@
         "src/press/RED.js",
         "src/press/ORANGE.js",
         "src/press/YELLOW.js",
-        "src/press/GREEN.js"
+        "src/press/GREEN.js",
+        "src/press/BLUE.js"
     ]
 }
