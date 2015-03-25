@@ -51,6 +51,12 @@ var GameLayer = cc.LayerColor.extend({
         this.sts = new Status();
         this.sts.setPosition(new cc.Point(800,400));
         this.addChild(this.sts);
+        
+        this.score = 0;
+        
+        this.scoreLabel = cc.LabelTTF.create( 'Score : '+this.score , 'Arial', 20 );
+        this.scoreLabel.setPosition( new cc.Point( 800, 300 ) );
+        this.addChild( this.scoreLabel );
 
         this.addKeyboardHandlers( true );
 
