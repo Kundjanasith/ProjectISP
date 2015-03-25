@@ -52,15 +52,17 @@ var GameLayer = cc.LayerColor.extend({
         this.sts = new Status();
         this.sts.setPosition(new cc.Point(800,400));
         this.addChild(this.sts);
+
+        this.createLife();
         
         this.score = 0;
 
         this.scoreLabel = cc.LabelTTF.create( 'Score : '+this.score , 'Arial', 20 );
-        this.scoreLabel.setPosition( new cc.Point( 750, 300 ) );
+        this.scoreLabel.setPosition( new cc.Point( 750, 325 ) );
         this.addChild( this.scoreLabel );
 
         this.lifeLabel = cc.LabelTTF.create( 'Life : ' , 'Arial', 20 );
-        this.lifeLabel.setPosition( new cc.Point( 750, 200 ) );
+        this.lifeLabel.setPosition( new cc.Point( 750, 275 ) );
         this.addChild( this.lifeLabel );
 
         this.CtimeLabel = cc.LabelTTF.create( 'Current Time :' , 'Arial', 20 );
@@ -109,7 +111,7 @@ var GameLayer = cc.LayerColor.extend({
         if(e===cc.KEY.s){
             this.red.change('down');
             for(var i=0 ; i<this.noteRed.length ; i++){
-             if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
+               if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
                 this.score++;
                 this.scoreLabel.setString('Score : '+this.score);
             }
@@ -295,11 +297,19 @@ update: function(){
         min='0'+min;
     }
     if(hr<10){
-     hr='0'+ hr;
- }
- this.timeLabel.setString( hr +' : '+ min+' : '+ sec, 'Arial', 20 );
+       hr='0'+ hr;
+   }
+   this.timeLabel.setString( hr +' : '+ min+' : '+ sec, 'Arial', 60 );
 
 },
+
+createLife: function(){
+    for(var i=0 ; i<5 ; i++){
+        this.H1 = new Heart();
+        this.H1.setPosition( new cc.Point(800,275-(i*40)));
+        this.addChild(this.H1);
+    }
+}
 
 
 
