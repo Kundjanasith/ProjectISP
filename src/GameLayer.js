@@ -55,8 +55,12 @@ var GameLayer = cc.LayerColor.extend({
         this.score = 0;
 
         this.scoreLabel = cc.LabelTTF.create( 'Score : '+this.score , 'Arial', 20 );
-        this.scoreLabel.setPosition( new cc.Point( 800, 300 ) );
+        this.scoreLabel.setPosition( new cc.Point( 750, 300 ) );
         this.addChild( this.scoreLabel );
+
+        this.lifeLabel = cc.LabelTTF.create( 'Life : ' , 'Arial', 20 );
+        this.lifeLabel.setPosition( new cc.Point( 750, 200 ) );
+        this.addChild( this.lifeLabel );
 
         this.sec = new Date().getSeconds();
         this.min = new Date().getMinutes();
@@ -236,7 +240,7 @@ var GameLayer = cc.LayerColor.extend({
         this.hr = new Date().getHours();
 
         this.timeLabel.setString( 'Hr:'+this.hr+'Min:'+this.min+'Sec:'+this.sec, 'Arial', 20 );
-        
+
     }
 
 
