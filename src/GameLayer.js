@@ -186,7 +186,7 @@ var GameLayer = cc.LayerColor.extend({
 
     createNoteYellow: function(){
         var note1 = [];
-        for(var i=0 ; i<21 ; i++){
+        for(var i=0 ; i<100 ; i++){
             var x = Math.random();
             if(x*10<5){
                 note1.push(1);
