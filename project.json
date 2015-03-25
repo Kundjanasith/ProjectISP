@@ -14,6 +14,7 @@
         "src/GameLayer.js",
         "src/StartScene.js",
         "src/press/RED.js",
-        "src/press/ORANGE.js"
+        "src/press/ORANGE.js",
+        "src/press/YELLOW.js"
     ]
 }
