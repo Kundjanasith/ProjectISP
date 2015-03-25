@@ -48,7 +48,7 @@ var GameLayer = cc.LayerColor.extend({
             this.yellow.change('up');
         }
         if(e===cc.KEY.j){
-            this.green.chnage('up');
+            this.green.change('up');
         }
 
     },
