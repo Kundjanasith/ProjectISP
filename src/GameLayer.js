@@ -18,11 +18,17 @@ var GameLayer = cc.LayerColor.extend({
         if(e===cc.KEY.s){
             this.red.change('down');
         }
+        if(e===cc.KEY.d){
+            this.orange.change('down');
+        }
    
     },
     onKeyUp: function( e ) {
         if(e===cc.KEY.s){
             this.red.change('up');
+        }
+        if(e===cc.KEY.d){
+            this.orange.change('up');
         }
 
     },
