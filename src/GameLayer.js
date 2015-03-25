@@ -39,6 +39,9 @@ var GameLayer = cc.LayerColor.extend({
         if(e===cc.KEY.j){
             this.green.change('down');
         }
+        if(e===cc.KEY.k){
+            this.blue.change('down');
+        }
    
     },
     onKeyUp: function( e ) {
@@ -53,6 +56,9 @@ var GameLayer = cc.LayerColor.extend({
         }
         if(e===cc.KEY.j){
             this.green.change('up');
+        }
+        if(e===cc.KEY.k){
+            this.blue.change('up');
         }
 
     },
