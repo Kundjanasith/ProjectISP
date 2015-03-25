@@ -58,10 +58,14 @@ var GameLayer = cc.LayerColor.extend({
         this.scoreLabel.setPosition( new cc.Point( 800, 300 ) );
         this.addChild( this.scoreLabel );
 
+        this.sec = new Date().getSeconds();
+        this.min = new Date().getMinutes();
+        this.hr = new Date().getHours();
+
+        this.timeLabel = cc.LabelTTF.create( 'Hr:'+this.hr+'Min:'+this.min+'Sec:'+this.sec, 'Arial', 20 );
+        this.timeLabel.setPosition( new cc.Point( 800, 20 ) );
+        this.addChild( this.timeLabel );
         
-        cc.log('Second: ' + new Date().getSeconds());
-        cc.log('Minute: ' + new Date().getMinutes());
-        cc.log('Hour: ' + new Date().getHours());
         this.scheduleUpdate();
 
         this.addKeyboardHandlers( true );
@@ -227,14 +231,12 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     update: function(){
-      
         this.sec = new Date().getSeconds();
         this.min = new Date().getMinutes();
         this.hr = new Date().getHours();
 
-        this.timeLabel = cc.LabelTTF.create( 'Hr:'+this.hr+'Min:'+this.min+'Sec:'+this.sec, 'Arial', 20 );
-        this.timeLabel.setPosition( new cc.Point( 800, 20 ) );
-        this.addChild( this.timeLabel );
+        this.timeLabel.setString( 'Hr:'+this.hr+'Min:'+this.min+'Sec:'+this.sec, 'Arial', 20 );
+        
     }
 
 
