@@ -62,11 +62,33 @@ var GameLayer = cc.LayerColor.extend({
         this.lifeLabel.setPosition( new cc.Point( 750, 200 ) );
         this.addChild( this.lifeLabel );
 
+        this.CtimeLabel = cc.LabelTTF.create( 'Current Time :' , 'Arial', 20 );
+        this.CtimeLabel.setPosition( new cc.Point( 750, 40 ) );
+        this.addChild( this.CtimeLabel );
+
+        this.StimeLabel = cc.LabelTTF.create( 'Started Time :' , 'Arial', 20 );
+        this.StimeLabel.setPosition( new cc.Point( 750, 80 ) );
+        this.addChild( this.StimeLabel );
+
         this.sec = new Date().getSeconds();
         this.min = new Date().getMinutes();
         this.hr = new Date().getHours();
 
-        this.timeLabel = cc.LabelTTF.create( 'Hr:'+this.hr+'Min:'+this.min+'Sec:'+this.sec, 'Arial', 20 );
+        if(this.sec<10){
+            this.sec='0'+this.sec;
+        }
+         if(this.min<10){
+            this.min='0'+this.min;
+        }
+         if(this.hr<10){
+            this.hr='0'+this.hr;
+        }
+
+        this.timeLabel0 = cc.LabelTTF.create( this.hr+' : '+this.min+' : '+this.sec, 'Arial', 20 );
+        this.timeLabel0.setPosition( new cc.Point( 800, 60 ) );
+        this.addChild( this.timeLabel0 );
+
+        this.timeLabel = cc.LabelTTF.create( this.hr+' : '+this.min+' : '+this.sec, 'Arial', 20 );
         this.timeLabel.setPosition( new cc.Point( 800, 20 ) );
         this.addChild( this.timeLabel );
         
@@ -238,9 +260,16 @@ var GameLayer = cc.LayerColor.extend({
         this.sec = new Date().getSeconds();
         this.min = new Date().getMinutes();
         this.hr = new Date().getHours();
-
-        this.timeLabel.setString( 'Hr:'+this.hr+'Min:'+this.min+'Sec:'+this.sec, 'Arial', 20 );
-
+        if(this.sec<10){
+            this.sec='0'+this.sec;
+        }
+         if(this.min<10){
+            this.min='0'+this.min;
+        }
+         if(this.hr<10){
+            this.hr='0'+this.hr;
+        }
+        this.timeLabel.setString( this.hr+' : '+this.min+' : '+this.sec, 'Arial', 20 );
     }
 
 
