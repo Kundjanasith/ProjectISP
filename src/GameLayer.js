@@ -145,7 +145,7 @@ var GameLayer = cc.LayerColor.extend({
         for(var i=0 ; i<note1.length ; i++){
             if(note1[i]==1){
             var note = new NoteRed();
-            note.setPosition(new cc.Point(125,-50-(i*50)));
+            note.setPosition(new cc.Point(125,-50-(i*75)));
             noteRed.push(note);
             this.addChild(note);
             } 
