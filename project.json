@@ -15,6 +15,7 @@
         "src/StartScene.js",
         "src/Press.js",
         "src/Note.js",
-        "src/Status.js" 
+        "src/Status.js",
+        "src/Heart.js"
       ]
 }
