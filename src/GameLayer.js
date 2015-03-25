@@ -1,8 +1,9 @@
 var GameLayer = cc.LayerColor.extend({
+
     init: function() {
         this._super( new cc.Color( 195, 195, 195, 0) );
         this.setPosition( new cc.Point( 0, 0 ) );
-        
+
         this.Status = 0;
 
         this.noteRed = this.createNoteRed();
@@ -60,6 +61,7 @@ var GameLayer = cc.LayerColor.extend({
 
         return true;
     },
+
     onKeyDown: function( e ) {
         if(e===cc.KEY.s){
             this.red.change('down');
@@ -96,6 +98,7 @@ var GameLayer = cc.LayerColor.extend({
         }
    
     },
+
     onKeyUp: function( e ) {
         if(e===cc.KEY.s){
             this.red.change('up');
@@ -117,6 +120,7 @@ var GameLayer = cc.LayerColor.extend({
         }
 
     },
+
     addKeyboardHandlers: function() {
         var self = this;
         cc.eventManager.addListener({
@@ -129,13 +133,14 @@ var GameLayer = cc.LayerColor.extend({
             }
         }, this);
     },
+    
     createNoteRed: function(){
-        var note1 = [1,0,0,1,0,1,1,1,0];
+        var note1 = [1,0,0,1,0,1,1,1,0,1,1,0,1,0,0,1,0,1,0];
         var noteRed = [];
         for(var i=0 ; i<note1.length ; i++){
             if(note1[i]==1){
             var note = new NOTERED();
-            note.setPosition(new cc.Point(125,-50-(i*100)));
+            note.setPosition(new cc.Point(125,-50-(i*25)));
             noteRed.push(note);
             this.addChild(note);
             } 
