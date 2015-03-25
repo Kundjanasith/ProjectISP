@@ -89,7 +89,9 @@ var GameLayer = cc.LayerColor.extend({
                 }
                 if(this.Status%2===0){
                     this.sts.change('stop');
-                    this.noteRed.unscheduleUpdate();
+                   for(var i=0 ; this.noteRed.length ; i++){
+                          this.noteRed[i].unscheduleUpdate();
+                    }
                 }
         }
    
