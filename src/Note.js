@@ -15,11 +15,11 @@ var Note = cc.Sprite.extend({
 
     update: function(){
         this.setPosition( new cc.Point( this.getPosition().x, this.getPosition().y + this.speed ) );
-        this.destroy();
+        // this.destroy();
     },
 
     destroy: function(){
-        if(this.getPosition().y>=375){
+        if(this.getPosition().y>=350){
             this.removeFromParent();
         }
     }

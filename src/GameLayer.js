@@ -6,7 +6,7 @@ var GameLayer = cc.LayerColor.extend({
 
         // var name = prompt('Player name : ');
         this.showDetail('name');
-        this.showPress();
+        
 
         this.STATUS = 0;
 
@@ -29,7 +29,7 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild(this.noteViolet);
         
         this.scheduleUpdate();
-
+        this.showPress();
         this.addKeyboardHandlers( true );
 
 
@@ -37,13 +37,14 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     onKeyDown: function( e ) {
-        if(e===cc.KEY.s){
-            this.red.change('down');
-            for(var i=0 ; i<this.noteRed.length ; i++){
-               if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
+    if(e===cc.KEY.s){
+        this.red.change('down');
+        for(var i=0 ; i<this.noteRed.length ; i++){
+            if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
                 this.score++;
                 var show = new Action();
-                show.setPosition(new cc.Point(125,400));
+                show.setPosition(new cc.Point(125,380));
+                this.addChild(show);
                 this.scoreLabel.setString('Score : '+this.score);
             }
         }
