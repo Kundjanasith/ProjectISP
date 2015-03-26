@@ -47,7 +47,7 @@ var GameLayer = cc.LayerColor.extend({
                 if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
                     this.score++;
                     
-                    this.scoreLabel.setString('Score : '+this.score);
+                   
                 }
                 else{
 
@@ -213,6 +213,7 @@ update: function(){
     if(this.STATUS!=0){
         this.sts.setTime(this.hr,this.min,this.sec,this.timeLabel);
     }
+     this.scoreLabel.setString('Score : '+this.score);
 
 },
 
