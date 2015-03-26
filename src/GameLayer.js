@@ -4,9 +4,7 @@ var GameLayer = cc.LayerColor.extend({
         this._super( new cc.Color( 195, 195, 195, 0) );
         this.setPosition( new cc.Point( 0, 0 ) );
 
-        var name = prompt('Player name : ');
-        cc.log(name);
-
+        // var name = prompt('Player name : ');
         this.STATUS = 0;
 
         this.noteRed = this.createNoteRed();
@@ -79,7 +77,7 @@ var GameLayer = cc.LayerColor.extend({
         this.min = 0;
         this.sec = 0;
 
-        this.nameLabel = cc.LabelTTF.create(name, 'Arial', 20 );
+        this.nameLabel = cc.LabelTTF.create( 'name' , 'Arial', 20 );
         this.nameLabel.setPosition( new cc.Point( 800, 60 ) );
         this.addChild( this.nameLabel );
 
