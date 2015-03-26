@@ -233,8 +233,22 @@ addKeyboardHandlers: function() {
     }, this);
 },
 
+randomPosition: function(){
+    var note1 = [];
+    for(var i=0 ; i<100 ; i++){
+        var x = Math.random();
+        if(x*10<5){
+            note1.push(1);
+        }
+        else{
+            note1.push(0);
+        }
+    }
+    return note1;
+},
+
 createNoteRed: function(){
-    var note1 = [1,0,0,1,0,1,1,0,0,1,0,1,1,0,1,0,0,1,0,1,0];
+    var note1 = this.randomPosition();
     var noteRed = [];
     for(var i=0 ; i<note1.length ; i++){
         if(note1[i]==1){
@@ -248,7 +262,7 @@ createNoteRed: function(){
 },
 
 createNoteOrange: function(){
-    var note1 = [1,0,0,1,0,1,1,0,0,1,0,1,1,0,1,0,0,1,0,1,0];
+    var note1 = this.randomPosition();
     var noteOrange = [];
     for(var i=0 ; i<note1.length ; i++){
         if(note1[i]==0){
@@ -262,16 +276,7 @@ createNoteOrange: function(){
 },
 
 createNoteYellow: function(){
-    var note1 = [];
-    for(var i=0 ; i<100 ; i++){
-        var x = Math.random();
-        if(x*10<5){
-            note1.push(1);
-        }
-        else{
-            note1.push(0);
-        }
-    }
+    var note1 = this.randomPosition();
     var noteYellow = [];
     for(var i=0 ; i<note1.length ; i++){
         if(note1[i]==0){
