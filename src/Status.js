@@ -3,6 +3,7 @@
     ctor: function() {
         this._super();
         this.initWithFile( 'res/status/Start.png' );
+        this.setPosition(new cc.Point(800,400));
     },
 
     change: function(x){

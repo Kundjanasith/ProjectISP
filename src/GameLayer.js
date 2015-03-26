@@ -4,7 +4,7 @@ var GameLayer = cc.LayerColor.extend({
         this._super( new cc.Color( 195, 195, 195, 0) );
         this.setPosition( new cc.Point( 0, 0 ) );
 
-        // var name = prompt('Player name : ');
+        var name = prompt('Player name : ');
         this.STATUS = 0;
 
         this.noteRed = this.createNoteRed();
@@ -43,42 +43,17 @@ var GameLayer = cc.LayerColor.extend({
         this.violet = new Press('Violet');
         this.addChild(this.violet);
 
-        this.sts = new Status();
-        this.sts.setPosition(new cc.Point(800,400));
-        this.addChild(this.sts);
+        this.showDetail(name);
 
-        this.Heart = this.createLife();
         
-        this.score = 0;
-
-        this.scoreLabel = cc.LabelTTF.create( 'Score : '+this.score , 'Arial', 20 );
-        this.scoreLabel.setPosition( new cc.Point( 750, 325 ) );
-        this.addChild( this.scoreLabel );
-
-        this.lifeLabel = cc.LabelTTF.create( 'Life : ' , 'Arial', 20 );
-        this.lifeLabel.setPosition( new cc.Point( 750, 275 ) );
-        this.addChild( this.lifeLabel );
-
-        this.CtimeLabel = cc.LabelTTF.create( 'Your Time :' , 'Arial', 20 );
-        this.CtimeLabel.setPosition( new cc.Point( 750, 40 ) );
-        this.addChild( this.CtimeLabel );
-
-        this.StimeLabel = cc.LabelTTF.create( 'Player Name :' , 'Arial', 20 );
-        this.StimeLabel.setPosition( new cc.Point( 750, 80 ) );
-        this.addChild( this.StimeLabel );
         
-        this.hr = 0 ;
-        this.min = 0;
-        this.sec = 0;
+        
 
-        this.nameLabel = cc.LabelTTF.create( 'name' , 'Arial', 20 );
-        this.nameLabel.setPosition( new cc.Point( 800, 60 ) );
-        this.addChild( this.nameLabel );
+        
 
-        this.timeLabel = cc.LabelTTF.create( '- - : - - : - -', 'Arial', 20 );
-        this.timeLabel.setPosition( new cc.Point( 800, 20 ) );
-        this.addChild( this.timeLabel );
-
+        
+        
+        
 
         
         this.scheduleUpdate();
@@ -261,7 +236,6 @@ update: function(){
 },
 
 createLife: function(){
-
     var Heart0 = [] ;
     for(var i=0 ; i<5 ; i++){
         var H = new Heart();
@@ -270,6 +244,35 @@ createLife: function(){
         Heart0.push(H);
     }
     return Heart0;
+},
+
+showDetail: function(name){
+    this.sts = new Status();
+    this.addChild(this.sts);
+    this.score = 0;
+    this.scoreLabel = cc.LabelTTF.create( 'Score : '+this.score , 'Arial', 20 );
+    this.scoreLabel.setPosition( new cc.Point( 750, 325 ) );
+    this.addChild( this.scoreLabel );
+    this.lifeLabel = cc.LabelTTF.create( 'Life : ' , 'Arial', 20 );
+    this.lifeLabel.setPosition( new cc.Point( 750, 275 ) );
+    this.addChild( this.lifeLabel );
+    this.Heart = this.createLife();
+    this.NLabel = cc.LabelTTF.create( 'Player Name :' , 'Arial', 20 );
+    this.NLabel.setPosition( new cc.Point( 750, 80 ) );
+    this.addChild( this.NLabel );
+    this.nameLabel = cc.LabelTTF.create( name , 'Arial', 20 );
+    this.nameLabel.setPosition( new cc.Point( 800, 60 ) );
+    this.addChild( this.nameLabel );
+    this.TLabel = cc.LabelTTF.create( 'Your Time :' , 'Arial', 20 );
+    this.TLabel.setPosition( new cc.Point( 750, 40 ) );
+    this.addChild( this.TLabel );
+    this.hr = 0 ;
+    this.min = 0;
+    this.sec = 0;
+    this.timeLabel = cc.LabelTTF.create( '- - : - - : - -', 'Arial', 20 );
+    this.timeLabel.setPosition( new cc.Point( 800, 20 ) );
+    this.addChild( this.timeLabel );
+
 }
 
 });
