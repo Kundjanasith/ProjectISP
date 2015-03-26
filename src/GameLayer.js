@@ -4,7 +4,9 @@ var GameLayer = cc.LayerColor.extend({
         this._super( new cc.Color( 195, 195, 195, 0) );
         this.setPosition( new cc.Point( 0, 0 ) );
 
-        var name = prompt('Player name : ');
+        // var name = prompt('Player name : ');
+        this.showDetail('name');
+
         this.STATUS = 0;
 
         this.noteRed = this.createNoteRed();
@@ -25,36 +27,9 @@ var GameLayer = cc.LayerColor.extend({
         this.noteViolet.setPosition(new cc.Point(625,-50));
         this.addChild(this.noteViolet);
 
-        this.red = new Press('Red');
-        this.addChild(this.red);
-
-        this.orange = new Press('Orange');
-        this.addChild(this.orange);
-
-        this.yellow = new Press('Yellow');
-        this.addChild(this.yellow);
-
-        this.green = new Press('Green');
-        this.addChild(this.green);
-
-        this.blue = new Press('Blue');
-        this.addChild(this.blue);
-
-        this.violet = new Press('Violet');
-        this.addChild(this.violet);
-
-        this.showDetail(name);
-
-        
-        
         
 
-        
-
-        
-        
-        
-
+       
         
         this.scheduleUpdate();
 
@@ -272,7 +247,26 @@ showDetail: function(name){
     this.timeLabel = cc.LabelTTF.create( '- - : - - : - -', 'Arial', 20 );
     this.timeLabel.setPosition( new cc.Point( 800, 20 ) );
     this.addChild( this.timeLabel );
+},
 
+showPress: function(){
+        this.red = new Press('Red');
+        this.addChild(this.red);
+
+        this.orange = new Press('Orange');
+        this.addChild(this.orange);
+
+        this.yellow = new Press('Yellow');
+        this.addChild(this.yellow);
+
+        this.green = new Press('Green');
+        this.addChild(this.green);
+
+        this.blue = new Press('Blue');
+        this.addChild(this.blue);
+
+        this.violet = new Press('Violet');
+        this.addChild(this.violet);
 }
 
 });
