@@ -55,8 +55,12 @@ var GameLayer = cc.LayerColor.extend({
             }
             if(check){
                 this.perfectRed.destroy();
-                if(this.Life>=0)this.Heart[this.Life].destroy();
                 this.addChild(this.missRed);
+                if(this.Life>=0)this.Heart[this.Life].destroy();
+                else{
+                    this.stopAllNote();
+                    this.unscheduleUpdate();
+                }
                 this.Life--;
             }
         }
@@ -120,6 +124,9 @@ var GameLayer = cc.LayerColor.extend({
         //         }
         //     }
         // }
+    }
+    if(e===cc.KEY.space){
+        cc.log(this.timeLabel.getString());
     }
 
 },
@@ -221,7 +228,7 @@ update: function(){
     if(this.STATUS!=0){
         this.sts.setTime(this.hr,this.min,this.sec,this.timeLabel);
     }
-     this.scoreLabel.setString('Score : '+this.score);
+    this.scoreLabel.setString('Score : '+this.score);
 
 },
 
@@ -282,6 +289,24 @@ showPress: function(){
 
     this.violet = new Press('Violet');
     this.addChild(this.violet);
+},
+
+stopAllNote: function(){
+    for(var i=0 ; i<this.noteRed.length ; i++){
+        if(this.noteRed[i]!=null){
+            this.noteRed[i].unscheduleUpdate();
+        }
+    }
+    for(var i=0 ; i<this.noteOrange.length ; i++){
+        if(this.noteOrange[i]!=null){
+            this.noteOrange[i].unscheduleUpdate();
+        }
+    }
+    for(var i=0 ; i<this.noteYellow.length ; i++){
+        if(this.noteYellow[i]!=null){
+            this.noteYellow[i].unscheduleUpdate();
+        }
+    }
 }
 
 });
