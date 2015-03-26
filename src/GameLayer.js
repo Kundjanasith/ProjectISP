@@ -26,7 +26,6 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild(this.noteViolet);
 
         this.red = new Press('Red');
-        this.red.setPosition(new cc.Point(125,400));
         this.addChild(this.red);
 
         this.orange = new Press('Orange');
