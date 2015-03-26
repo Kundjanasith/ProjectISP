@@ -291,32 +291,8 @@ createNoteYellow: function(){
 
 update: function(){
     if(this.STATUS!=0){
-        var sec = new Date().getSeconds();
-        var min = new Date().getMinutes();
-        var hr = new Date().getHours();
-
-        var duration0 = (this.sec)+(this.min*60)+(this.hr*3600);
-        var duration1 = sec+(min*60)+(hr*3600);
-
-        var duration = duration1-duration0;
-
-        var h = Math.floor(duration/3600);
-        var m = Math.floor(duration/60);
-        var s = Math.floor(duration%60);
-
-        if(s<10){
-            s='0'+s;
-        }
-        if(m<10){
-            m='0'+m;
-        }
-        if(h<10){
-            h='0'+h;
-        }
-
-        this.timeLabel.setString( h+' : '+ m+' : '+ s, 'Arial', 60 );
+        this.sts.setTime(this.hr,this.min,this.sec,this.timeLabel);
     }
-
 },
 
 createLife: function(){
