@@ -8,8 +8,8 @@ var GameLayer = cc.LayerColor.extend({
         this.showDetail('name');
         
         
-
-
+        this.perfectRed = new Action('perfect','Red');
+        this.missRed= new Action('miss','Red');
         
 
         this.STATUS = 0;
@@ -43,15 +43,18 @@ var GameLayer = cc.LayerColor.extend({
     onKeyDown: function( e ) {
         if(e===cc.KEY.s){
             this.red.change('down');
+            var check = true;
             for(var i=0 ; i<this.noteRed.length ; i++){
                 if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
                     this.score++;
-                    
-                   
+                    this.missRed.destroy();
+                    this.addChild(this.perfectRed);
+                    check = false;
                 }
-                else{
-
-                }
+            }
+            if(check){
+                this.perfectRed.destroy();
+                this.addChild(this.missRed);
             }
         }
         if(e===cc.KEY.d){
@@ -121,6 +124,8 @@ var GameLayer = cc.LayerColor.extend({
 onKeyUp: function( e ) {
     if(e===cc.KEY.s){
       this.red.change('up');
+      this.perfectRed.destroy();
+      this.missRed.destroy();
   }
   if(e===cc.KEY.d){
     this.orange.change('up');
