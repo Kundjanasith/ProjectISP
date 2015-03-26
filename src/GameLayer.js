@@ -6,6 +6,7 @@ var GameLayer = cc.LayerColor.extend({
 
         // var name = prompt('Player name : ');
         this.showDetail('name');
+        this.showPress();
 
         this.STATUS = 0;
 
@@ -26,10 +27,6 @@ var GameLayer = cc.LayerColor.extend({
         this.noteViolet= new Note('Violet');
         this.noteViolet.setPosition(new cc.Point(625,-50));
         this.addChild(this.noteViolet);
-
-        
-
-       
         
         this.scheduleUpdate();
 
@@ -45,6 +42,8 @@ var GameLayer = cc.LayerColor.extend({
             for(var i=0 ; i<this.noteRed.length ; i++){
                if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
                 this.score++;
+                var show = new Action();
+                show.setPosition(new cc.Point(125,400));
                 this.scoreLabel.setString('Score : '+this.score);
             }
         }

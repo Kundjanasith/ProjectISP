@@ -16,6 +16,7 @@
         "src/Press.js",
         "src/Note.js",
         "src/Status.js",
-        "src/Heart.js"
+        "src/Heart.js",
+        "src/Action.js"
       ]
 }
