@@ -25,28 +25,23 @@ var GameLayer = cc.LayerColor.extend({
         this.noteViolet.setPosition(new cc.Point(625,-50));
         this.addChild(this.noteViolet);
 
-        this.red = new Red();
+        this.red = new Press('Red');
         this.red.setPosition(new cc.Point(125,400));
         this.addChild(this.red);
 
-        this.orange = new Orange();
-        this.orange.setPosition(new cc.Point(225,400));
+        this.orange = new Press('Orange');
         this.addChild(this.orange);
 
-        this.yellow = new Yellow();
-        this.yellow.setPosition(new cc.Point(325,400));
+        this.yellow = new Press('Yellow');
         this.addChild(this.yellow);
 
-        this.green = new Green();
-        this.green.setPosition(new cc.Point(425,400));
+        this.green = new Press('Green');
         this.addChild(this.green);
 
-        this.blue = new Blue();
-        this.blue.setPosition(new cc.Point(525,400));
+        this.blue = new Press('Blue');
         this.addChild(this.blue);
 
-        this.violet = new Violet();
-        this.violet.setPosition(new cc.Point(625,400));
+        this.violet = new Press('Violet');
         this.addChild(this.violet);
 
         this.sts = new Status();
