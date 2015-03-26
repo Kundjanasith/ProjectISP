@@ -33,10 +33,18 @@ var NoteYellow = cc.Sprite.extend({
         this.speed = 5;
         this._super();
         this.initWithFile( 'res/note/NoteYellow.png' );
+
     },
 
     update: function(){
         this.setPosition( new cc.Point( this.getPosition().x, this.getPosition().y + this.speed ) );
+         this.destroy();
+    },
+
+    destroy: function(){
+        if(this.getPosition().y>=300){
+            this.removeFromParent();
+        }
     }
     
 }); 
