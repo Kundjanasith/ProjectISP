@@ -4,6 +4,9 @@ var GameLayer = cc.LayerColor.extend({
         this._super( new cc.Color( 195, 195, 195, 0) );
         this.setPosition( new cc.Point( 0, 0 ) );
 
+        var name = prompt('Player name : ');
+        cc.log(name);
+
         this.STATUS = 0;
 
         this.noteRed = this.createNoteRed();
