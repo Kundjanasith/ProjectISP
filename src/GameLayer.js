@@ -13,15 +13,15 @@ var GameLayer = cc.LayerColor.extend({
 
         this.noteYellow = this.createNoteYellow();
 
-        this.noteGreen = new NoteGreen();
+        this.noteGreen = new Note('Green');
         this.noteGreen.setPosition(new cc.Point(425,-50));
         this.addChild(this.noteGreen);
         
-        this.noteBlue= new NoteBlue();
+        this.noteBlue= new Note('Blue');
         this.noteBlue.setPosition(new cc.Point(525,-50));
         this.addChild(this.noteBlue);
 
-        this.noteViolet= new NoteViolet();
+        this.noteViolet= new Note('Violet');
         this.noteViolet.setPosition(new cc.Point(625,-50));
         this.addChild(this.noteViolet);
 
@@ -223,7 +223,7 @@ createNoteRed: function(){
     var noteRed = [];
     for(var i=0 ; i<note1.length ; i++){
         if(note1[i]==1){
-            var note = new NoteRed();
+            var note = new Note('Red');
             note.setPosition(new cc.Point(125,-50-(i*75)));
             noteRed.push(note);
             this.addChild(note);
@@ -237,7 +237,7 @@ createNoteOrange: function(){
     var noteOrange = [];
     for(var i=0 ; i<note1.length ; i++){
         if(note1[i]==0){
-            var note = new NoteOrange();
+            var note = new Note('Orange');
             note.setPosition(new cc.Point(225,-50-(i*75)));
             noteOrange.push(note);
             this.addChild(note);
@@ -251,7 +251,7 @@ createNoteYellow: function(){
     var noteYellow = [];
     for(var i=0 ; i<note1.length ; i++){
         if(note1[i]==0){
-            var note = new NoteYellow();
+            var note = new Note('Yellow');
             note.setPosition(new cc.Point(325,-50-(i*75)));
             noteYellow.push(note);
             this.addChild(note);
