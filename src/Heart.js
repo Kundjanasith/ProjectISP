@@ -2,5 +2,8 @@
     ctor: function() {
         this._super();
         this.initWithFile( 'res/heart.png' );
+    },
+    destroy: function(){
+    	this.removeFromParent();
     }
 }); 
