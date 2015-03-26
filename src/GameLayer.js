@@ -7,6 +7,10 @@ var GameLayer = cc.LayerColor.extend({
         // var name = prompt('Player name : ');
         this.showDetail('name');
         
+        
+
+
+        
 
         this.STATUS = 0;
 
@@ -37,40 +41,41 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     onKeyDown: function( e ) {
-    if(e===cc.KEY.s){
-        this.red.change('down');
-        for(var i=0 ; i<this.noteRed.length ; i++){
-            if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
-                this.score++;
-                var show = new Action();
-                show.setPosition(new cc.Point(125,380));
-                this.addChild(show);
-                this.scoreLabel.setString('Score : '+this.score);
+        if(e===cc.KEY.s){
+            this.red.change('down');
+            for(var i=0 ; i<this.noteRed.length ; i++){
+                if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
+                    this.score++;
+                    
+                    this.scoreLabel.setString('Score : '+this.score);
+                }
+                else{
+
+                }
             }
         }
-    }
-    if(e===cc.KEY.d){
-        this.orange.change('down');
-    }
-    if(e===cc.KEY.f){
-        this.yellow.change('down');
-    }
-    if(e===cc.KEY.j){
-        this.green.change('down');
-    }
-    if(e===cc.KEY.k){
-        this.blue.change('down');
-    }
-    if(e===cc.KEY.l){
-        this.violet.change('down');
-    }
-    if(e===cc.KEY.enter){
-        this.STATUS++;
-        if(this.STATUS===1){
-            this.sec = new Date().getSeconds();
-            this.min = new Date().getMinutes();
-            this.hr = new Date().getHours();
+        if(e===cc.KEY.d){
+            this.orange.change('down');
         }
+        if(e===cc.KEY.f){
+            this.yellow.change('down');
+        }
+        if(e===cc.KEY.j){
+            this.green.change('down');
+        }
+        if(e===cc.KEY.k){
+            this.blue.change('down');
+        }
+        if(e===cc.KEY.l){
+            this.violet.change('down');
+        }
+        if(e===cc.KEY.enter){
+            this.STATUS++;
+            if(this.STATUS===1){
+                this.sec = new Date().getSeconds();
+                this.min = new Date().getMinutes();
+                this.hr = new Date().getHours();
+            }
         // if(this.STATUS%2===1){
             this.sts.change('play');
             this.scheduleUpdate();
@@ -115,23 +120,23 @@ var GameLayer = cc.LayerColor.extend({
 
 onKeyUp: function( e ) {
     if(e===cc.KEY.s){
-        this.red.change('up');
-    }
-    if(e===cc.KEY.d){
-        this.orange.change('up');
-    }
-    if(e===cc.KEY.f){
-        this.yellow.change('up');
-    }
-    if(e===cc.KEY.j){
-        this.green.change('up');
-    }
-    if(e===cc.KEY.k){
-        this.blue.change('up');
-    }
-    if(e===cc.KEY.l){
-        this.violet.change('up');
-    }
+      this.red.change('up');
+  }
+  if(e===cc.KEY.d){
+    this.orange.change('up');
+}
+if(e===cc.KEY.f){
+    this.yellow.change('up');
+}
+if(e===cc.KEY.j){
+    this.green.change('up');
+}
+if(e===cc.KEY.k){
+    this.blue.change('up');
+}
+if(e===cc.KEY.l){
+    this.violet.change('up');
+}
 
 },
 
@@ -208,6 +213,7 @@ update: function(){
     if(this.STATUS!=0){
         this.sts.setTime(this.hr,this.min,this.sec,this.timeLabel);
     }
+
 },
 
 createLife: function(){
@@ -250,23 +256,23 @@ showDetail: function(name){
 },
 
 showPress: function(){
-        this.red = new Press('Red');
-        this.addChild(this.red);
+    this.red = new Press('Red');
+    this.addChild(this.red);
 
-        this.orange = new Press('Orange');
-        this.addChild(this.orange);
+    this.orange = new Press('Orange');
+    this.addChild(this.orange);
 
-        this.yellow = new Press('Yellow');
-        this.addChild(this.yellow);
+    this.yellow = new Press('Yellow');
+    this.addChild(this.yellow);
 
-        this.green = new Press('Green');
-        this.addChild(this.green);
+    this.green = new Press('Green');
+    this.addChild(this.green);
 
-        this.blue = new Press('Blue');
-        this.addChild(this.blue);
+    this.blue = new Press('Blue');
+    this.addChild(this.blue);
 
-        this.violet = new Press('Violet');
-        this.addChild(this.violet);
+    this.violet = new Press('Violet');
+    this.addChild(this.violet);
 }
 
 });
