@@ -236,7 +236,6 @@ addKeyboardHandlers: function() {
 createNoteRed: function(){
     var note1 = [1,0,0,1,0,1,1,0,0,1,0,1,1,0,1,0,0,1,0,1,0];
     var noteRed = [];
-    cc.log(note1.length);
     for(var i=0 ; i<note1.length ; i++){
         if(note1[i]==1){
             var note = new NoteRed();
@@ -251,7 +250,6 @@ createNoteRed: function(){
 createNoteOrange: function(){
     var note1 = [1,0,0,1,0,1,1,0,0,1,0,1,1,0,1,0,0,1,0,1,0];
     var noteOrange = [];
-    cc.log(note1.length);
     for(var i=0 ; i<note1.length ; i++){
         if(note1[i]==0){
             var note = new NoteOrange();
@@ -275,7 +273,6 @@ createNoteYellow: function(){
         }
     }
     var noteYellow = [];
-    cc.log(note1.length);
     for(var i=0 ; i<note1.length ; i++){
         if(note1[i]==0){
             var note = new NoteYellow();
@@ -295,12 +292,6 @@ update: function(){
 
         var duration0 = (this.sec)+(this.min*60)+(this.hr*3600);
         var duration1 = sec+(min*60)+(hr*3600);
-
-        cc.log(this.hr+":"+this.min+":"+this.sec);
-        cc.log(hr+":"+min+":"+sec);
-
-        cc.log(duration0);
-        cc.log(duration1);
 
         var duration = duration1-duration0;
 
@@ -324,6 +315,7 @@ update: function(){
 },
 
 createLife: function(){
+
     var Heart0 = [] ;
     for(var i=0 ; i<5 ; i++){
         var H = new Heart();
@@ -333,8 +325,6 @@ createLife: function(){
     }
     return Heart0;
 }
-
-
 
 });
 
