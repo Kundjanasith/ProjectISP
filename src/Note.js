@@ -42,7 +42,7 @@ var NoteYellow = cc.Sprite.extend({
     },
 
     destroy: function(){
-        if(this.getPosition().y>=300){
+        if(this.getPosition().y>=375){
             this.removeFromParent();
         }
     }
