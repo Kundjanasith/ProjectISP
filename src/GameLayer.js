@@ -71,7 +71,7 @@ var GameLayer = cc.LayerColor.extend({
         this.CtimeLabel.setPosition( new cc.Point( 750, 40 ) );
         this.addChild( this.CtimeLabel );
 
-        this.StimeLabel = cc.LabelTTF.create( 'Started Time :' , 'Arial', 20 );
+        this.StimeLabel = cc.LabelTTF.create( 'Player Name :' , 'Arial', 20 );
         this.StimeLabel.setPosition( new cc.Point( 750, 80 ) );
         this.addChild( this.StimeLabel );
         
@@ -79,23 +79,9 @@ var GameLayer = cc.LayerColor.extend({
         this.min = 0;
         this.sec = 0;
 
-        var sec = new Date().getSeconds();
-        var min = new Date().getMinutes();
-        var hr = new Date().getHours();
-
-        if(sec<10){
-            sec='0'+sec;
-        }
-        if(min<10){
-            min='0'+min;
-        }
-        if(hr<10){
-            hr='0'+hr;
-        }
-
-        this.timeLabel0 = cc.LabelTTF.create( '- - : - - : - -', 'Arial', 20 );
-        this.timeLabel0.setPosition( new cc.Point( 800, 60 ) );
-        this.addChild( this.timeLabel0 );
+        this.nameLabel = cc.LabelTTF.create(name, 'Arial', 20 );
+        this.nameLabel.setPosition( new cc.Point( 800, 60 ) );
+        this.addChild( this.nameLabel );
 
         this.timeLabel = cc.LabelTTF.create( '- - : - - : - -', 'Arial', 20 );
         this.timeLabel.setPosition( new cc.Point( 800, 20 ) );
@@ -139,25 +125,9 @@ var GameLayer = cc.LayerColor.extend({
     if(e===cc.KEY.enter){
         this.STATUS++;
         if(this.STATUS===1){
-            var sec = new Date().getSeconds();
-            var min = new Date().getMinutes();
-            var hr = new Date().getHours();
-
-            this.hr = hr;
-            this.min = min;
-            this.sec = sec;
-
-            if(sec<10){
-                sec='0'+sec;
-            }
-            if(min<10){
-                min='0'+min;
-            }
-            if(hr<10){
-                hr='0'+hr;
-            }
-            this.timeLabel0.setString( hr +' : '+ min+' : '+ sec, 'Arial', 20 );
-
+            this.sec = new Date().getSeconds();
+            this.min = new Date().getMinutes();
+            this.hr = new Date().getHours();
         }
         // if(this.STATUS%2===1){
             this.sts.change('play');
