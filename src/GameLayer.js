@@ -11,6 +11,7 @@ var GameLayer = cc.LayerColor.extend({
         this.perfectRed = new Action('perfect','Red');
         this.missRed= new Action('miss','Red');
         
+        this.Life = 4 ;
 
         this.STATUS = 0;
 
@@ -54,7 +55,9 @@ var GameLayer = cc.LayerColor.extend({
             }
             if(check){
                 this.perfectRed.destroy();
+                if(this.Life>=0)this.Heart[this.Life].destroy();
                 this.addChild(this.missRed);
+                this.Life--;
             }
         }
         if(e===cc.KEY.d){
