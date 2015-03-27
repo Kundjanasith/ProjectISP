@@ -2,7 +2,7 @@ var StartScene = cc.Scene.extend({
 
     onEnter: function() {
         this._super();
-        this.layer = new GameLayer();
+        this.layer = new StartLayer();
         this.layer.init();
         this.addChild( this.layer );
         this.scheduleUpdate();

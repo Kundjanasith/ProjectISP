@@ -18,6 +18,7 @@
         "src/Status.js",
         "src/Heart.js",
         "src/Action.js",
-        "src/EndLayer.js"
+        "src/EndLayer.js",
+        "src/StartLayer.js"
       ]
 }
