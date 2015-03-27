@@ -9,9 +9,9 @@ var StartScene = cc.Scene.extend({
     },
 
     update: function(){
-    	if(this.layer.deleteScreen()){
+    	if(this.layer.deleteScreen()[0]){
     		this.layer1 = new EndLayer();
-            this.layer1.init();
+            this.layer1.init(this.layer.deleteScreen()[1],this.layer.deleteScreen()[2],this.layer.deleteScreen()[3]);
             this.addChild( this.layer1 );
     	}
     }

@@ -4,8 +4,8 @@ var GameLayer = cc.LayerColor.extend({
         this._super( new cc.Color( 195, 195, 195, 0) );
         this.setPosition( new cc.Point( 0, 0 ) );
 
-        // var name = prompt('Player name : ');
-        this.showDetail('name');
+        this.Name = prompt('Player name : ');
+        this.showDetail(this.Name);
         this.show=false;
         
         this.perfectRed = new Action('perfect','Red');
@@ -43,27 +43,29 @@ var GameLayer = cc.LayerColor.extend({
     onKeyDown: function( e ) {
         if(e===cc.KEY.s){
             this.red.change('down');
-            var check = true;
-            for(var i=0 ; i<this.noteRed.length ; i++){
-                if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
-                    this.score++;
-                    this.missRed.destroy();
-                    this.addChild(this.perfectRed);
-                    check = false;
+            if(this.STATUS>0){
+                var check = true;
+                for(var i=0 ; i<this.noteRed.length ; i++){
+                    if(this.noteRed[i].getPosition().y>=350&&this.noteRed[i].getPosition().y<=450){
+                        this.score++;
+                        this.missRed.destroy();
+                        this.addChild(this.perfectRed);
+                        check = false;
+                    }
                 }
-            }
-            if(check){
-                this.perfectRed.destroy();
-                this.addChild(this.missRed);
-                if(this.Life>=0)this.Heart[this.Life].destroy();
-                else{
-                 this.stopAllNote();
-                 this.unscheduleUpdate();
-                 this.removeFromParent();
-                 this.show=true;
-                 this.deleteScreen();
+                if(check){
+                    this.perfectRed.destroy();
+                    this.addChild(this.missRed);
+                    if(this.Life>=0)this.Heart[this.Life].destroy();
+                    else{
+                     this.stopAllNote();
+                     this.unscheduleUpdate();
+                     this.removeFromParent();
+                     this.show=true;
+                     this.deleteScreen();
+                 }
+                 this.Life--;
              }
-             this.Life--;
          }
      }
      if(e===cc.KEY.d){
@@ -312,8 +314,8 @@ stopAllNote: function(){
 },
 
 deleteScreen: function(){
-
- return this.show;
+ var Screen = [this.show,this.Name,this.scoreLabel.getString(),this.timeLabel.getString()];
+ return Screen;
 }
 
 
