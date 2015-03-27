@@ -17,6 +17,7 @@
         "src/Note.js",
         "src/Status.js",
         "src/Heart.js",
-        "src/Action.js"
+        "src/Action.js",
+        "src/EndLayer.js"
       ]
 }

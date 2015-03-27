@@ -6,7 +6,7 @@ var GameLayer = cc.LayerColor.extend({
 
         // var name = prompt('Player name : ');
         this.showDetail('name');
-        
+        this.show=false;
         
         this.perfectRed = new Action('perfect','Red');
         this.missRed= new Action('miss','Red');
@@ -33,7 +33,6 @@ var GameLayer = cc.LayerColor.extend({
         this.noteViolet.setPosition(new cc.Point(625,-50));
         this.addChild(this.noteViolet);
         
-        this.scheduleUpdate();
         this.showPress();
         this.addKeyboardHandlers( true );
 
@@ -58,34 +57,37 @@ var GameLayer = cc.LayerColor.extend({
                 this.addChild(this.missRed);
                 if(this.Life>=0)this.Heart[this.Life].destroy();
                 else{
-                    this.stopAllNote();
-                    this.unscheduleUpdate();
-                }
-                this.Life--;
-            }
+                 this.stopAllNote();
+                 this.unscheduleUpdate();
+                 this.removeFromParent();
+                 this.show=true;
+                 this.deleteScreen();
+             }
+             this.Life--;
+         }
+     }
+     if(e===cc.KEY.d){
+        this.orange.change('down');
+    }
+    if(e===cc.KEY.f){
+        this.yellow.change('down');
+    }
+    if(e===cc.KEY.j){
+        this.green.change('down');
+    }
+    if(e===cc.KEY.k){
+        this.blue.change('down');
+    }
+    if(e===cc.KEY.l){
+        this.violet.change('down');
+    }
+    if(e===cc.KEY.enter){
+        this.STATUS++;
+        if(this.STATUS===1){
+            this.sec = new Date().getSeconds();
+            this.min = new Date().getMinutes();
+            this.hr = new Date().getHours();
         }
-        if(e===cc.KEY.d){
-            this.orange.change('down');
-        }
-        if(e===cc.KEY.f){
-            this.yellow.change('down');
-        }
-        if(e===cc.KEY.j){
-            this.green.change('down');
-        }
-        if(e===cc.KEY.k){
-            this.blue.change('down');
-        }
-        if(e===cc.KEY.l){
-            this.violet.change('down');
-        }
-        if(e===cc.KEY.enter){
-            this.STATUS++;
-            if(this.STATUS===1){
-                this.sec = new Date().getSeconds();
-                this.min = new Date().getMinutes();
-                this.hr = new Date().getHours();
-            }
         // if(this.STATUS%2===1){
             this.sts.change('play');
             this.scheduleUpdate();
@@ -170,7 +172,7 @@ addKeyboardHandlers: function() {
 
 randomPosition: function(){
     var note1 = [];
-    for(var i=0 ; i<100 ; i++){
+    for(var i=0 ; i<10 ; i++){
         var x = Math.random();
         if(x*10<5){
             note1.push(1);
@@ -307,7 +309,14 @@ stopAllNote: function(){
             this.noteYellow[i].unscheduleUpdate();
         }
     }
+},
+
+deleteScreen: function(){
+
+ return this.show;
 }
+
+
 
 });
 
