@@ -19,9 +19,7 @@ var Note = cc.Sprite.extend({
     },
 
     destroy: function(){
-        if(this.getPosition().y>=350){
             this.removeFromParent();
-        }
     }
     
 }); 

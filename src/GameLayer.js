@@ -174,7 +174,7 @@ addKeyboardHandlers: function() {
 
 randomPosition: function(){
     var note1 = [];
-    for(var i=0 ; i<10 ; i++){
+    for(var i=0 ; i<100 ; i++){
         var x = Math.random();
         if(x*10<5){
             note1.push(1);
