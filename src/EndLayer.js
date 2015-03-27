@@ -15,19 +15,23 @@ var EndLayer = cc.LayerColor.extend({
         this.addChild( this.nameLabel );
 
         this.scoreLabel = cc.LabelTTF.create( score , 'Arial', 50 );
-        this.scoreLabel.setPosition( new cc.Point( 500, 200 ) );
+        this.scoreLabel.setPosition( new cc.Point( 500, 225 ) );
         this.addChild( this.scoreLabel );
 
         this.timeLabel = cc.LabelTTF.create( 'Time : '+time , 'Arial', 50 );
-        this.timeLabel.setPosition( new cc.Point( 500, 100 ) );
+        this.timeLabel.setPosition( new cc.Point( 500, 150 ) );
         this.addChild( this.timeLabel );
 
         var t = [] ;
         t = time.split(":");
-        cc.log(t.length);
-
-        this.skillLabel = cc.LabelTTF.create( 'Your Skill: '+(score/time) , 'Arial', 50 );
-        this.skillLabel.setPosition( new cc.Point( 500, 0 ) );
+        var duration = t[2]+(t[1]*60)+(t[2]*3600);
+        var s = [] ;
+        s = score.split(":");
+        var Score = s[1];
+        var skill = ((Score[1]/duration)*Math.pow(10,9)).toFixed(2);
+        
+        this.skillLabel = cc.LabelTTF.create( 'Your Skill: '+skill , 'Arial', 50 );
+        this.skillLabel.setPosition( new cc.Point( 500, 75 ) );
         this.addChild( this.skillLabel );
 
         return true;
