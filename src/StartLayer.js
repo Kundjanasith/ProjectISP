@@ -3,23 +3,25 @@ var StartLayer = cc.LayerColor.extend({
     init: function() {
         this._super( new cc.Color( 195, 195, 195, 0) );
         this.setPosition( new cc.Point( 0, 0 ) );
+        this.showGame = false;
 
-        this.scoreLabel = cc.LabelTTF.create( 'Score : ', 'Arial', 20 );
-        this.scoreLabel.setPosition( new cc.Point( 750, 325 ) );
-        this.addChild( this.scoreLabel );
-
-        var closeItem = new cc.MenuItemImage(
-            res.CloseNormal_png,
-            res.CloseSelected_png,
+        var startItem = new cc.MenuItemImage(
+            res.StartNormal_png,
+            res.StartSelected_png,
             function () {
-                cc.log("Menu is clicked!");
-            }, this);
-        closeItem.attr({
+             this.showGame = true;
+         }, this);
+        startItem.attr({
             x: 500,
             y: 200,
             anchorX: 0.5,
             anchorY: 0.5
         });
+
+        this.menu = new cc.Menu(startItem);
+        this.menu.x = 0;
+        this.menu.y = 0;
+        this.addChild(this.menu);
 
         this.addKeyboardHandlers( true );
         return true;
@@ -46,8 +48,7 @@ var StartLayer = cc.LayerColor.extend({
                 self.onKeyUp( e );
             }
         }, this);
-    },
-
+    }
 
 });
 

@@ -19,6 +19,7 @@
         "src/Heart.js",
         "src/Action.js",
         "src/EndLayer.js",
-        "src/StartLayer.js"
+        "src/StartLayer.js",
+        "src/resource.js"
       ]
 }

@@ -1,10 +1,10 @@
 var GameLayer = cc.LayerColor.extend({
 
-    init: function() {
+    init: function(name) {
         this._super( new cc.Color( 195, 195, 195, 0) );
         this.setPosition( new cc.Point( 0, 0 ) );
 
-        this.Name = prompt('Player name : ');
+        this.Name = name;
         this.showDetail(this.Name);
         this.show=false;
         
