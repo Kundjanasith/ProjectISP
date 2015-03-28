@@ -3,9 +3,10 @@ var GameLayer = cc.LayerColor.extend({
     init: function() {
         this._super( new cc.Color( 195, 195, 195, 0) );
         this.setPosition( new cc.Point( 0, 0 ) );
-
+        
         this.Name = '' ;
-        this.showDetail(this.Name);
+        this.showDetail();
+
         this.show=false;
         
         this.perfectRed = new Action('perfect','Red');
@@ -58,17 +59,17 @@ var GameLayer = cc.LayerColor.extend({
                     this.addChild(this.missRed);
                     if(this.Life>=0)this.Heart[this.Life].destroy();
                     else{
-                     this.stopAllNote();
-                     this.unscheduleUpdate();
-                     this.removeFromParent();
-                     this.show=true;
-                     this.deleteScreen();
-                 }
-                 this.Life--;
-             }
-         }
-     }
-     if(e===cc.KEY.d){
+                       this.stopAllNote();
+                       this.unscheduleUpdate();
+                       this.removeFromParent();
+                       this.show=true;
+                       this.deleteScreen();
+                   }
+                   this.Life--;
+               }
+           }
+       }
+       if(e===cc.KEY.d){
         this.orange.change('down');
     }
     if(e===cc.KEY.f){
@@ -84,13 +85,14 @@ var GameLayer = cc.LayerColor.extend({
         this.violet.change('down');
     }
     if(e===cc.KEY.enter){
-        this.Name = prompt('Player Name :');
+
         this.STATUS++;
         if(this.STATUS===1){
-            this.sec = new Date().getSeconds();
-            this.min = new Date().getMinutes();
-            this.hr = new Date().getHours();
-        }
+           this.Name = prompt('Player Name :');
+           this.sec = new Date().getSeconds();
+           this.min = new Date().getMinutes();
+           this.hr = new Date().getHours();
+       }
         // if(this.STATUS%2===1){
             this.sts.change('play');
             this.scheduleUpdate();
@@ -234,6 +236,7 @@ update: function(){
         this.sts.setTime(this.hr,this.min,this.sec,this.timeLabel);
     }
     this.scoreLabel.setString('Score : '+this.score, 'Arial', 20);
+    this.nameLabel.setString(this.Name,'Arial', 20)
 
 },
 
@@ -248,7 +251,7 @@ createLife: function(){
     return Heart0;
 },
 
-showDetail: function(name){
+showDetail: function(){
     this.sts = new Status();
     this.addChild(this.sts);
     this.score = 0;
@@ -262,7 +265,7 @@ showDetail: function(name){
     this.NLabel = cc.LabelTTF.create( 'Player Name :' , 'Arial', 20 );
     this.NLabel.setPosition( new cc.Point( 750, 80 ) );
     this.addChild( this.NLabel );
-    this.nameLabel = cc.LabelTTF.create( name , 'Arial', 20 );
+    this.nameLabel = cc.LabelTTF.create( '' , 'Arial', 20 );
     this.nameLabel.setPosition( new cc.Point( 800, 60 ) );
     this.addChild( this.nameLabel );
     this.TLabel = cc.LabelTTF.create( 'Your Time :' , 'Arial', 20 );
@@ -315,8 +318,8 @@ stopAllNote: function(){
 },
 
 deleteScreen: function(){
- var Screen = [this.show,this.Name,this.scoreLabel.getString(),this.timeLabel.getString()];
- return Screen;
+   var Screen = [this.show,this.Name,this.scoreLabel.getString(),this.timeLabel.getString()];
+   return Screen;
 }
 
 
