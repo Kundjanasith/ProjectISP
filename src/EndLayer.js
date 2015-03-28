@@ -24,13 +24,13 @@ var EndLayer = cc.LayerColor.extend({
 
         var t = [] ;
         t = time.split(":");
-        var duration = t[0]+(t[1]*60)+(t[2]*3600);
-        cc.log("D"+duration);
+
+        var duration = parseInt(t[2])+(parseInt(t[1])*60)+(parseInt(t[0])*3600);
         var s = [] ;
         s = score.split(":");
         var Score = s[1];
-        cc.log("S"+Score);
-        var skill = ((Score[1]/duration)*Math.pow(10,9)).toFixed(2);
+
+        var skill = ((Score/duration)*Math.pow(10,2)).toFixed(2);
         
         this.skillLabel = cc.LabelTTF.create( 'Your Skill: '+skill , 'Arial', 50 );
         this.skillLabel.setPosition( new cc.Point( 500, 75 ) );
