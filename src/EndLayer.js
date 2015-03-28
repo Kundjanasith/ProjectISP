@@ -3,7 +3,7 @@ var EndLayer = cc.LayerColor.extend({
     init: function(name,score,time) {
         this._super( new cc.Color( 195, 195, 195, 0) );
         this.setPosition( new cc.Point( 0, 0 ) );
-
+        cc.log('EndLayer');
         this.addKeyboardHandlers( true );
 
         this.OverLabel = cc.LabelTTF.create( 'GameOver', 'Arial', 100 );
