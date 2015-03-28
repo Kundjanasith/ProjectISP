@@ -1,10 +1,10 @@
 var GameLayer = cc.LayerColor.extend({
 
-    init: function(name) {
+    init: function() {
         this._super( new cc.Color( 195, 195, 195, 0) );
         this.setPosition( new cc.Point( 0, 0 ) );
 
-        this.Name = name;
+        this.Name = '' ;
         this.showDetail(this.Name);
         this.show=false;
         
@@ -84,6 +84,7 @@ var GameLayer = cc.LayerColor.extend({
         this.violet.change('down');
     }
     if(e===cc.KEY.enter){
+        this.Name = prompt('Player Name :');
         this.STATUS++;
         if(this.STATUS===1){
             this.sec = new Date().getSeconds();
@@ -232,7 +233,7 @@ update: function(){
     if(this.STATUS!=0){
         this.sts.setTime(this.hr,this.min,this.sec,this.timeLabel);
     }
-    this.scoreLabel.setString('Score : '+this.score);
+    this.scoreLabel.setString('Score : '+this.score, 'Arial', 20);
 
 },
 
