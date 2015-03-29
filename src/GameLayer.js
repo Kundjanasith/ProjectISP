@@ -14,15 +14,14 @@ var GameLayer = cc.LayerColor.extend({
         this.show=false;
 
         this.createAction();
+        this.posRed = [];
 
         this.Life = 4 ;
 
         this.STATUS = 0;
 
-
         this.noteRed = this.createNote('Red');
-
-        this.noteOrange = this.createNote('Orange');
+        // this.noteOrange = this.createNote('Orange');
 
         this.showPress();
         this.addKeyboardHandlers( true );
@@ -54,6 +53,9 @@ var GameLayer = cc.LayerColor.extend({
         }
         if(e===cc.KEY.enter){
             this.STATUS++;
+            for(var i=0 ; i<this.posRed.length ; i++){
+                cc.log('O'+this.posRed[i]);
+            }
             if(this.STATUS===1){
 //              this.Name = prompt('Player Name :');
                 this.Name = 'name';
@@ -69,11 +71,11 @@ var GameLayer = cc.LayerColor.extend({
                     this.noteRed[i].scheduleUpdate();
                 }
             }
-            for(var i=0 ; i<this.noteOrange.length ; i++){
-                if(this.noteOrange[i]!=null){
-                    this.noteOrange[i].scheduleUpdate();
-                }
-            }
+            // for(var i=0 ; i<this.noteOrange.length ; i++){
+            //     if(this.noteOrange[i]!=null){
+            //         this.noteOrange[i].scheduleUpdate();
+            //     }
+            // }
             // for(var i=0 ; i<this.noteYellow.length ; i++){
             // if(this.noteYellow[i]!=null){
             // this.noteYellow[i].scheduleUpdate();
@@ -128,7 +130,6 @@ var GameLayer = cc.LayerColor.extend({
             this.addChild(miss);
             if(this.Life>=0)this.Heart[this.Life].destroy();
             else{
-                this.stopAllNote();
                 this.unscheduleUpdate();
                 this.removeFromParent();
                 this.show=true;
@@ -203,7 +204,7 @@ var GameLayer = cc.LayerColor.extend({
 
     randomPosition: function(){
         var note1 = [];
-        for ( var i = 0; i < 100; i++ ){
+        for ( var i = 0; i < 50 ; i++ ){
             var x = Math.random();
             if(x*10<5){
                 note1.push(1);
@@ -213,10 +214,11 @@ var GameLayer = cc.LayerColor.extend({
             }
         }
         return note1;
+        // return [1,0,1,0];
     },
 
     createNote: function(color){
-        var pos = this.randomPosition();
+        this.pos = this.randomPosition();
         var noteCreated = [];
         var posX = 0;
         if(color=='Red')posX = 125;
@@ -225,13 +227,15 @@ var GameLayer = cc.LayerColor.extend({
         if(color=='Green')posX = 425;
         if(color=='Blue')posX = 525;
         if(color=='Violet')posX = 625; 
-        for(var i=0 ; i<pos.length ; i++){
-            if(pos[i]==1){
+        for(var i=0 ; i<this.pos.length ; i++){
+            if(this.pos[i]==1){
                 var note = new Note(color);
-                note.setPosition( new cc.Point(posX, -50 - ( i * 75 )) );
+                note.setPosition( new cc.Point(posX, - 50 - ( i * 75 )) );
                 noteCreated.push(note);
                 this.addChild(note);
+                this.posRed.push(note.getPosition().y);
             }
+            else this.posRed.push(0);
         }
         return noteCreated;
     },
@@ -242,6 +246,13 @@ var GameLayer = cc.LayerColor.extend({
         }
         this.scoreLabel.setString('Score : '+this.score, 'Arial', 20);
         this.nameLabel.setString(this.Name,'Arial', 20);
+        var pos = this.subArray(this.posRed);
+        for(var i=0 ; i<this.noteRed.length ; i++){
+            if(this.noteRed[i].getPosition().y===400){
+                this.noteRed[i].setPosition(new cc.Point(125,pos[i]));
+            }
+        }
+
 //      this.noteRed.scheduleUpdate();
         // this.Screen.setPosition(new
         // cc.Point(this.Screen.getPosition().x,this.Screen.getPosition().y+this.Speed));
@@ -291,6 +302,7 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     showPress: function(){
+
         this.red = new Press('Red');
         this.addChild(this.red);
 
@@ -346,6 +358,14 @@ var GameLayer = cc.LayerColor.extend({
         this.missBlue = new Action('miss','Blue');
         this.perfectViolet = new Action('perfect','Violet');
         this.missViolet = new Action('miss','Violet');
+    },
+
+    subArray: function(array){
+        var subArr = [];
+        for(var i=0 ; i<array.length ; i++){
+              if(array[i]!=0)subArr.push(array[i]);
+        }
+        return subArr;
     }
 
 
