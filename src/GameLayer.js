@@ -21,7 +21,7 @@ var GameLayer = cc.LayerColor.extend({
         this.STATUS = 0;
 
 
-        this.noteRed = this.createNoteRed();
+        this.noteRed = this.createNote('Red');
 
         // this.noteOrange = this.createNoteOrange();
 
@@ -67,7 +67,6 @@ var GameLayer = cc.LayerColor.extend({
             this.violet.change('down');
         }
         if(e===cc.KEY.enter){
-
             this.STATUS++;
             if(this.STATUS===1){
 //              this.Name = prompt('Player Name :');
@@ -229,47 +228,26 @@ var GameLayer = cc.LayerColor.extend({
         return note1;
     },
 
-    createNoteRed: function(){
-        var note1 = this.randomPosition();
-        var noteRed = [];
-        for(var i=0 ; i<note1.length ; i++){
-            if(note1[i]==1){
-                var note = new Note('Red');
-                note.setPosition( new cc.Point(125, -50 - ( i * 75 )) );
-                noteRed.push(note);
+    createNote: function(color){
+        var pos = this.randomPosition();
+        var noteCreated = [];
+        var posX = 0;
+        if(color=='Red')posX = 125;
+        if(color=='Orange')posX = 225;
+        if(color=='Yellow')posX = 325;
+        if(color=='Green')posX = 425;
+        if(color=='Blue')posX = 525;
+        if(color=='Violet')posX = 625; 
+        for(var i=0 ; i<pos.length ; i++){
+            if(pos[i]==1){
+                var note = new Note(color);
+                note.setPosition( new cc.Point(posX, -50 - ( i * 75 )) );
+                noteCreated.push(note);
                 this.addChild(note);
             }
         }
-        return noteRed;
+        return noteCreated;
     },
-
-//  createNoteOrange: function(){
-//  var note1 = this.randomPosition();
-//  var noteOrange = [];
-//  for(var i=0 ; i<note1.length ; i++){
-//  if(note1[i]==0){
-//  var note = new Note('Orange');
-//  note.setPosition(new cc.Point(225,-50-(i*75)));
-//  noteOrange.push(note);
-//  this.addChild(note);
-//  }
-//  }
-//  return noteOrange;
-//  },
-
-//  createNoteYellow: function(){
-//  var note1 = this.randomPosition();
-//  var noteYellow = [];
-//  for(var i=0 ; i<note1.length ; i++){
-//  if(note1[i]==0){
-//  var note = new Note('Yellow');
-//  note.setPosition(new cc.Point(325,-50-(i*75)));
-//  noteYellow.push(note);
-//  this.addChild(note);
-//  }
-//  }
-//  return noteYellow;
-//  },
 
     update: function(){
         if(this.STATUS!=0){
