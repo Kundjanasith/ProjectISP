@@ -13,8 +13,7 @@ var GameLayer = cc.LayerColor.extend({
 
         this.show=false;
 
-        this.perfectRed = new Action('perfect','Red');
-        this.missRed= new Action('miss','Red');
+        this.createAction();
 
         this.Life = 4 ;
 
@@ -23,21 +22,7 @@ var GameLayer = cc.LayerColor.extend({
 
         this.noteRed = this.createNote('Red');
 
-        // this.noteOrange = this.createNoteOrange();
-
-        // this.noteYellow = this.createNoteYellow();
-
-        this.noteGreen = new Note('Green');
-        this.noteGreen.setPosition( new cc.Point(425, -50) );
-        this.addChild(this.noteGreen);
-
-        this.noteBlue= new Note('Blue');
-        this.noteBlue.setPosition( new cc.Point(525, -50) );
-        this.addChild(this.noteBlue);
-
-        this.noteViolet= new Note('Violet');
-        this.noteViolet.setPosition( new cc.Point(625, -50) );
-        this.addChild(this.noteViolet);
+        this.noteOrange = this.createNote('Orange');
 
         this.showPress();
         this.addKeyboardHandlers( true );
@@ -53,6 +38,7 @@ var GameLayer = cc.LayerColor.extend({
         }
         if(e===cc.KEY.d){
             this.orange.change('down');
+            this.pressCheck('Orange');
         }
         if(e===cc.KEY.f){
             this.yellow.change('down');
@@ -83,11 +69,11 @@ var GameLayer = cc.LayerColor.extend({
                     this.noteRed[i].scheduleUpdate();
                 }
             }
-            // for(var i=0 ; i<this.noteOrange.length ; i++){
-            // if(this.noteOrange[i]!=null){
-            // this.noteOrange[i].scheduleUpdate();
-            // }
-            // }
+            for(var i=0 ; i<this.noteOrange.length ; i++){
+                if(this.noteOrange[i]!=null){
+                    this.noteOrange[i].scheduleUpdate();
+                }
+            }
             // for(var i=0 ; i<this.noteYellow.length ; i++){
             // if(this.noteYellow[i]!=null){
             // this.noteYellow[i].scheduleUpdate();
@@ -185,6 +171,7 @@ var GameLayer = cc.LayerColor.extend({
         }
         if(e===cc.KEY.d){
             this.orange.change('up');
+            this.actionDestroy('Orange');
         }
         if(e===cc.KEY.f){
             this.yellow.change('up');
@@ -323,27 +310,42 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild(this.violet);
     },
 
-    stopAllNote: function(){
-        for(var i=0 ; i<this.noteRed.length ; i++){
-            if(this.noteRed[i]!=null){
-                this.noteRed[i].unscheduleUpdate();
-            }
-        }
-        // for(var i=0 ; i<this.noteOrange.length ; i++){
-        // if(this.noteOrange[i]!=null){
-        // this.noteOrange[i].unscheduleUpdate();
-        // }
-        // }
-        // for(var i=0 ; i<this.noteYellow.length ; i++){
-        // if(this.noteYellow[i]!=null){
-        // this.noteYellow[i].unscheduleUpdate();
-        // }
-        // }
-    },
+    // stopAllNote: function(){
+    //     for(var i=0 ; i<this.noteRed.length ; i++){
+    //         if(this.noteRed[i]!=null){
+    //             this.noteRed[i].unscheduleUpdate();
+    //         }
+    //     }
+    //     for(var i=0 ; i<this.noteOrange.length ; i++){
+    //     if(this.noteOrange[i]!=null){
+    //     this.noteOrange[i].unscheduleUpdate();
+    //     }
+    //     }
+    //     for(var i=0 ; i<this.noteYellow.length ; i++){
+    //     if(this.noteYellow[i]!=null){
+    //     this.noteYellow[i].unscheduleUpdate();
+    //     }
+    //     }
+    // },
 
     deleteScreen: function(){
         var Screen = [this.show,this.Name,this.scoreLabel.getString(),this.timeLabel.getString()];
         return Screen;
+    },
+
+    createAction: function(){
+        this.perfectRed = new Action('perfect','Red');
+        this.missRed = new Action('miss','Red');
+        this.perfectOrange = new Action('perfect','Orange');
+        this.missOrange = new Action('miss','Orange');
+        this.perfectYellow = new Action('perfect','Yellow');
+        this.missYellow = new Action('miss','Yellow');
+        this.perfectGreen = new Action('perfect','Green');
+        this.missGreen = new Action('miss','Green');
+        this.perfectBlue = new Action('perfect','Blue');
+        this.missBlue = new Action('miss','Blue');
+        this.perfectViolet = new Action('perfect','Violet');
+        this.missViolet = new Action('miss','Violet');
     }
 
 
