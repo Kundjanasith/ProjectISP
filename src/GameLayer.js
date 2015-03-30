@@ -330,24 +330,6 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild(this.violet);
     },
 
-    // stopAllNote: function(){
-    //     for(var i=0 ; i<this.noteRed.length ; i++){
-    //         if(this.noteRed[i]!=null){
-    //             this.noteRed[i].unscheduleUpdate();
-    //         }
-    //     }
-    //     for(var i=0 ; i<this.noteOrange.length ; i++){
-    //     if(this.noteOrange[i]!=null){
-    //     this.noteOrange[i].unscheduleUpdate();
-    //     }
-    //     }
-    //     for(var i=0 ; i<this.noteYellow.length ; i++){
-    //     if(this.noteYellow[i]!=null){
-    //     this.noteYellow[i].unscheduleUpdate();
-    //     }
-    //     }
-    // },
-
     deleteScreen: function(){
         var Screen = [this.show,this.Name,this.scoreLabel.getString(),this.timeLabel.getString()];
         return Screen;
