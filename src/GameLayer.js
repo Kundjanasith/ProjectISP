@@ -14,14 +14,13 @@ var GameLayer = cc.LayerColor.extend({
         this.show=false;
 
         this.createAction();
-        this.posRed = [];
 
         this.Life = 4 ;
 
         this.STATUS = 0;
 
         this.noteRed = this.createNote('Red');
-        // this.noteOrange = this.createNote('Orange');
+        this.noteOrange = this.createNote('Orange');
 
         this.showPress();
         this.addKeyboardHandlers( true );
@@ -53,9 +52,6 @@ var GameLayer = cc.LayerColor.extend({
         }
         if(e===cc.KEY.enter){
             this.STATUS++;
-            for(var i=0 ; i<this.posRed.length ; i++){
-                cc.log('O'+this.posRed[i]);
-            }
             if(this.STATUS===1){
 //              this.Name = prompt('Player Name :');
                 this.Name = 'name';
@@ -71,11 +67,11 @@ var GameLayer = cc.LayerColor.extend({
                     this.noteRed[i].scheduleUpdate();
                 }
             }
-            // for(var i=0 ; i<this.noteOrange.length ; i++){
-            //     if(this.noteOrange[i]!=null){
-            //         this.noteOrange[i].scheduleUpdate();
-            //     }
-            // }
+            for(var i=0 ; i<this.noteOrange.length ; i++){
+                if(this.noteOrange[i]!=null){
+                    this.noteOrange[i].scheduleUpdate();
+                }
+            }
             // for(var i=0 ; i<this.noteYellow.length ; i++){
             // if(this.noteYellow[i]!=null){
             // this.noteYellow[i].scheduleUpdate();
@@ -118,14 +114,16 @@ var GameLayer = cc.LayerColor.extend({
     pressCheckHelper: function(Note,perfect,miss){
         var check = true;
         for(var i=0 ; i<Note.length ; i++){
-            if(Note[i].getPosition().y>=350&&Note[i].getPosition().y<=450){
+            if(Note[i].getPosition().y>=325&&Note[i].getPosition().y<=450){
                 this.score++;
                 miss.destroy();
+                perfect.destroy();
                 this.addChild(perfect);
                 check = false;
             }
         }
         if(check){
+            miss.destroy();
             perfect.destroy();
             this.addChild(miss);
             if(this.Life>=0)this.Heart[this.Life].destroy();
@@ -214,13 +212,13 @@ var GameLayer = cc.LayerColor.extend({
             }
         }
         return note1;
-        // return [1,0,1,0];
     },
 
     createNote: function(color){
         this.pos = this.randomPosition();
         var noteCreated = [];
         var posX = 0;
+        var notePos = [];
         if(color=='Red')posX = 125;
         if(color=='Orange')posX = 225;
         if(color=='Yellow')posX = 325;
@@ -233,10 +231,16 @@ var GameLayer = cc.LayerColor.extend({
                 note.setPosition( new cc.Point(posX, - 50 - ( i * 75 )) );
                 noteCreated.push(note);
                 this.addChild(note);
-                this.posRed.push(note.getPosition().y);
+                notePos.push(note.getPosition().y);
             }
-            else this.posRed.push(0);
+            else notePos.push(0);
         }
+        if(color=='Red')this.posRed = notePos;
+        if(color=='Orange')this.posOrange = notePos;
+        if(color=='Yellow')this.posYellow = notePos;
+        if(color=='Green')this.posGreen = notePos;
+        if(color=='Blue')this.posBlue = notePos;
+        if(color=='Violet')this.posViolet = notePos; 
         return noteCreated;
     },
 
@@ -246,10 +250,14 @@ var GameLayer = cc.LayerColor.extend({
         }
         this.scoreLabel.setString('Score : '+this.score, 'Arial', 20);
         this.nameLabel.setString(this.Name,'Arial', 20);
-        var pos = this.subArray(this.posRed);
         for(var i=0 ; i<this.noteRed.length ; i++){
             if(this.noteRed[i].getPosition().y===400){
-                this.noteRed[i].setPosition(new cc.Point(125,pos[i]));
+                this.noteRed[i].setPosition(new cc.Point(125,this.subArray(this.posRed)[i]));
+            }
+        }
+         for(var i=0 ; i<this.noteOrange.length ; i++){
+            if(this.noteOrange[i].getPosition().y===400){
+                this.noteOrange[i].setPosition(new cc.Point(225,this.subArray(this.posOrange)[i]));
             }
         }
 
