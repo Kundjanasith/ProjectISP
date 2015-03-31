@@ -32,23 +32,29 @@ var GameLayer = cc.LayerColor.extend({
     onKeyDown: function( e ) {
         if(e===cc.KEY.s){
             this.red.change('down');
+            cc.audioEngine.playMusic('sound/pressS.mp3',false);
             this.pressCheck('Red');
         }
         if(e===cc.KEY.d){
             this.orange.change('down');
+            cc.audioEngine.playMusic('sound/pressD.mp3',false);
             this.pressCheck('Orange');
         }
         if(e===cc.KEY.f){
             this.yellow.change('down');
+            cc.audioEngine.playMusic('sound/pressF.mp3',false);
         }
         if(e===cc.KEY.j){
             this.green.change('down');
+            cc.audioEngine.playMusic('sound/pressJ.mp3',false);
         }
         if(e===cc.KEY.k){
             this.blue.change('down');
+            cc.audioEngine.playMusic('sound/pressK.mp3',false);
         }
         if(e===cc.KEY.l){
             this.violet.change('down');
+            cc.audioEngine.playMusic('sound/pressL.mp3',false);
         }
         if(e===cc.KEY.enter){
             this.STATUS++;
@@ -164,6 +170,7 @@ var GameLayer = cc.LayerColor.extend({
         }
     },
     onKeyUp: function( e ) {
+        cc.audioEngine.pauseMusic();
         if(e===cc.KEY.s){
             this.red.change('up');
             this.actionDestroy('Red');
