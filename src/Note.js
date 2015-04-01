@@ -10,7 +10,7 @@ var Note = cc.Sprite.extend({
         if(this.colors=='Green')this.initWithFile( 'res/note/NoteGreen.png' );
         if(this.colors=='Blue')this.initWithFile( 'res/note/NoteBlue.png' );
         if(this.colors=='Green')this.initWithFile( 'res/note/NoteGreen.png' );
-        if(this.colors=='Viloet')this.initWithFile( 'res/note/NoteViolet.png' );
+        if(this.colors=='Violet')this.initWithFile( 'res/note/NoteViolet.png' );
     },
 
     update: function(){

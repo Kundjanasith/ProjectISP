@@ -21,6 +21,10 @@ var GameLayer = cc.LayerColor.extend({
 
         this.noteRed = this.createNote('Red');
         this.noteOrange = this.createNote('Orange');
+        this.noteYellow = this.createNote('Yellow');
+        this.noteGreen = this.createNote('Green');
+        this.noteBlue = this.createNote('Blue');
+        this.noteViolet = this.createNote('Violet');
 
         this.showPress();
         this.addKeyboardHandlers( true );
@@ -43,18 +47,22 @@ var GameLayer = cc.LayerColor.extend({
         if(e===cc.KEY.f){
             this.yellow.change('down');
             cc.audioEngine.playMusic('sound/pressF.mp3',false);
+            this.pressCheck('Yellow');
         }
         if(e===cc.KEY.j){
             this.green.change('down');
             cc.audioEngine.playMusic('sound/pressJ.mp3',false);
+            this.pressCheck('Green');
         }
         if(e===cc.KEY.k){
             this.blue.change('down');
             cc.audioEngine.playMusic('sound/pressK.mp3',false);
+            this.pressCheck('Blue');
         }
         if(e===cc.KEY.l){
             this.violet.change('down');
             cc.audioEngine.playMusic('sound/pressL.mp3',false);
+            this.pressCheck('Violet');
         }
         if(e===cc.KEY.enter){
             this.STATUS++;
@@ -68,16 +76,12 @@ var GameLayer = cc.LayerColor.extend({
             // if(this.STATUS%2===1){
             this.sts.change('play');
             this.scheduleUpdate();
-            for(var i=0 ; i<this.noteRed.length ; i++){
-                if(this.noteRed[i]!=null){
-                    this.noteRed[i].scheduleUpdate();
-                }
-            }
-            for(var i=0 ; i<this.noteOrange.length ; i++){
-                if(this.noteOrange[i]!=null){
-                    this.noteOrange[i].scheduleUpdate();
-                }
-            }
+            this.startNote(this.noteRed);
+            this.startNote(this.noteOrange);
+            this.startNote(this.noteYellow);
+            this.startNote(this.noteGreen);
+            this.startNote(this.noteBlue);
+            this.startNote(this.noteViolet);
             // for(var i=0 ; i<this.noteYellow.length ; i++){
             // if(this.noteYellow[i]!=null){
             // this.noteYellow[i].scheduleUpdate();
@@ -104,6 +108,14 @@ var GameLayer = cc.LayerColor.extend({
             // }
             // }
         }
+    },
+
+    startNote: function(Note){
+            for(var i=0 ; i<Note.length ; i++){
+                if(Note[i]!=null){
+                    Note[i].scheduleUpdate();
+                }
+            }
     },
 
     pressCheck: function(color){
@@ -181,15 +193,19 @@ var GameLayer = cc.LayerColor.extend({
         }
         if(e===cc.KEY.f){
             this.yellow.change('up');
+            this.actionDestroy('Yellow');
         }
         if(e===cc.KEY.j){
             this.green.change('up');
+            this.actionDestroy('Green');
         }
         if(e===cc.KEY.k){
             this.blue.change('up');
+            this.actionDestroy('Blue');
         }
         if(e===cc.KEY.l){
             this.violet.change('up');
+            this.actionDestroy('Violet');
         }
 
     },
@@ -211,7 +227,7 @@ var GameLayer = cc.LayerColor.extend({
         var note1 = [];
         for ( var i = 0; i < 50 ; i++ ){
             var x = Math.random();
-            if(x*10<5){
+            if(x*10<3){
                 note1.push(1);
             }
             else{
@@ -257,17 +273,13 @@ var GameLayer = cc.LayerColor.extend({
         }
         this.scoreLabel.setString('Score : '+this.score, 'Arial', 20);
         this.nameLabel.setString(this.Name,'Arial', 20);
-        for(var i=0 ; i<this.noteRed.length ; i++){
-            if(this.noteRed[i].getPosition().y===400){
-                this.noteRed[i].setPosition(new cc.Point(125,this.subArray(this.posRed)[i]));
-            }
-        }
-         for(var i=0 ; i<this.noteOrange.length ; i++){
-            if(this.noteOrange[i].getPosition().y===400){
-                this.noteOrange[i].setPosition(new cc.Point(225,this.subArray(this.posOrange)[i]));
-            }
-        }
 
+        this.supportUpdate(this.noteRed,this.posRed,125);
+        this.supportUpdate(this.noteOrange,this.posOrange,225);
+        this.supportUpdate(this.noteYellow,this.posYellow,325);
+        this.supportUpdate(this.noteGreen,this.posGreen,425);
+        this.supportUpdate(this.noteBlue,this.posBlue,525);
+        this.supportUpdate(this.noteViolet,this.posViolet,625);
 //      this.noteRed.scheduleUpdate();
         // this.Screen.setPosition(new
         // cc.Point(this.Screen.getPosition().x,this.Screen.getPosition().y+this.Speed));
@@ -275,6 +287,14 @@ var GameLayer = cc.LayerColor.extend({
         // this.Screen.setPosition(new cc.Point(this.Screen.getPosition().x,0));
         // }
 
+    },
+
+    supportUpdate: function(array1,array2,pos){
+        for(var i=0 ; i<array1.length ; i++){
+            if(array1[i].getPosition().y===500){
+                array1[i].setPosition(new cc.Point(pos,this.subArray(array2)[i]));
+            }
+        }
     },
 
     createLife: function(){
