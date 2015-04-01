@@ -11,6 +11,9 @@ var GameLayer = cc.LayerColor.extend({
         this.Name = '' ;
         this.showDetail();
 
+       
+
+
         this.show=false;
 
         this.createAction();
@@ -280,9 +283,7 @@ var GameLayer = cc.LayerColor.extend({
         this.supportUpdate(this.noteGreen,this.posGreen,425);
         this.supportUpdate(this.noteBlue,this.posBlue,525);
         this.supportUpdate(this.noteViolet,this.posViolet,625);
-//      this.noteRed.scheduleUpdate();
-        // this.Screen.setPosition(new
-        // cc.Point(this.Screen.getPosition().x,this.Screen.getPosition().y+this.Speed));
+        // this.Screen.setPosition(new cc.Point(this.Screen.getPosition().x,this.Screen.getPosition().y+this.Speed));
         // if(this.Screen.getPosition().y>=800){
         // this.Screen.setPosition(new cc.Point(this.Screen.getPosition().x,0));
         // }
@@ -384,8 +385,6 @@ var GameLayer = cc.LayerColor.extend({
         }
         return subArr;
     }
-
-
 
 });
 
