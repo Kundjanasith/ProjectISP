@@ -3,6 +3,7 @@ var EndLayer = cc.LayerColor.extend({
     init: function(name,score,time) {
         this._super( new cc.Color( 195, 195, 195, 0) );
         this.setPosition( new cc.Point( 0, 0 ) );
+
         cc.log('EndLayer');
         this.addKeyboardHandlers( true );
 
@@ -36,6 +37,20 @@ var EndLayer = cc.LayerColor.extend({
         this.skillLabel.setPosition( new cc.Point( 500, 75 ) );
         this.addChild( this.skillLabel );
 
+        // this.collectScore(name,score,time,skill);
+
+       // window.open("src/Score.html");
+
+
+//         // if we have something on local storage place that
+// if(localStorage.getItem('todos')) {
+// $('#todos').html(localStorage.getItem('todos'));
+// }
+
+    // this.writeFile();
+
+
+
         return true;
     },
 
@@ -62,7 +77,56 @@ var EndLayer = cc.LayerColor.extend({
         }, this);
     },
 
+    // writeFile: function() {
+    //         var Description = "p";
+    //         //if the to-do is empty
+    //         // if($("#description").val() == '') {
+    //         //    $('#alert').html("<strong>Warning!</strong> You left the to-do empty");
+    //         //    $('#alert').fadeIn().delay(1000).fadeOut();
+    //         // return false;
+    //         // }
+    //          // add the list item
+    //     ('#todos').prepend("<li>" + Description + "</li>");
+    //     // delete whatever is in the input
+    //     ('#form')[0].reset();
+    //     var todos = $('#todos').html();
+    //     localStorage.setItem('todos', todos);
+    //    return false;
+    // }
+    collectScore: function(name,score,time,skill){
+
+       var ls = cc.sys.localStorage;
+
+       var sec = new Date().getSeconds();
+       var min = new Date().getMinutes();
+       var hr = new Date().getHours();
+       
+       var key = (hr*3600)+(min*60)+sec;
+       var value =  name+"Score:"+score+"Time:"+time+"Skill:"+skill;
+
+       ls.setItem(key,value);
+
+       var score = [];
+       for(var i=0 ; i<(24*3600) ; i++){
+
+            if(ls.getItem(i)!=null){
+                cc.log(ls.getItem(i));
+                score.push(ls.getItem(i)); 
+            }
+            ls.removeItem(i);
+        }
+
+        return score;    
+    }
+
 
 });
+
+
+
+
+
+
+
 
 

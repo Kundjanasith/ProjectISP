@@ -3,19 +3,9 @@ var GameLayer = cc.LayerColor.extend({
     init: function() {
         this._super( new cc.Color( 0, 0, 0, 0 ) );
         this.setPosition(new cc.Point(0, 0)  );
-        // this.Speed = 10 ;
-        // this.Screen = new cc.Sprite(res.Screen_png);
-        // this.Screen.setPosition(new cc.Point(100,0));
-        // this.addChild(this.Screen);
-
         this.Name = '' ;
+
         this.showDetail();
-
-       
-
-
-        this.show=false;
-
         this.createAction();
 
         this.Life = 4 ;
@@ -30,9 +20,8 @@ var GameLayer = cc.LayerColor.extend({
         this.noteViolet = this.createNote('Violet');
 
         this.showPress();
+
         this.addKeyboardHandlers( true );
-
-
         return true;
     },
 
@@ -76,7 +65,6 @@ var GameLayer = cc.LayerColor.extend({
                 this.min = new Date().getMinutes();
                 this.hr = new Date().getHours();
             }
-            // if(this.STATUS%2===1){
             this.sts.change('play');
             this.scheduleUpdate();
             this.startNote(this.noteRed);
@@ -85,31 +73,6 @@ var GameLayer = cc.LayerColor.extend({
             this.startNote(this.noteGreen);
             this.startNote(this.noteBlue);
             this.startNote(this.noteViolet);
-            // for(var i=0 ; i<this.noteYellow.length ; i++){
-            // if(this.noteYellow[i]!=null){
-            // this.noteYellow[i].scheduleUpdate();
-            // }
-            // }
-            // }
-            // if(this.STATUS%2===0){
-            // this.sts.change('stop');
-            // this.unscheduleUpdate();
-            // for(var i=0 ; i<this.noteRed.length ; i++){
-            // if(this.noteRed[i]!=null){
-            // this.noteRed[i].unscheduleUpdate();
-            // }
-            // }
-            // for(var i=0 ; i<this.noteOrange.length ; i++){
-            // if(this.noteOrange[i]!=null){
-            // this.noteOrange[i].unscheduleUpdate();
-            // }
-            // }
-            // for(var i=0 ; i<this.noteYellow.length ; i++){
-            // if(this.noteYellow[i]!=null){
-            // this.noteYellow[i].unscheduleUpdate();
-            // }
-            // }
-            // }
         }
     },
 
@@ -150,9 +113,17 @@ var GameLayer = cc.LayerColor.extend({
             if(this.Life>=0)this.Heart[this.Life].destroy();
             else{
                 this.unscheduleUpdate();
-                this.removeFromParent();
                 this.show=true;
                 this.deleteScreen();
+                var layer2 = new EndLayer();
+                layer2.init(this.Name,this.scoreLabel.getString(),this.timeLabel.getString());
+                this.stopNow(this.noteRed);
+                this.stopNow(this.noteOrange);
+                this.stopNow(this.noteYellow);
+                this.stopNow(this.noteGreen);
+                this.stopNow(this.noteBlue);
+                this.stopNow(this.noteViolet);
+                this.addChild(layer2);
             }
             this.Life--;
         }
@@ -310,6 +281,7 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     showDetail: function(){
+        this.detail = [];
         this.sts = new Status();
         this.addChild(this.sts);
         this.score = 0;
@@ -335,25 +307,25 @@ var GameLayer = cc.LayerColor.extend({
         this.timeLabel = cc.LabelTTF.create( '- - : - - : - -', 'Arial', 20 );
         this.timeLabel.setPosition( new cc.Point(800, 20) );
         this.addChild( this.timeLabel );
+        this.detail.push(this.scoreLabel);
+        this.detail.push(this.lifeLabel);
+        this.detail.push(this.Nlabel);
+        this.detail.push(this.nameLabel);
+        this.detail.push(this.TLabel);
+        this.detail.push(this.timeLabel);
     },
 
     showPress: function(){
-
         this.red = new Press('Red');
         this.addChild(this.red);
-
         this.orange = new Press('Orange');
         this.addChild(this.orange);
-
         this.yellow = new Press('Yellow');
         this.addChild(this.yellow);
-
         this.green = new Press('Green');
         this.addChild(this.green);
-
         this.blue = new Press('Blue');
         this.addChild(this.blue);
-
         this.violet = new Press('Violet');
         this.addChild(this.violet);
     },
@@ -384,7 +356,14 @@ var GameLayer = cc.LayerColor.extend({
               if(array[i]!=0)subArr.push(array[i]);
         }
         return subArr;
+    },
+
+    stopNow: function(array){
+        for(var i=0 ; i<array.length ; i++){
+                    array[i].unscheduleUpdate();
+                }
     }
+
 
 });
 

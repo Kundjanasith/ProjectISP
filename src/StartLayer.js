@@ -10,6 +10,10 @@ var StartLayer = cc.LayerColor.extend({
             res.StartSelected_png,
             function () {
              this.showGame = true;
+             var layer1 = new GameLayer();
+             layer1.init();
+             this.addChild(layer1);
+             startItem.removeFromParent();
          }, this);
         startItem.attr({
             x: 500,
