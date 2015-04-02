@@ -1,7 +1,7 @@
 var StartLayer = cc.LayerColor.extend({
 
     init: function() {
-        this._super( new cc.Color( 195, 195, 195, 0) );
+        this._super( new cc.Color( 195, 195, 195, 0 ) );
         this.setPosition( new cc.Point( 0, 0 ) );
         this.showGame = false;
 
@@ -21,12 +21,11 @@ var StartLayer = cc.LayerColor.extend({
             anchorX: 0.5,
             anchorY: 0.5
         });
-
         this.menu = new cc.Menu(startItem);
         this.menu.x = 0;
         this.menu.y = 0;
         this.addChild(this.menu);
-
+        
         this.addKeyboardHandlers( true );
         return true;
     },

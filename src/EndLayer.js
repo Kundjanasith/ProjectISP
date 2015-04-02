@@ -37,20 +37,6 @@ var EndLayer = cc.LayerColor.extend({
         this.skillLabel.setPosition( new cc.Point( 500, 75 ) );
         this.addChild( this.skillLabel );
 
-        // this.collectScore(name,score,time,skill);
-
-       // window.open("src/Score.html");
-
-
-//         // if we have something on local storage place that
-// if(localStorage.getItem('todos')) {
-// $('#todos').html(localStorage.getItem('todos'));
-// }
-
-    // this.writeFile();
-
-
-
         return true;
     },
 
@@ -77,22 +63,6 @@ var EndLayer = cc.LayerColor.extend({
         }, this);
     },
 
-    // writeFile: function() {
-    //         var Description = "p";
-    //         //if the to-do is empty
-    //         // if($("#description").val() == '') {
-    //         //    $('#alert').html("<strong>Warning!</strong> You left the to-do empty");
-    //         //    $('#alert').fadeIn().delay(1000).fadeOut();
-    //         // return false;
-    //         // }
-    //          // add the list item
-    //     ('#todos').prepend("<li>" + Description + "</li>");
-    //     // delete whatever is in the input
-    //     ('#form')[0].reset();
-    //     var todos = $('#todos').html();
-    //     localStorage.setItem('todos', todos);
-    //    return false;
-    // }
     collectScore: function(name,score,time,skill){
 
        var ls = cc.sys.localStorage;
