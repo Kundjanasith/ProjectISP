@@ -1,12 +1,10 @@
 var EndLayer = cc.LayerColor.extend({
 
     init: function(name,score,time) {
-        this._super( new cc.Color( 195, 195, 195, 0) );
+        this._super( new cc.Color( 0,0, 0, 255) );
         this.setPosition( new cc.Point( 0, 0 ) );
-
-        cc.log('EndLayer');
-        this.addKeyboardHandlers( true );
-
+ 
+       
         this.OverLabel = cc.LabelTTF.create( 'GameOver', 'Arial', 100 );
         this.OverLabel.setPosition( new cc.Point( 500, 400 ) );
         this.addChild( this.OverLabel );
@@ -36,7 +34,9 @@ var EndLayer = cc.LayerColor.extend({
         this.skillLabel = cc.LabelTTF.create( 'Your Skill: '+skill , 'Arial', 50 );
         this.skillLabel.setPosition( new cc.Point( 500, 75 ) );
         this.addChild( this.skillLabel );
+        this.collectScore(name,score,time,skill);
 
+this.addKeyboardHandlers( true );
         return true;
     },
 

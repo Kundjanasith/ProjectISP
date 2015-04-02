@@ -3,6 +3,7 @@ var GameLayer = cc.LayerColor.extend({
     init: function() {
         this._super( new cc.Color( 0, 0, 0, 0 ) );
         this.setPosition(new cc.Point(0, 0)  );
+        this.show=true;
 
         this.Name = '' ;
 
@@ -29,39 +30,38 @@ var GameLayer = cc.LayerColor.extend({
     onKeyDown: function( e ) {
         if(e===cc.KEY.s){
             this.red.change('down');
-            cc.audioEngine.playMusic('sound/pressS.mp3',false);
+            if(this.show)cc.audioEngine.playMusic('sound/pressS.mp3',false);
             this.pressCheck('Red');
         }
         if(e===cc.KEY.d){
             this.orange.change('down');
-            cc.audioEngine.playMusic('sound/pressD.mp3',false);
+            if(this.show)cc.audioEngine.playMusic('sound/pressD.mp3',false);
             this.pressCheck('Orange');
         }
         if(e===cc.KEY.f){
             this.yellow.change('down');
-            cc.audioEngine.playMusic('sound/pressF.mp3',false);
+            if(this.show)cc.audioEngine.playMusic('sound/pressF.mp3',false);
             this.pressCheck('Yellow');
         }
         if(e===cc.KEY.j){
             this.green.change('down');
-            cc.audioEngine.playMusic('sound/pressJ.mp3',false);
+            if(this.show)cc.audioEngine.playMusic('sound/pressJ.mp3',false);
             this.pressCheck('Green');
         }
         if(e===cc.KEY.k){
             this.blue.change('down');
-            cc.audioEngine.playMusic('sound/pressK.mp3',false);
+            if(this.show)cc.audioEngine.playMusic('sound/pressK.mp3',false);
             this.pressCheck('Blue');
         }
         if(e===cc.KEY.l){
             this.violet.change('down');
-            cc.audioEngine.playMusic('sound/pressL.mp3',false);
+            if(this.show)cc.audioEngine.playMusic('sound/pressL.mp3',false);
             this.pressCheck('Violet');
         }
         if(e===cc.KEY.enter){
             this.STATUS++;
             if(this.STATUS===1){
              this.Name = prompt('Player Name :');
-                this.Name = 'name';
                 this.sec = new Date().getSeconds();
                 this.min = new Date().getMinutes();
                 this.hr = new Date().getHours();
@@ -99,7 +99,7 @@ var GameLayer = cc.LayerColor.extend({
     pressCheckHelper: function(Note,perfect,miss){
         var check = true;
         for(var i=0 ; i<Note.length ; i++){
-            if(Note[i].getPosition().y>=325&&Note[i].getPosition().y<=450){
+            if(Note[i].getPosition().y>=325&&Note[i].getPosition().y<=450&&this.show){
                 this.score++;
                 miss.destroy();
                 perfect.destroy();
@@ -107,14 +107,14 @@ var GameLayer = cc.LayerColor.extend({
                 check = false;
             }
         }
-        if(check){
+        if(check&&this.show){
             miss.destroy();
             perfect.destroy();
             this.addChild(miss);
             if(this.Life>=0)this.Heart[this.Life].destroy();
             else{
                 this.unscheduleUpdate();
-                this.show=true;
+                this.show=false;
                 this.deleteScreen();
                 var layer2 = new EndLayer();
                 layer2.init(this.Name,this.scoreLabel.getString(),this.timeLabel.getString());
@@ -255,10 +255,6 @@ var GameLayer = cc.LayerColor.extend({
         this.supportUpdate(this.noteGreen,this.posGreen,425);
         this.supportUpdate(this.noteBlue,this.posBlue,525);
         this.supportUpdate(this.noteViolet,this.posViolet,625);
-        // this.Screen.setPosition(new cc.Point(this.Screen.getPosition().x,this.Screen.getPosition().y+this.Speed));
-        // if(this.Screen.getPosition().y>=800){
-        // this.Screen.setPosition(new cc.Point(this.Screen.getPosition().x,0));
-        // }
 
     },
 
