@@ -4,25 +4,19 @@ var GameLayer = cc.LayerColor.extend({
         this._super( new cc.Color( 0, 0, 0, 0 ) );
         this.setPosition(new cc.Point(0, 0)  );
         this.show=true;
-
-        this.Name = '' ;
-
+        this.namePlayer = '' ;
         this.showDetail();
         this.createAction();
-
-        this.Life = 4 ;
-
-        this.STATUS = 0;
-
+        this.life = 4 ;
+        this.statusGame = 0;
+        this.colors = [];
         this.noteRed = this.createNote('Red');
         this.noteOrange = this.createNote('Orange');
         this.noteYellow = this.createNote('Yellow');
         this.noteGreen = this.createNote('Green');
         this.noteBlue = this.createNote('Blue');
         this.noteViolet = this.createNote('Violet');
-
         this.showPress();
-
         this.addKeyboardHandlers( true );
         return true;
     },
@@ -59,9 +53,9 @@ var GameLayer = cc.LayerColor.extend({
             this.pressCheck('Violet');
         }
         if(e===cc.KEY.enter){
-            this.STATUS++;
-            if(this.STATUS===1){
-             this.Name = prompt('Player Name :');
+            this.statusGame++;
+            if(this.statusGame===1){
+             this.namePlayer = prompt('Player Name :');
                 this.sec = new Date().getSeconds();
                 this.min = new Date().getMinutes();
                 this.hr = new Date().getHours();
@@ -86,7 +80,7 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     pressCheck: function(color){
-        if(this.STATUS>0){
+        if(this.statusGame>0){
             if(color=='Red')this.pressCheckHelper(this.noteRed,this.perfectRed,this.missRed);
             if(color=='Orange')this.pressCheckHelper(this.noteOrange,this.perfectOrange,this.missOrange);
             if(color=='Yellow')this.pressCheckHelper(this.noteYellow,this.perfectYellow,this.missYellow);
@@ -111,13 +105,13 @@ var GameLayer = cc.LayerColor.extend({
             miss.destroy();
             perfect.destroy();
             this.addChild(miss);
-            if(this.Life>=0)this.Heart[this.Life].destroy();
+            if(this.life>=0)this.Heart[this.life].destroy();
             else{
                 this.unscheduleUpdate();
                 this.show=false;
                 this.deleteScreen();
                 var layer2 = new EndLayer();
-                layer2.init(this.Name,this.scoreLabel.getString(),this.timeLabel.getString());
+                layer2.init(this.namePlayer,this.scoreLabel.getString(),this.timeLabel.getString());
                 this.stopNow(this.noteRed);
                 this.stopNow(this.noteOrange);
                 this.stopNow(this.noteYellow);
@@ -126,7 +120,7 @@ var GameLayer = cc.LayerColor.extend({
                 this.stopNow(this.noteViolet);
                 this.addChild(layer2);
             }
-            this.Life--;
+            this.life--;
         }
     },
 
@@ -243,11 +237,11 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     update: function(){
-        if(this.STATUS!=0){
+        if(this.statusGame!=0){
             this.sts.setTime(this.hr,this.min,this.sec,this.timeLabel);
         }
         this.scoreLabel.setString('Score : '+this.score, 'Arial', 20);
-        this.nameLabel.setString(this.Name,'Arial', 20);
+        this.nameLabel.setString(this.namePlayer,'Arial', 20);
 
         this.supportUpdate(this.noteRed,this.posRed,125);
         this.supportUpdate(this.noteOrange,this.posOrange,225);
@@ -328,7 +322,7 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     deleteScreen: function(){
-        var Screen = [this.show,this.Name,this.scoreLabel.getString(),this.timeLabel.getString()];
+        var Screen = [this.show,this.namePlayer,this.scoreLabel.getString(),this.timeLabel.getString()];
         return Screen;
     },
 
@@ -361,7 +355,4 @@ var GameLayer = cc.LayerColor.extend({
             }
     }
 
-
 });
-
-
