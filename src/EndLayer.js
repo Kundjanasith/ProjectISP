@@ -1,9 +1,9 @@
 var EndLayer = cc.LayerColor.extend({
 
     init: function(name,score,time) {
+
         this._super( new cc.Color( 0,0, 0, 255) );
         this.setPosition( new cc.Point( 0, 0 ) );
- 
        
         this.OverLabel = cc.LabelTTF.create( 'GameOver', 'Arial', 100 );
         this.OverLabel.setPosition( new cc.Point( 500, 400 ) );
@@ -23,12 +23,10 @@ var EndLayer = cc.LayerColor.extend({
 
         var t = [] ;
         t = time.split(":");
-
         var duration = parseInt(t[2])+(parseInt(t[1])*60)+(parseInt(t[0])*3600);
         var s = [] ;
         s = score.split(":");
         var Score = s[1];
-
         var skill = ((Score/duration)*Math.pow(10,2)).toFixed(2);
         
         this.skillLabel = cc.LabelTTF.create( 'Your Skill: '+skill , 'Arial', 50 );
@@ -36,7 +34,7 @@ var EndLayer = cc.LayerColor.extend({
         this.addChild( this.skillLabel );
         this.collectScore(name,score,time,skill);
 
-this.addKeyboardHandlers( true );
+        this.addKeyboardHandlers( true );
         return true;
     },
 
@@ -85,7 +83,6 @@ this.addKeyboardHandlers( true );
             }
             ls.removeItem(i);
         }
-
         return score;    
     }
 

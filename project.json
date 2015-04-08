@@ -20,6 +20,7 @@
         "src/Action.js",
         "src/EndLayer.js",
         "src/StartLayer.js",
-        "src/resource.js"
+        "src/resource.js",
+        "src/Item.js"
       ]
 }

@@ -1,4 +1,5 @@
  var Action = cc.Sprite.extend({
+
      ctor: function(act,color){
      	this._super();
         if(act=='perfect')this.initWithFile( 'res/action/perfect.png' );
@@ -10,6 +11,7 @@
         if(color=='Blue')this.setPosition(new cc.Point(525,380));
         if(color=='Violet')this.setPosition(new cc.Point(625,380));
      },
+     
      destroy: function(){
      	this.removeFromParent();
      }

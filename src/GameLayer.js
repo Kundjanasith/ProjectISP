@@ -18,6 +18,7 @@ var GameLayer = cc.LayerColor.extend({
         this.noteViolet = this.createNote('Violet');
         this.showPress();
         this.addKeyboardHandlers( true );
+        this.addItem();
         return true;
     },
 
@@ -150,6 +151,7 @@ var GameLayer = cc.LayerColor.extend({
             this.missViolet.destroy();
         }
     },
+
     onKeyUp: function( e ) {
         cc.audioEngine.pauseMusic();
         if(e===cc.KEY.s){
@@ -353,6 +355,10 @@ var GameLayer = cc.LayerColor.extend({
         for(var i=0 ; i<array.length ; i++){
                     array[i].unscheduleUpdate();
             }
+    }
+
+    addItem: function(){
+        
     }
 
 });
