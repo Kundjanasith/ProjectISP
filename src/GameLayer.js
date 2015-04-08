@@ -355,11 +355,19 @@ var GameLayer = cc.LayerColor.extend({
         for(var i=0 ; i<array.length ; i++){
                     array[i].unscheduleUpdate();
             }
-    }
+    },
 
     addItem: function(){
-        var item = [new speedUp(),new speedDown(),new healUp()];
-
+        // var items = [new speedUp(),new speedDown(),new healUp()];
+        // var x = Math.round(Math.random()*3);
+        // var item = items[x];
+        // item.setPos(-100);
+        // item.scheduleUpdate();
+        // this.add(item);
+        var item = new speedUp();
+        item.setPos(100);
+        item.scheduleUpdate();
+        this.addChild(item);
     }
 
 });
