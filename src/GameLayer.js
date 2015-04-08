@@ -358,7 +358,8 @@ var GameLayer = cc.LayerColor.extend({
     }
 
     addItem: function(){
-        
+        var item = [new speedUp(),new speedDown(),new healUp()];
+
     }
 
 });
