@@ -7,7 +7,9 @@ var res = {
     HighScore0_png: "res/high_score0.png",
     HighScore1_png: "res/high_score1.png",
     Back0_png: "res/back0.png",
-    Back1_png: "res/back1.png"
+    Back1_png: "res/back1.png",
+    Again0_png: "res/play_again0.png",
+    Again1_png: "res/play_again1.png"
 };
 
 var g_resources = [];
