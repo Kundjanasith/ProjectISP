@@ -21,6 +21,7 @@
         "src/EndLayer.js",
         "src/StartLayer.js",
         "src/resource.js",
-        "src/Item.js"
+        "src/Item.js",
+        "src/HighScore.js"
       ]
 }
