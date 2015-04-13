@@ -3,7 +3,9 @@ var res = {
     StartSelected_png : "res/start_game1.png",
     Screen_png : "res/galaxy.png",
     NoteRed_png : "res/note/NoteRed.png",
-    Bg_png: "res/bg.png"
+    Bg_png: "res/bg.png",
+    HighScore0_png: "res/high_score0.png",
+    HighScore1_png: "res/high_score1.png"
 };
 
 var g_resources = [];

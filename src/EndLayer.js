@@ -34,6 +34,23 @@ var EndLayer = cc.LayerColor.extend({
         this.addChild( this.skillLabel );
         // this.collectScore(name,score,time,skill);
 
+        var scoreItem = new cc.MenuItemImage(
+            res.HighScore0_png,
+            res.HighScore1_png,
+            function () {
+             cc.log("h");
+         }, this);
+        scoreItem.attr({
+            x: 800,
+            y: 30,
+            anchorX: 0.5,
+            anchorY: 0.5
+        });
+        this.highScore = new cc.Menu(scoreItem);
+        this.highScore.x = 0;
+        this.highScore.y = 0;
+        this.addChild(this.highScore);
+
         this.addKeyboardHandlers( true );
         return true;
     },
