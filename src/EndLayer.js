@@ -32,13 +32,22 @@ var EndLayer = cc.LayerColor.extend({
         this.skillLabel = cc.LabelTTF.create( 'Your Skill: '+skill , 'Arial', 50 );
         this.skillLabel.setPosition( new cc.Point( 500, 75 ) );
         this.addChild( this.skillLabel );
-        // this.collectScore(name,score,time,skill);
+     
 
         var scoreItem = new cc.MenuItemImage(
             res.HighScore0_png,
             res.HighScore1_png,
             function () {
              cc.log("h");
+             var win = new ScoreLayer();
+             win.init();
+             this.addChild(win);
+             this.removeChild(this.skillLabel);
+             this.removeChild(this.timeLabel);
+             this.removeChild(this.scoreLabel);
+             this.removeChild(this.nameLabel);
+             this.removeChild(this.OverLabel);
+             this.removeChild(this.highScore);
          }, this);
         scoreItem.attr({
             x: 800,
@@ -51,6 +60,7 @@ var EndLayer = cc.LayerColor.extend({
         this.highScore.y = 0;
         this.addChild(this.highScore);
 
+        // this.collectScore(name,score,time,skill);
         this.addKeyboardHandlers( true );
         return true;
     },
@@ -87,20 +97,12 @@ var EndLayer = cc.LayerColor.extend({
        var hr = new Date().getHours();
        
        var key = (hr*3600)+(min*60)+sec;
-       var value =  name+"Score:"+score+"Time:"+time+"Skill:"+skill;
+       var value =  name+".Score."+score+".Time."+time+".Skill."+skill;
 
        ls.setItem(key,value);
 
-       var score = [];
-       for(var i=0 ; i<(24*3600) ; i++){
-
-            if(ls.getItem(i)!=null){
-                cc.log(ls.getItem(i));
-                score.push(ls.getItem(i)); 
-            }
-            ls.removeItem(i);
-        }
-        return score;    
+    
+        // return score;    
     }
 
 
