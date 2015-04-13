@@ -66,15 +66,17 @@ var ScoreLayer = cc.LayerColor.extend({
           var sco = (ex.split(":")[1]).split(".")[0];
           var time = ex.split(".")[4];
           var skill = ex.split(".")[6]+"."+ex.split(".")[7];
-          detail.push(name+"/"+sco+"/"+time+"/"+skill);
+          detail.push(skill+"/"+sco+"/"+time+"/"+name);
         }
+
+        detail.sort();
 
         for(var i=0 ; i<5  ; i++){
           if(detail[i]!=null){
             var rank = cc.LabelTTF.create( i+1 , 'Arial', 50);
             rank.setPosition( new cc.Point( 95, 50*(5-i) ) );
             this.addChild( rank );
-            var name = detail[i].split("/")[0];
+            var name = detail[i].split("/")[3];
             var nameLabel = cc.LabelTTF.create( name , 'Arial', 50 );
             nameLabel.setPosition( new cc.Point( 250 , 50*(5-i) ) );
             this.addChild( nameLabel );
@@ -86,7 +88,7 @@ var ScoreLayer = cc.LayerColor.extend({
             var timeLabel = cc.LabelTTF.create( time , 'Arial', 25 );
             timeLabel.setPosition( new cc.Point( 700 , 50*(5-i) ) );
             this.addChild( timeLabel );
-            var skill= detail[i].split("/")[3];
+            var skill= detail[i].split("/")[0];
             var skillLabel = cc.LabelTTF.create( skill , 'Arial', 50 );
             skillLabel.setPosition( new cc.Point( 900 , 50*(5-i) ) );
             this.addChild( skillLabel );
