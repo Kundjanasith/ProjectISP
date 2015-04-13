@@ -42,12 +42,6 @@ var EndLayer = cc.LayerColor.extend({
              var win = new ScoreLayer();
              win.init();
              this.addChild(win);
-             this.removeChild(this.skillLabel);
-             this.removeChild(this.timeLabel);
-             this.removeChild(this.scoreLabel);
-             this.removeChild(this.nameLabel);
-             this.removeChild(this.OverLabel);
-             this.removeChild(this.highScore);
          }, this);
         scoreItem.attr({
             x: 800,
@@ -99,10 +93,7 @@ var EndLayer = cc.LayerColor.extend({
        var key = (hr*3600)+(min*60)+sec;
        var value =  name+".Score."+score+".Time."+time+".Skill."+skill;
 
-       ls.setItem(key,value);
-
-    
-        // return score;    
+       ls.setItem(key,value); 
     }
 
 

@@ -5,7 +5,9 @@ var res = {
     NoteRed_png : "res/note/NoteRed.png",
     Bg_png: "res/bg.png",
     HighScore0_png: "res/high_score0.png",
-    HighScore1_png: "res/high_score1.png"
+    HighScore1_png: "res/high_score1.png",
+    Back0_png: "res/back0.png",
+    Back1_png: "res/back1.png"
 };
 
 var g_resources = [];

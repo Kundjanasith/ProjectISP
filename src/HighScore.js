@@ -3,6 +3,9 @@ var ScoreLayer = cc.LayerColor.extend({
 	init: function(){
         this._super( new cc.Color( 255, 255, 255, 0 ) );
         this.setPosition(new cc.Point(0, 0)  );
+        var bg = cc.Sprite.create('res/bg.png');
+        bg.setPosition(new cc.Point(0,0));
+        this.addChild(bg);
 
         this.ScoreLabel = cc.LabelTTF.create( 'Score-Board', 'Arial', 100 );
         this.ScoreLabel.setPosition( new cc.Point( 500, 400 ) );
@@ -28,18 +31,29 @@ var ScoreLayer = cc.LayerColor.extend({
         this.HeadLabel4.setPosition( new cc.Point( 900 , 320 ) );
         this.addChild( this.HeadLabel4 );
 
+         var backItem = new cc.MenuItemImage(
+            res.Back0_png,
+            res.Back1_png,
+            function () {
+            this.removeFromParent();
+         }, this);
+        backItem.attr({
+            x: 100,
+            y: 400,
+            anchorX: 0.5,
+            anchorY: 0.5
+        });
+        this.back = new cc.Menu(backItem);
+        this.back.x = 0;
+        this.back.y = 0;
+        this.addChild(this.back);
 
-      for(var i=0 ; i<5 ; i++){
-        
-      }
 
        var ls = cc.sys.localStorage;
        var score = [];
        for(var i=0 ; i<(24*3600) ; i++){
         // ls.removeItem(i);
             if(ls.getItem(i)!=null){
-                // cc.log(ls.getItem(i));
-                // cc.log(i);
                 score.push(ls.getItem(i)); 
             }
         }
