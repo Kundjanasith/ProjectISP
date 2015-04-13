@@ -32,7 +32,7 @@ var EndLayer = cc.LayerColor.extend({
         this.skillLabel = cc.LabelTTF.create( 'Your Skill: '+skill , 'Arial', 50 );
         this.skillLabel.setPosition( new cc.Point( 500, 75 ) );
         this.addChild( this.skillLabel );
-        this.collectScore(name,score,time,skill);
+        // this.collectScore(name,score,time,skill);
 
         this.addKeyboardHandlers( true );
         return true;
