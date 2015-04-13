@@ -18,7 +18,7 @@ var GameLayer = cc.LayerColor.extend({
         this.noteViolet = this.createNote('Violet');
         this.showPress();
         this.addKeyboardHandlers( true );
-        this.addItem();
+        // this.addItem();
         return true;
     },
 
@@ -364,8 +364,8 @@ var GameLayer = cc.LayerColor.extend({
         // item.setPos(-100);
         // item.scheduleUpdate();
         // this.add(item);
-        var item = new speedUp();
-        item.setPos(100);
+        var item = new healUp();
+        // item.setPos(100);
         item.scheduleUpdate();
         this.addChild(item);
     }
