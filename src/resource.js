@@ -9,7 +9,7 @@ var res = {
     Back0_png: "res/back0.png",
     Back1_png: "res/back1.png",
     Again0_png: "res/play_again0.png",
-    Again1_png: "res/play_again1.png"
+    Again1_png: "res/play_again1.png",
 };
 
 var g_resources = [];

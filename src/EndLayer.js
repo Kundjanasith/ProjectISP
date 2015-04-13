@@ -38,7 +38,6 @@ var EndLayer = cc.LayerColor.extend({
             res.HighScore0_png,
             res.HighScore1_png,
             function () {
-             cc.log("h");
              var win = new ScoreLayer();
              win.init();
              this.addChild(win);
@@ -53,6 +52,23 @@ var EndLayer = cc.LayerColor.extend({
         this.highScore.x = 0;
         this.highScore.y = 0;
         this.addChild(this.highScore);
+
+        var againItem = new cc.MenuItemImage(
+            res.Again0_png,
+            res.Again1_png,
+            function () {
+             cc.log("h");
+         }, this);
+        againItem.attr({
+            x: 200,
+            y: 30,
+            anchorX: 0.5,
+            anchorY: 0.5
+        });
+        this.playAgain = new cc.Menu(againItem);
+        this.playAgain.x = 0;
+        this.playAgain.y = 0;
+        this.addChild(this.playAgain);
 
         // this.collectScore(name,score,time,skill);
         this.addKeyboardHandlers( true );
