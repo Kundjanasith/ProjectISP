@@ -48,6 +48,7 @@
         if(cha=='O')this.initWithFile( 'res/key/O0.png' );
         if(cha=='L')this.initWithFile( 'res/key/L0.png' );
         if(cha=='P')this.initWithFile( 'res/key/P0.png' );
+        if(cha=='Enter')this.initWithFile( 'res/key/Enter0.png' );
     }
 
     
