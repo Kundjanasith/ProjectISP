@@ -17,7 +17,7 @@ var StartLayer = cc.LayerColor.extend({
          }, this);
         startItem.attr({
             x: 500,
-            y: 200,
+            y: 400,
             anchorX: 0.5,
             anchorY: 0.5
         });
