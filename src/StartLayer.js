@@ -25,7 +25,8 @@ var StartLayer = cc.LayerColor.extend({
         this.menu.x = 0;
         this.menu.y = 0;
         this.addChild(this.menu);
-        
+
+
         this.addKeyboardHandlers( true );
         return true;
     },
@@ -54,5 +55,6 @@ var StartLayer = cc.LayerColor.extend({
     }
 
 });
+
 
 

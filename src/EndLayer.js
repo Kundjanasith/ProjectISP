@@ -57,7 +57,6 @@ var EndLayer = cc.LayerColor.extend({
             res.Again0_png,
             res.Again1_png,
             function () {
-             cc.log("h");
              location.reload(true);
          }, this);
         againItem.attr({
