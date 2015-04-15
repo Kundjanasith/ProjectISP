@@ -136,13 +136,63 @@ var StartLayer = cc.LayerColor.extend({
     },
 
     onKeyDown: function( e ) {
-
-
+        if(e==cc.KEY.q) this.KeyQ.change('down');
+        if(e==cc.KEY.a) this.KeyA.change('down');
+        if(e==cc.KEY.z) this.KeyZ.change('down');
+        if(e==cc.KEY.w) this.KeyW.change('down');
+        if(e==cc.KEY.s) this.KeyS.change('down');
+        if(e==cc.KEY.x) this.KeyX.change('down');
+        if(e==cc.KEY.e) this.KeyE.change('down');
+        if(e==cc.KEY.d) this.KeyD.change('down');
+        if(e==cc.KEY.c) this.KeyC.change('down');
+        if(e==cc.KEY.r) this.KeyR.change('down');
+        if(e==cc.KEY.f) this.KeyF.change('down');
+        if(e==cc.KEY.v) this.KeyV.change('down');
+        if(e==cc.KEY.t) this.KeyT.change('down');
+        if(e==cc.KEY.g) this.KeyG.change('down');
+        if(e==cc.KEY.b) this.KeyB.change('down');
+        if(e==cc.KEY.y) this.KeyY.change('down');
+        if(e==cc.KEY.h) this.KeyH.change('down');
+        if(e==cc.KEY.n) this.KeyN.change('down');
+        if(e==cc.KEY.u) this.KeyU.change('down');
+        if(e==cc.KEY.j) this.KeyJ.change('down');
+        if(e==cc.KEY.m) this.KeyM.change('down');
+        if(e==cc.KEY.i) this.KeyI.change('down');
+        if(e==cc.KEY.k) this.KeyK.change('down');
+        if(e==cc.KEY.o) this.KeyO.change('down');
+        if(e==cc.KEY.l) this.KeyL.change('down');
+        if(e==cc.KEY.p) this.KeyP.change('down');
+        if(e==cc.KEY.enter) this.KeyEN.change('down');
     },
 
     onKeyUp: function( e ) {
-
-
+        if(e==cc.KEY.q) this.KeyQ.change('up');
+        if(e==cc.KEY.a) this.KeyA.change('up');
+        if(e==cc.KEY.z) this.KeyZ.change('up');
+        if(e==cc.KEY.w) this.KeyW.change('up');
+        if(e==cc.KEY.s) this.KeyS.change('up');
+        if(e==cc.KEY.x) this.KeyX.change('up');
+        if(e==cc.KEY.e) this.KeyE.change('up');
+        if(e==cc.KEY.d) this.KeyD.change('up');
+        if(e==cc.KEY.c) this.KeyC.change('up');
+        if(e==cc.KEY.r) this.KeyR.change('up');
+        if(e==cc.KEY.f) this.KeyF.change('up');
+        if(e==cc.KEY.v) this.KeyV.change('up');
+        if(e==cc.KEY.t) this.KeyT.change('up');
+        if(e==cc.KEY.g) this.KeyG.change('up');
+        if(e==cc.KEY.b) this.KeyB.change('up');
+        if(e==cc.KEY.y) this.KeyY.change('up');
+        if(e==cc.KEY.h) this.KeyH.change('up');
+        if(e==cc.KEY.n) this.KeyN.change('up');
+        if(e==cc.KEY.u) this.KeyU.change('up');
+        if(e==cc.KEY.j) this.KeyJ.change('up');
+        if(e==cc.KEY.m) this.KeyM.change('up');
+        if(e==cc.KEY.i) this.KeyI.change('up');
+        if(e==cc.KEY.k) this.KeyK.change('up');
+        if(e==cc.KEY.o) this.KeyO.change('up');
+        if(e==cc.KEY.l) this.KeyL.change('up');
+        if(e==cc.KEY.p) this.KeyP.change('up');
+        if(e==cc.KEY.enter) this.KeyEN.change('up');
     },
 
     addKeyboardHandlers: function() {
