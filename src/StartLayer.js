@@ -31,9 +31,9 @@ var StartLayer = cc.LayerColor.extend({
         this.nameLabel.setPosition( new cc.Point( 200, 325 ) );
         this.addChild( this.nameLabel );
      
-        this.playName = ' - - - - - ' ;  
+        this.playName = ' ' ;  
         this.Name = cc.LabelTTF.create( this.playName , 'Arial', 30);
-        this.Name.setPosition( new cc.Point( 450, 325 ) );
+        this.Name.setPosition( new cc.Point( 500, 325 ) );
         this.addChild( this.Name );
 
         this.KeyQ = new Key('Q');
@@ -109,6 +109,9 @@ var StartLayer = cc.LayerColor.extend({
         this.KeyEN = new Key('Enter');
         this.KeyEN.setPosition(new cc.Point(600,75));
         this.addChild(this.KeyEN);
+        this.KeyDE = new Key('Delete');
+        this.KeyDE.setPosition(new cc.Point(750,150));
+        this.addChild(this.KeyDE);
 
         this.KeyI = new Key('I');
         this.KeyI.setPosition(new cc.Point(550,150));
@@ -128,41 +131,149 @@ var StartLayer = cc.LayerColor.extend({
         this.KeyP.setPosition(new cc.Point(650,150));
         this.addChild(this.KeyP);
 
-       
-     
       
         this.addKeyboardHandlers( true );
         return true;
     },
 
     onKeyDown: function( e ) {
-        if(e==cc.KEY.q) this.KeyQ.change('down');
-        if(e==cc.KEY.a) this.KeyA.change('down');
-        if(e==cc.KEY.z) this.KeyZ.change('down');
-        if(e==cc.KEY.w) this.KeyW.change('down');
-        if(e==cc.KEY.s) this.KeyS.change('down');
-        if(e==cc.KEY.x) this.KeyX.change('down');
-        if(e==cc.KEY.e) this.KeyE.change('down');
-        if(e==cc.KEY.d) this.KeyD.change('down');
-        if(e==cc.KEY.c) this.KeyC.change('down');
-        if(e==cc.KEY.r) this.KeyR.change('down');
-        if(e==cc.KEY.f) this.KeyF.change('down');
-        if(e==cc.KEY.v) this.KeyV.change('down');
-        if(e==cc.KEY.t) this.KeyT.change('down');
-        if(e==cc.KEY.g) this.KeyG.change('down');
-        if(e==cc.KEY.b) this.KeyB.change('down');
-        if(e==cc.KEY.y) this.KeyY.change('down');
-        if(e==cc.KEY.h) this.KeyH.change('down');
-        if(e==cc.KEY.n) this.KeyN.change('down');
-        if(e==cc.KEY.u) this.KeyU.change('down');
-        if(e==cc.KEY.j) this.KeyJ.change('down');
-        if(e==cc.KEY.m) this.KeyM.change('down');
-        if(e==cc.KEY.i) this.KeyI.change('down');
-        if(e==cc.KEY.k) this.KeyK.change('down');
-        if(e==cc.KEY.o) this.KeyO.change('down');
-        if(e==cc.KEY.l) this.KeyL.change('down');
-        if(e==cc.KEY.p) this.KeyP.change('down');
+        if(e==cc.KEY.q){
+           if(this.playName.length<12) this.playName+='Q';
+           this.Name.setString(this.playName);
+           this.KeyQ.change('down');
+        }
+        if(e==cc.KEY.a){
+            if(this.playName.length<12) this.playName+='A';
+            this.Name.setString(this.playName);
+            this.KeyA.change('down');
+        }
+        if(e==cc.KEY.z){
+            if(this.playName.length<12) this.playName+='Z';
+            this.Name.setString(this.playName);
+            this.KeyZ.change('down');
+        }
+        if(e==cc.KEY.w){
+            if(this.playName.length<12) this.playName+='W';
+            this.Name.setString(this.playName);
+            this.KeyW.change('down');
+        }
+        if(e==cc.KEY.s){
+            if(this.playName.length<12) this.playName+='S';
+            this.Name.setString(this.playName);
+            this.KeyS.change('down');
+        }
+        if(e==cc.KEY.x){
+            if(this.playName.length<12) this.playName+='X';
+            this.Name.setString(this.playName);
+            this.KeyX.change('down');
+        } 
+        if(e==cc.KEY.e){
+            if(this.playName.length<12) this.playName+='E';
+            this.Name.setString(this.playName);
+            this.KeyE.change('down');
+        }
+        if(e==cc.KEY.d){
+            if(this.playName.length<12) this.playName+='D';
+            this.Name.setString(this.playName);
+            this.KeyD.change('down');
+        }
+        if(e==cc.KEY.c){
+            if(this.playName.length<12) this.playName+='C';
+            this.Name.setString(this.playName);
+            this.KeyC.change('down');
+        }
+        if(e==cc.KEY.r){
+            if(this.playName.length<12) this.playName+='R';
+            this.Name.setString(this.playName);
+            this.KeyR.change('down');
+        }
+        if(e==cc.KEY.f){
+            if(this.playName.length<12) this.playName+='F';
+            this.Name.setString(this.playName);
+            this.KeyF.change('down');
+        }
+        if(e==cc.KEY.v){
+            if(this.playName.length<12) this.playName+='V';
+            this.Name.setString(this.playName);
+            this.KeyV.change('down');
+        }
+        if(e==cc.KEY.t){
+            if(this.playName.length<12) this.playName+='T';
+            this.Name.setString(this.playName);
+            this.KeyT.change('down');
+        }
+        if(e==cc.KEY.g){
+            if(this.playName.length<12) this.playName+='G';
+            this.Name.setString(this.playName);
+            this.KeyG.change('down');
+        }
+        if(e==cc.KEY.b){
+            if(this.playName.length<12) this.playName+='B';
+            this.Name.setString(this.playName);
+            this.KeyB.change('down');
+        }
+        if(e==cc.KEY.y){
+            if(this.playName.length<12) this.playName+='Y';
+            this.Name.setString(this.playName);
+            this.KeyY.change('down');
+        }
+        if(e==cc.KEY.h){
+            if(this.playName.length<12) this.playName+='H';
+            this.Name.setString(this.playName);
+            this.KeyH.change('down');
+        }
+        if(e==cc.KEY.n){
+            if(this.playName.length<12) this.playName+='N';
+            this.Name.setString(this.playName);
+            this.KeyN.change('down');
+        }
+        if(e==cc.KEY.u){
+            if(this.playName.length<12) this.playName+='U';
+            this.Name.setString(this.playName);
+            this.KeyU.change('down');
+        }
+        if(e==cc.KEY.j){
+            if(this.playName.length<12) this.playName+='J';
+            this.Name.setString(this.playName);
+            this.KeyJ.change('down');
+        }
+        if(e==cc.KEY.m){
+            if(this.playName.length<12) this.playName+='M';
+            this.Name.setString(this.playName);
+            this.KeyM.change('down');
+        }
+        if(e==cc.KEY.i){
+            if(this.playName.length<12) this.playName+='I';
+            this.Name.setString(this.playName);
+            this.KeyI.change('down');
+        }
+        if(e==cc.KEY.k){
+            if(this.playName.length<12) this.playName+='K';
+            this.Name.setString(this.playName);
+            this.KeyK.change('down');
+        }
+        if(e==cc.KEY.o){
+            if(this.playName.length<12) this.playName+='O';
+            this.Name.setString(this.playName);
+            this.KeyO.change('down');
+        }
+        if(e==cc.KEY.l){
+            if(this.playName.length<12) this.playName+='L';
+            this.Name.setString(this.playName);
+            this.KeyL.change('down');
+        }
+        if(e==cc.KEY.p){
+            if(this.playName.length<12) this.playName+='P';
+            this.Name.setString(this.playName);
+            this.KeyP.change('down');
+        }
         if(e==cc.KEY.enter) this.KeyEN.change('down');
+        if(e==cc.KEY.backspace){
+             var l = this.playName.length;
+             if(l>0) this.playName=this.playName.substring(0,l-1);
+             this.Name.setString(this.playName);
+             this.KeyDE.change('down');
+        }
     },
 
     onKeyUp: function( e ) {
@@ -193,6 +304,7 @@ var StartLayer = cc.LayerColor.extend({
         if(e==cc.KEY.l) this.KeyL.change('up');
         if(e==cc.KEY.p) this.KeyP.change('up');
         if(e==cc.KEY.enter) this.KeyEN.change('up');
+        if(e==cc.KEY.backspace) this.KeyDE.change('up');
     },
 
     addKeyboardHandlers: function() {

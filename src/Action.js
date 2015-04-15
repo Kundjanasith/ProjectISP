@@ -50,6 +50,7 @@
         if(this.cha=='L')this.initWithFile( 'res/key/L0.png' );
         if(this.cha=='P')this.initWithFile( 'res/key/P0.png' );
         if(this.cha=='Enter')this.initWithFile( 'res/key/Enter0.png' );
+        if(this.cha=='Delete')this.initWithFile( 'res/key/Delete0.png' );
     },
 
     change: function(press){
@@ -107,6 +108,8 @@
        if(press=='down'&&this.cha=='P')this.initWithFile( 'res/key/P1.png' );
        if(press=='up'&&this.cha=='Enter')this.initWithFile( 'res/key/Enter0.png' );
        if(press=='down'&&this.cha=='Enter')this.initWithFile( 'res/key/Enter1.png' );
+       if(press=='up'&&this.cha=='Delete')this.initWithFile( 'res/key/Delete0.png' );
+       if(press=='down'&&this.cha=='Delete')this.initWithFile( 'res/key/Delete1.png' );
     }
 
     
