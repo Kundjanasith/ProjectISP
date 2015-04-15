@@ -53,7 +53,58 @@
     },
 
     change: function(press){
-
+       if(press=='up'&&this.cha=='Q')this.initWithFile( 'res/key/Q0.png' );
+       if(press=='down'&&this.cha=='Q')this.initWithFile( 'res/key/Q1.png' );
+       if(press=='up'&&this.cha=='A')this.initWithFile( 'res/key/A0.png' );
+       if(press=='down'&&this.cha=='A')this.initWithFile( 'res/key/A1.png' );
+       if(press=='up'&&this.cha=='Z')this.initWithFile( 'res/key/Z0.png' );
+       if(press=='down'&&this.cha=='Z')this.initWithFile( 'res/key/Z1.png' );
+       if(press=='up'&&this.cha=='W')this.initWithFile( 'res/key/W0.png' );
+       if(press=='down'&&this.cha=='W')this.initWithFile( 'res/key/W1.png' );
+       if(press=='up'&&this.cha=='S')this.initWithFile( 'res/key/S0.png' );
+       if(press=='down'&&this.cha=='S')this.initWithFile( 'res/key/S1.png' );
+       if(press=='up'&&this.cha=='X')this.initWithFile( 'res/key/X0.png' );
+       if(press=='down'&&this.cha=='X')this.initWithFile( 'res/key/X1.png' );
+       if(press=='up'&&this.cha=='E')this.initWithFile( 'res/key/E0.png' );
+       if(press=='down'&&this.cha=='E')this.initWithFile( 'res/key/E1.png' );
+       if(press=='up'&&this.cha=='D')this.initWithFile( 'res/key/D0.png' );
+       if(press=='down'&&this.cha=='D')this.initWithFile( 'res/key/D1.png' );
+       if(press=='up'&&this.cha=='C')this.initWithFile( 'res/key/C0.png' );
+       if(press=='down'&&this.cha=='C')this.initWithFile( 'res/key/C1.png' );
+       if(press=='up'&&this.cha=='R')this.initWithFile( 'res/key/R0.png' );
+       if(press=='down'&&this.cha=='R')this.initWithFile( 'res/key/R1.png' );
+       if(press=='up'&&this.cha=='F')this.initWithFile( 'res/key/F0.png' );
+       if(press=='down'&&this.cha=='F')this.initWithFile( 'res/key/F1.png' );
+       if(press=='up'&&this.cha=='V')this.initWithFile( 'res/key/V0.png' );
+       if(press=='down'&&this.cha=='V')this.initWithFile( 'res/key/V1.png' );
+       if(press=='up'&&this.cha=='T')this.initWithFile( 'res/key/T0.png' );
+       if(press=='down'&&this.cha=='T')this.initWithFile( 'res/key/T1.png' );
+       if(press=='up'&&this.cha=='G')this.initWithFile( 'res/key/G0.png' );
+       if(press=='down'&&this.cha=='G')this.initWithFile( 'res/key/G1.png' );
+       if(press=='up'&&this.cha=='B')this.initWithFile( 'res/key/B0.png' );
+       if(press=='down'&&this.cha=='B')this.initWithFile( 'res/key/B1.png' );
+       if(press=='up'&&this.cha=='Y')this.initWithFile( 'res/key/Y0.png' );
+       if(press=='down'&&this.cha=='Y')this.initWithFile( 'res/key/Y1.png' );
+       if(press=='up'&&this.cha=='H')this.initWithFile( 'res/key/H0.png' );
+       if(press=='down'&&this.cha=='H')this.initWithFile( 'res/key/H1.png' );
+       if(press=='up'&&this.cha=='N')this.initWithFile( 'res/key/N0.png' );
+       if(press=='down'&&this.cha=='N')this.initWithFile( 'res/key/N1.png' );
+       if(press=='up'&&this.cha=='U')this.initWithFile( 'res/key/U0.png' );
+       if(press=='down'&&this.cha=='U')this.initWithFile( 'res/key/U1.png' );
+       if(press=='up'&&this.cha=='J')this.initWithFile( 'res/key/J0.png' );
+       if(press=='down'&&this.cha=='J')this.initWithFile( 'res/key/J1.png' );
+       if(press=='up'&&this.cha=='M')this.initWithFile( 'res/key/M0.png' );
+       if(press=='down'&&this.cha=='M')this.initWithFile( 'res/key/M1.png' );
+       if(press=='up'&&this.cha=='I')this.initWithFile( 'res/key/I0.png' );
+       if(press=='down'&&this.cha=='I')this.initWithFile( 'res/key/I1.png' );
+       if(press=='up'&&this.cha=='K')this.initWithFile( 'res/key/K0.png' );
+       if(press=='down'&&this.cha=='K')this.initWithFile( 'res/key/K1.png' );
+       if(press=='up'&&this.cha=='O')this.initWithFile( 'res/key/O0.png' );
+       if(press=='down'&&this.cha=='O')this.initWithFile( 'res/key/O1.png' );
+       if(press=='up'&&this.cha=='L')this.initWithFile( 'res/key/L0.png' );
+       if(press=='down'&&this.cha=='L')this.initWithFile( 'res/key/L1.png' );
+       if(press=='up'&&this.cha=='P')this.initWithFile( 'res/key/P0.png' );
+       if(press=='down'&&this.cha=='P')this.initWithFile( 'res/key/P1.png' );
     }
 
     
