@@ -26,7 +26,37 @@ var StartLayer = cc.LayerColor.extend({
         this.menu.y = 0;
         this.addChild(this.menu);
 
+        var conItem1 = new cc.MenuItemImage(
+            res.Confirm0_png,
+            res.Confirm1_png,
+            function () {
+            cc.log('Confirm');
+            
+            this.helloLabel = cc.LabelTTF.create( 'Hello   '+this.Name.getString(), 'Arial', 30 );
+            this.helloLabel.setPosition( new cc.Point( 200, 325 ) );
+            this.addChild( this.helloLabel );
+            this.removeChild(this.nameLabel);
+            this.removeChild(this.Name);
+            this.removeChild(this.confirm1);
+            this.selectLabel = cc.LabelTTF.create( 'Level' , 'Arial', 30);
+        this.selectLabel.setPosition( new cc.Point( 200 , 250) );
+        this.addChild(this.selectLabel)
+            
+         }, this);
+        conItem1.attr({
+            x: 700,
+            y: 325,
+            anchorX: 0.5,
+            anchorY: 0.5
+        });
+        this.confirm1 = new cc.Menu(conItem1);
+        this.confirm1.x = 0;
+        this.confirm1.y = 0;
+        this.addChild(this.confirm1);
 
+ 
+       
+        
         this.nameLabel = cc.LabelTTF.create( 'Player Name: ', 'Arial', 30 );
         this.nameLabel.setPosition( new cc.Point( 200, 325 ) );
         this.addChild( this.nameLabel );

@@ -10,6 +10,8 @@ var res = {
     Back1_png: "res/back1.png",
     Again0_png: "res/play_again0.png",
     Again1_png: "res/play_again1.png",
+    Confirm0_png: "res/key/Confirm0.png",
+    Confirm1_png: "res/key/Confirm1.png",
 };
 
 var g_resources = [];
