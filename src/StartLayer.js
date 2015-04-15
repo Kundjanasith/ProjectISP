@@ -11,12 +11,30 @@ var StartLayer = cc.LayerColor.extend({
             function () {
              this.showGame = true;
              var layer1 = new GameLayer();
-             layer1.init();
+             layer1.init(this.helloLabel.getString(),this.YlevLabel.getString());
              this.addChild(layer1);
              startItem.removeFromParent();
+             this.removeChild(this.ruleLabel);
+             this.removeChild(this.line1Label);
+             this.removeChild(this.line2Label);
+             this.removeChild(this.line3Label);
+             this.removeChild(this.line4Label);
+             this.removeChild(this.line5Label);
+             this.removeChild(this.line6Label);  
+             this.removeChild(this.Red);
+             this.removeChild(this.Orange);
+             this.removeChild(this.Yellow);
+             this.removeChild(this.Green);
+             this.removeChild(this.Blue);
+             this.removeChild(this.Violet);
+             this.removeChild(this.KeyDE);      
+             this.removeChild(this.KeyUP);      
+             this.removeChild(this.KeyDOWN);  
+             this.removeChild(this.YlevLabel); 
+             this.removeChild(this.helloLabel);        
          }, this);
         startItem.attr({
-            x: 500,
+            x: 250,
             y: 400,
             anchorX: 0.5,
             anchorY: 0.5
@@ -24,23 +42,30 @@ var StartLayer = cc.LayerColor.extend({
         this.menu = new cc.Menu(startItem);
         this.menu.x = 0;
         this.menu.y = 0;
-        this.addChild(this.menu);
+
+        this.level = 1;
+        this.levelLabel = cc.LabelTTF.create(this.level+'','Arial',30);
+        this.levelLabel.setPosition( new cc.Point( 400 , 250) );
+
+        
+        
 
         var conItem1 = new cc.MenuItemImage(
             res.Confirm0_png,
             res.Confirm1_png,
             function () {
-            cc.log('Confirm');
-            
-            this.helloLabel = cc.LabelTTF.create( 'Hello   '+this.Name.getString(), 'Arial', 30 );
-            this.helloLabel.setPosition( new cc.Point( 200, 325 ) );
+            this.helloLabel = cc.LabelTTF.create( 'Hello:  '+this.Name.getString(), 'Arial', 30 );
+            this.helloLabel.setPosition( new cc.Point( 300, 325 ) );
+            this.helloLabel.setColor(new cc.Color(125,125,125,0));
             this.addChild( this.helloLabel );
             this.removeChild(this.nameLabel);
             this.removeChild(this.Name);
             this.removeChild(this.confirm1);
-            this.selectLabel = cc.LabelTTF.create( 'Level' , 'Arial', 30);
-        this.selectLabel.setPosition( new cc.Point( 200 , 250) );
-        this.addChild(this.selectLabel)
+            this.selectLabel = cc.LabelTTF.create( 'Speed Level' , 'Arial', 30);
+            this.selectLabel.setPosition( new cc.Point( 200 , 250) );
+            this.addChild(this.selectLabel);
+            this.addChild(this.levelLabel);
+            this.addChild(this.confirm2);
             
          }, this);
         conItem1.attr({
@@ -49,13 +74,83 @@ var StartLayer = cc.LayerColor.extend({
             anchorX: 0.5,
             anchorY: 0.5
         });
+        
         this.confirm1 = new cc.Menu(conItem1);
         this.confirm1.x = 0;
         this.confirm1.y = 0;
         this.addChild(this.confirm1);
 
+        this.Red = new Press('Red');
+        this.Red.setPosition(new cc.Point( 850, 380));
+        this.Orange = new Press('Orange');
+        this.Orange.setPosition(new cc.Point( 910, 355));
+        this.Yellow = new Press('Yellow');
+        this.Yellow.setPosition(new cc.Point( 855, 325));
+        this.Green = new Press('Green');
+        this.Green.setPosition(new cc.Point( 910, 300));
+        this.Blue = new Press('Blue');
+        this.Blue.setPosition(new cc.Point( 857, 270));
+        this.Violet = new Press('Violet');
+        this.Violet.setPosition(new cc.Point( 910, 245));
+        var conItem2 = new cc.MenuItemImage(
+            res.Confirm0_png,
+            res.Confirm1_png,
+            function () {
+            this.YlevLabel = cc.LabelTTF.create( 'Your level is:      '+this.levelLabel.getString(), 'Arial', 30 );
+            this.YlevLabel.setPosition( new cc.Point( 300, 250 ) );
+            this.YlevLabel.setColor(new cc.Color(125,125,125,0));
+            this.addChild( this.YlevLabel );
+            this.removeChild(this.levelLabel);
+            this.removeChild(this.selectLabel);  
+            this.removeChild(this.confirm2); 
+            this.ruleLabel = cc.LabelTTF.create('Rule:', 'Arial', 30 );
+            this.ruleLabel.setPosition( new cc.Point( 475, 400 ) );
+            this.addChild(this.ruleLabel);
+            var line1 = 'Press "S" for collect score in red lane '
+            this.line1Label = cc.LabelTTF.create(line1, 'Arial', 20 );
+            this.line1Label.setPosition( new cc.Point( 635, 375 ) );
+            this.addChild(this.line1Label);
+            this.addChild(this.Red);
+            var line2 = 'Press "D" for collect score in orange lane '
+            this.line2Label = cc.LabelTTF.create(line2, 'Arial', 20 );
+            this.line2Label.setPosition( new cc.Point( 650, 350 ) );
+            this.addChild(this.line2Label);
+            this.addChild(this.Orange);
+            var line3 = 'Press "F" for collect score in yellow lane '
+            this.line3Label = cc.LabelTTF.create(line3, 'Arial', 20 );
+            this.line3Label.setPosition( new cc.Point( 647, 325 ) );
+            this.addChild(this.line3Label);
+            this.addChild(this.Yellow);
+            var line4 = 'Press "J" for collect score in green lane '
+            this.line4Label = cc.LabelTTF.create(line4, 'Arial', 20 );
+            this.line4Label.setPosition( new cc.Point( 645, 300 ) );
+            this.addChild(this.line4Label);
+            this.addChild(this.Green);
+            var line5 = 'Press "K" for collect score in blue lane '
+            this.line5Label = cc.LabelTTF.create(line5, 'Arial', 20 );
+            this.line5Label.setPosition( new cc.Point( 640, 275 ) );
+            this.addChild(this.line5Label);
+            this.addChild(this.Blue);
+            var line6 = 'Press "L" for collect score in violet lane '
+            this.line6Label = cc.LabelTTF.create(line6, 'Arial', 20 );
+            this.line6Label.setPosition( new cc.Point( 642, 250 ) );
+            this.addChild(this.line6Label);
+            this.addChild(this.Violet);
+            this.addChild(this.menu);
  
-       
+         }, this);
+        conItem2.attr({
+            x: 700,
+            y: 250,
+            anchorX: 0.5,
+            anchorY: 0.5
+        });
+        this.confirm2 = new cc.Menu(conItem2);
+        this.confirm2.x = 0;
+        this.confirm2.y = 0;
+
+
+ 
         
         this.nameLabel = cc.LabelTTF.create( 'Player Name: ', 'Arial', 30 );
         this.nameLabel.setPosition( new cc.Point( 200, 325 ) );
@@ -161,6 +256,14 @@ var StartLayer = cc.LayerColor.extend({
         this.KeyP.setPosition(new cc.Point(650,150));
         this.addChild(this.KeyP);
 
+
+        this.KeyUP = new Key('up');
+        this.KeyUP.setPosition(new cc.Point(750,100));
+        this.addChild(this.KeyUP);
+        this.KeyDOWN = new Key('down');
+        this.KeyDOWN.setPosition(new cc.Point(750,50));
+        this.addChild(this.KeyDOWN);
+
       
         this.addKeyboardHandlers( true );
         return true;
@@ -188,6 +291,7 @@ var StartLayer = cc.LayerColor.extend({
             this.KeyW.change('down');
         }
         if(e==cc.KEY.s){
+            this.Red.change('down');
             if(this.playName.length<12) this.playName+='S';
             this.Name.setString(this.playName);
             this.KeyS.change('down');
@@ -203,6 +307,7 @@ var StartLayer = cc.LayerColor.extend({
             this.KeyE.change('down');
         }
         if(e==cc.KEY.d){
+            this.Orange.change('down');
             if(this.playName.length<12) this.playName+='D';
             this.Name.setString(this.playName);
             this.KeyD.change('down');
@@ -218,6 +323,7 @@ var StartLayer = cc.LayerColor.extend({
             this.KeyR.change('down');
         }
         if(e==cc.KEY.f){
+            this.Yellow.change('down');
             if(this.playName.length<12) this.playName+='F';
             this.Name.setString(this.playName);
             this.KeyF.change('down');
@@ -263,6 +369,7 @@ var StartLayer = cc.LayerColor.extend({
             this.KeyU.change('down');
         }
         if(e==cc.KEY.j){
+            this.Green.change('down');
             if(this.playName.length<12) this.playName+='J';
             this.Name.setString(this.playName);
             this.KeyJ.change('down');
@@ -278,6 +385,7 @@ var StartLayer = cc.LayerColor.extend({
             this.KeyI.change('down');
         }
         if(e==cc.KEY.k){
+            this.Blue.change('down');
             if(this.playName.length<12) this.playName+='K';
             this.Name.setString(this.playName);
             this.KeyK.change('down');
@@ -288,6 +396,7 @@ var StartLayer = cc.LayerColor.extend({
             this.KeyO.change('down');
         }
         if(e==cc.KEY.l){
+            this.Violet.change('down');
             if(this.playName.length<12) this.playName+='L';
             this.Name.setString(this.playName);
             this.KeyL.change('down');
@@ -296,6 +405,18 @@ var StartLayer = cc.LayerColor.extend({
             if(this.playName.length<12) this.playName+='P';
             this.Name.setString(this.playName);
             this.KeyP.change('down');
+        }
+        if(e==cc.KEY.up){
+            var lev = parseInt(this.levelLabel.getString());
+            if(lev>=1&&lev<10)lev++;
+            this.levelLabel.setString(lev+'');
+            this.KeyUP.change('down');
+        }
+        if(e==cc.KEY.down){
+            var lev = parseInt(this.levelLabel.getString());
+            if(lev>1&&lev<=10)lev--;
+            this.levelLabel.setString(lev+'');
+            this.KeyDOWN.change('down');
         }
         if(e==cc.KEY.enter) this.KeyEN.change('down');
         if(e==cc.KEY.backspace){
@@ -311,13 +432,22 @@ var StartLayer = cc.LayerColor.extend({
         if(e==cc.KEY.a) this.KeyA.change('up');
         if(e==cc.KEY.z) this.KeyZ.change('up');
         if(e==cc.KEY.w) this.KeyW.change('up');
-        if(e==cc.KEY.s) this.KeyS.change('up');
+        if(e==cc.KEY.s) {
+            this.Red.change('up');
+            this.KeyS.change('up');
+        }
         if(e==cc.KEY.x) this.KeyX.change('up');
         if(e==cc.KEY.e) this.KeyE.change('up');
-        if(e==cc.KEY.d) this.KeyD.change('up');
+        if(e==cc.KEY.d) {
+            this.Orange.change('up');
+            this.KeyD.change('up');
+        }
         if(e==cc.KEY.c) this.KeyC.change('up');
         if(e==cc.KEY.r) this.KeyR.change('up');
-        if(e==cc.KEY.f) this.KeyF.change('up');
+        if(e==cc.KEY.f) {
+            this.Yellow.change('up');
+            this.KeyF.change('up');
+        }
         if(e==cc.KEY.v) this.KeyV.change('up');
         if(e==cc.KEY.t) this.KeyT.change('up');
         if(e==cc.KEY.g) this.KeyG.change('up');
@@ -326,13 +456,24 @@ var StartLayer = cc.LayerColor.extend({
         if(e==cc.KEY.h) this.KeyH.change('up');
         if(e==cc.KEY.n) this.KeyN.change('up');
         if(e==cc.KEY.u) this.KeyU.change('up');
-        if(e==cc.KEY.j) this.KeyJ.change('up');
+        if(e==cc.KEY.j) {
+            this.Green.change('up');
+            this.KeyJ.change('up');
+        }
         if(e==cc.KEY.m) this.KeyM.change('up');
         if(e==cc.KEY.i) this.KeyI.change('up');
-        if(e==cc.KEY.k) this.KeyK.change('up');
+        if(e==cc.KEY.k) {
+            this.Blue.change('up');
+            this.KeyK.change('up');
+        }
         if(e==cc.KEY.o) this.KeyO.change('up');
-        if(e==cc.KEY.l) this.KeyL.change('up');
+        if(e==cc.KEY.l) {
+            this.Violet.change('up');
+            this.KeyL.change('up');
+        }
         if(e==cc.KEY.p) this.KeyP.change('up');
+        if(e==cc.KEY.up) this.KeyUP.change('up');
+        if(e==cc.KEY.down) this.KeyDOWN.change('up');
         if(e==cc.KEY.enter) this.KeyEN.change('up');
         if(e==cc.KEY.backspace) this.KeyDE.change('up');
     },

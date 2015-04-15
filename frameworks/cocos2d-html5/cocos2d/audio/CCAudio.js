@@ -247,10 +247,10 @@ cc.Audio = cc.Class.extend({
             var sourceNode = this._currentSource;
             if(!this._playing && !sourceNode)
                 return true;
-            if(sourceNode["playbackState"] == null)
-                return this._playing;
-            else
-                return this._currentTime + this._context.currentTime - this._startTime < this._currentSource.buffer.duration;
+            // if(sourceNode["playbackState"] == null)
+            //     return this._playing;
+            // else
+            //     return this._currentTime + this._context.currentTime - this._startTime < this._currentSource.buffer.duration;
         }
     },
 

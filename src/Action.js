@@ -51,6 +51,8 @@
         if(this.cha=='P')this.initWithFile( 'res/key/P0.png' );
         if(this.cha=='Enter')this.initWithFile( 'res/key/Enter0.png' );
         if(this.cha=='Delete')this.initWithFile( 'res/key/Delete0.png' );
+        if(this.cha=='up')this.initWithFile( 'res/key/up0.png' );
+        if(this.cha=='down')this.initWithFile( 'res/key/down0.png' );
     },
 
     change: function(press){
@@ -110,6 +112,10 @@
        if(press=='down'&&this.cha=='Enter')this.initWithFile( 'res/key/Enter1.png' );
        if(press=='up'&&this.cha=='Delete')this.initWithFile( 'res/key/Delete0.png' );
        if(press=='down'&&this.cha=='Delete')this.initWithFile( 'res/key/Delete1.png' );
+       if(press=='up'&&this.cha=='up')this.initWithFile( 'res/key/up0.png' );
+       if(press=='down'&&this.cha=='up')this.initWithFile( 'res/key/up1.png' );
+       if(press=='up'&&this.cha=='down')this.initWithFile( 'res/key/down0.png' );
+       if(press=='down'&&this.cha=='down')this.initWithFile( 'res/key/down1.png' );
     }
 
     

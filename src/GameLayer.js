@@ -1,10 +1,12 @@
 var GameLayer = cc.LayerColor.extend({
 
-    init: function() {
+    init: function(name,level) {
+        cc.log(name+level);
         this._super( new cc.Color( 0, 0, 0, 0 ) );
         this.setPosition(new cc.Point(0, 0)  );
         this.show=true;
-        this.namePlayer = '' ;
+        this.namePlayer = name.split(":")[1] ;
+        this.level = level.split(":")[1];
         this.showDetail();
         this.createAction();
         this.life = 4 ;
@@ -18,7 +20,7 @@ var GameLayer = cc.LayerColor.extend({
         this.noteViolet = this.createNote('Violet');
         this.showPress();
         this.addKeyboardHandlers( true );
-        // this.addItem();
+        this.addItem();
         return true;
     },
 
@@ -56,7 +58,6 @@ var GameLayer = cc.LayerColor.extend({
         if(e===cc.KEY.enter){
             this.statusGame++;
             if(this.statusGame===1){
-             this.namePlayer = prompt('Player Name :');
                 this.sec = new Date().getSeconds();
                 this.min = new Date().getMinutes();
                 this.hr = new Date().getHours();
@@ -196,9 +197,9 @@ var GameLayer = cc.LayerColor.extend({
 
     randomPosition: function(){
         var note1 = [];
-        for ( var i = 0; i < 50 ; i++ ){
+        for ( var i = 0; i < 1000 ; i++ ){
             var x = Math.random();
-            if(x*10<3){
+            if(x*10<2){
                 note1.push(1);
             }
             else{
@@ -288,7 +289,7 @@ var GameLayer = cc.LayerColor.extend({
         this.NLabel = cc.LabelTTF.create( 'Player Name :', 'Arial', 20 );
         this.NLabel.setPosition( new cc.Point(750, 80) );
         this.addChild( this.NLabel );
-        this.nameLabel = cc.LabelTTF.create( '', 'Arial', 20 );
+        this.nameLabel = cc.LabelTTF.create( this.namePlayer , 'Arial', 20 );
         this.nameLabel.setPosition( new cc.Point(800, 60) );
         this.addChild( this.nameLabel );
         this.TLabel = cc.LabelTTF.create( 'Your Time :' , 'Arial', 20 );

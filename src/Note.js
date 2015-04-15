@@ -14,7 +14,6 @@ var Note = cc.Sprite.extend({
     },
 
     update: function(){
-        // this.speed+=0.05;
         this.setPosition( new cc.Point( this.getPosition().x, this.getPosition().y + this.speed ) );
     },
 
