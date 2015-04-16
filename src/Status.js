@@ -3,15 +3,12 @@
     ctor: function() {
         this._super();
         this.initWithFile( 'res/status/Start.png' );
-        this.setPosition(new cc.Point(800,400));
+        this.setPosition(new cc.Point(825,415));
     },
 
     change: function(x){
     	if(x=='play'){
     		this.initWithFile( 'res/status/Play.png' );
-    	}
-    	if(x=='stop'){
-    		this.initWithFile( 'res/status/Stop.png' );
     	}
     },
 

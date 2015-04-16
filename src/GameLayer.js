@@ -19,9 +19,26 @@ var GameLayer = cc.LayerColor.extend({
         this.noteBlue = this.createNote('Blue');
         this.noteViolet = this.createNote('Violet');
         this.showPress();
+        this.Item = this.createItem();
+        this.ItemName = '';
         this.addKeyboardHandlers( true );
-        this.addItem();
+
         return true;
+    },
+
+    checkItem: function(color){
+       var posX = 0;
+       if(color=='Red')posX=125;
+       if(color=='Orange')posX=225;
+       if(color=='Yellow')posX=325;
+       if(color=='Green')posX=425;
+       if(color=='Blue')posX=525;
+       if(color=='Violet')posX=625;
+       for(var i=0 ; i<this.Item.length ; i++){
+            if(this.Item[i].getPosition().y>=325&&this.Item[i].getPosition().y<=450&&posX==this.Item[i].getPosition().x){
+            cc.log(this.Item[i].getName());
+            }
+        }
     },
 
     onKeyDown: function( e ) {
@@ -29,31 +46,37 @@ var GameLayer = cc.LayerColor.extend({
             this.red.change('down');
             if(this.show)cc.audioEngine.playMusic('sound/pressS.mp3',false);
             this.pressCheck('Red');
+            this.checkItem('Red');
         }
         if(e===cc.KEY.d){
             this.orange.change('down');
             if(this.show)cc.audioEngine.playMusic('sound/pressD.mp3',false);
             this.pressCheck('Orange');
+            this.checkItem('Orange');
         }
         if(e===cc.KEY.f){
             this.yellow.change('down');
             if(this.show)cc.audioEngine.playMusic('sound/pressF.mp3',false);
             this.pressCheck('Yellow');
+            this.checkItem('Yellow');
         }
         if(e===cc.KEY.j){
             this.green.change('down');
             if(this.show)cc.audioEngine.playMusic('sound/pressJ.mp3',false);
             this.pressCheck('Green');
+            this.checkItem('Green');
         }
         if(e===cc.KEY.k){
             this.blue.change('down');
             if(this.show)cc.audioEngine.playMusic('sound/pressK.mp3',false);
             this.pressCheck('Blue');
+            this.checkItem('Blue');
         }
         if(e===cc.KEY.l){
             this.violet.change('down');
             if(this.show)cc.audioEngine.playMusic('sound/pressL.mp3',false);
             this.pressCheck('Violet');
+            this.checkItem('Violet');
         }
         if(e===cc.KEY.enter){
             this.statusGame++;
@@ -64,6 +87,10 @@ var GameLayer = cc.LayerColor.extend({
             }
             this.sts.change('play');
             this.scheduleUpdate();
+    for(var i=0 ; i<this.Item.length ; i++){
+             var item = this.Item[i];
+            item.scheduleUpdate();
+        }
             this.startNote(this.noteRed);
             this.startNote(this.noteOrange);
             this.startNote(this.noteYellow);
@@ -253,6 +280,11 @@ var GameLayer = cc.LayerColor.extend({
         this.supportUpdate(this.noteBlue,this.posBlue,525);
         this.supportUpdate(this.noteViolet,this.posViolet,625);
 
+        for(var i=0 ; i<this.Item.length ; i++){
+             var item = this.Item[i];
+              if(item.getPosition().y>=450)item.setPosition(new cc.Point(item.getPosition().x,item.getStartPos()));
+        }
+
     },
 
     supportUpdate: function(array1,array2,pos){
@@ -279,6 +311,9 @@ var GameLayer = cc.LayerColor.extend({
         this.sts = new Status();
         this.addChild(this.sts);
         this.score = 0;
+        this.itemLabel = cc.LabelTTF.create( 'Item :  ', 'Arial', 20 );
+        this.itemLabel.setPosition( new cc.Point(720, 355) );
+        this.addChild( this.itemLabel );
         this.scoreLabel = cc.LabelTTF.create( 'Score : ' + this.score, 'Arial', 20 );
         this.scoreLabel.setPosition( new cc.Point(725, 325) );
         this.addChild( this.scoreLabel );
@@ -358,17 +393,15 @@ var GameLayer = cc.LayerColor.extend({
             }
     },
 
-    addItem: function(){
-        // var items = [new speedUp(),new speedDown(),new healUp()];
-        // var x = Math.round(Math.random()*3);
-        // var item = items[x];
-        // item.setPos(-100);
-        // item.scheduleUpdate();
-        // this.add(item);
-        var item = new healUp();
-        // item.setPos(100);
-        item.scheduleUpdate();
-        this.addChild(item);
+    createItem: function(){
+        var it = [];
+        for(var i=0 ; i<100 ; i++){
+            var items = [new speedUp(-((i+1)*1000)),new speedDown(-((i+1)*1000)),new healUp(-((i+1)*1000))];
+            var x = Math.round(Math.random()*2);
+            it.push(items[x]);
+            this.addChild(it[i]);
+        }
+        return it;
     }
 
 });
