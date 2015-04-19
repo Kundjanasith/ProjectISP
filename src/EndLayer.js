@@ -70,6 +70,25 @@ var EndLayer = cc.LayerColor.extend({
         this.playAgain.y = 0;
         this.addChild(this.playAgain);
 
+        var adminItem = new cc.MenuItemImage(
+            res.Admin0_png,
+            res.Admin1_png,
+            function () {
+             cc.log('admin');
+         }, this);
+        adminItem.attr({
+            x: 500,
+            y: 30,
+            anchorX: 0.5,
+            anchorY: 0.5
+        });
+        this.Admin = new cc.Menu(adminItem);
+        this.Admin.x = 0;
+        this.Admin.y = 0;
+        this.addChild(this.Admin);
+
+
+
         // this.collectScore(name,score,time,skill);
         this.addKeyboardHandlers( true );
         return true;
