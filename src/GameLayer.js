@@ -5,6 +5,7 @@ var GameLayer = cc.LayerColor.extend({
         this._super( new cc.Color( 0, 0, 0, 0 ) );
         this.setPosition(new cc.Point(0, 0)  );
         this.show=true;
+        
         this.namePlayer = name.split(":")[1] ;
         this.level = level.split(":")[1];
         this.showDetail();
@@ -18,8 +19,9 @@ var GameLayer = cc.LayerColor.extend({
         this.noteGreen = this.createNote('Green');
         this.noteBlue = this.createNote('Blue');
         this.noteViolet = this.createNote('Violet');
-        this.showPress();
         this.Item = this.createItem();
+        this.showPress();
+     
         this.ItemName = '';
         this.addKeyboardHandlers( true );
 
@@ -37,6 +39,7 @@ var GameLayer = cc.LayerColor.extend({
        for(var i=0 ; i<this.Item.length ; i++){
             if(this.Item[i].getPosition().y>=325&&this.Item[i].getPosition().y<=450&&posX==this.Item[i].getPosition().x){
             cc.log(this.Item[i].getName());
+            this.itemLabel.setString('Item:  '+this.Item[i].getName());
             }
         }
     },
@@ -312,7 +315,7 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild(this.sts);
         this.score = 0;
         this.itemLabel = cc.LabelTTF.create( 'Item :  ', 'Arial', 20 );
-        this.itemLabel.setPosition( new cc.Point(720, 355) );
+        this.itemLabel.setPosition( new cc.Point(750, 355) );
         this.addChild( this.itemLabel );
         this.scoreLabel = cc.LabelTTF.create( 'Score : ' + this.score, 'Arial', 20 );
         this.scoreLabel.setPosition( new cc.Point(725, 325) );
@@ -396,9 +399,10 @@ var GameLayer = cc.LayerColor.extend({
     createItem: function(){
         var it = [];
         for(var i=0 ; i<100 ; i++){
-            var items = [new speedUp(-((i+1)*1000)),new speedDown(-((i+1)*1000)),new healUp(-((i+1)*1000))];
+            var items = [new speedUp(),new speedDown(),new healUp()];
             var x = Math.round(Math.random()*2);
             it.push(items[x]);
+            it[i].setStartPos(-(i+1)*1000);
             this.addChild(it[i]);
         }
         return it;
