@@ -12,6 +12,8 @@ var res = {
     Again1_png: "res/play_again1.png",
     Confirm0_png: "res/key/Confirm0.png",
     Confirm1_png: "res/key/Confirm1.png",
+    Admin0_png: "res/Admin0.png",
+    Admin1_png: "res/Admin1.png",
 };
 
 var g_resources = [];
