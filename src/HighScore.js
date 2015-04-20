@@ -1,32 +1,24 @@
 var ScoreLayer = cc.LayerColor.extend({
 
 	init: function(){
-        this._super( new cc.Color( 255, 255, 255, 0 ) );
+        this._super( new cc.Color( 0, 0, 0, 255 ) );
         this.setPosition(new cc.Point(0, 0)  );
-        var bg = cc.Sprite.create('res/bg.png');
-        bg.setPosition(new cc.Point(0,0));
-        this.addChild(bg);
 
         this.ScoreLabel = cc.LabelTTF.create( 'Score-Board', 'Arial', 100 );
         this.ScoreLabel.setPosition( new cc.Point( 500, 400 ) );
         this.addChild( this.ScoreLabel );
-
         this.HeadLabel0 = cc.LabelTTF.create( 'Rank', 'Arial', 50);
         this.HeadLabel0.setPosition( new cc.Point( 95 , 320 ) );
         this.addChild( this.HeadLabel0 );
-
         this.HeadLabel1 = cc.LabelTTF.create( 'Name', 'Arial', 50);
         this.HeadLabel1.setPosition( new cc.Point( 250 , 320 ) );
         this.addChild( this.HeadLabel1 );
-
         this.HeadLabel2 = cc.LabelTTF.create( 'Score', 'Arial', 50);
         this.HeadLabel2.setPosition( new cc.Point( 500 , 320 ) );
         this.addChild( this.HeadLabel2 );
-
         this.HeadLabel3 = cc.LabelTTF.create( 'Time', 'Arial', 50);
         this.HeadLabel3.setPosition( new cc.Point( 700 , 320 ) );
         this.addChild( this.HeadLabel3 );
-
         this.HeadLabel4 = cc.LabelTTF.create( 'Skill', 'Arial', 50);
         this.HeadLabel4.setPosition( new cc.Point( 900 , 320 ) );
         this.addChild( this.HeadLabel4 );

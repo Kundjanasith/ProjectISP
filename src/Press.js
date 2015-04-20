@@ -1,6 +1,6 @@
  var Press = cc.Sprite.extend({
-    pressDown: function(e,bool){
-        if(e==this.key&&bool){
+    pressDown: function(e){
+        if(e==this.key){
             if(this.key==cc.KEY.s){
               this.initWithFile( 'res/press/red2.png' );
               cc.audioEngine.playMusic('sound/pressS.mp3',false);

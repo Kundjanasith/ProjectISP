@@ -74,7 +74,6 @@ var StartLayer = cc.LayerColor.extend({
         this.addChild(this.confirm1);
 
         this.Press = [];
-        this.Rule = [];
         this.Red = new Red();
         this.Red.setPosition(new cc.Point( 850, 380));
         this.Orange = new Orange();
@@ -99,6 +98,38 @@ var StartLayer = cc.LayerColor.extend({
             this.removeChild(this.levelLabel);
             this.removeChild(this.selectLabel);  
             this.removeChild(this.confirm2); 
+            this.showRule();
+            this.addChild(this.menu);
+         }, this);
+        conItem2.attr({
+            x: 700,
+            y: 250,
+            anchorX: 0.5,
+            anchorY: 0.5
+        });
+        this.confirm2 = new cc.Menu(conItem2);
+        this.confirm2.x = 0;
+        this.confirm2.y = 0;
+
+        this.nameLabel = cc.LabelTTF.create( 'Player Name: ', 'Arial', 30 );
+        this.nameLabel.setPosition( new cc.Point( 200, 325 ) );
+        this.addChild( this.nameLabel );
+     
+        this.playName = ' ' ;  
+        this.Name = cc.LabelTTF.create( this.playName , 'Arial', 30);
+        this.Name.setPosition( new cc.Point( 500, 325 ) );
+        this.addChild( this.Name );
+
+        this.KB  = new KeyBoard();
+        this.setPosition(new cc.Point(0,0));
+        this.addChild(this.KB);
+
+      
+        this.addKeyboardHandlers( true );
+        return true;
+    },
+
+    showRule: function(){
             this.ruleLabel = cc.LabelTTF.create('Rule:', 'Arial', 30 );
             this.ruleLabel.setPosition( new cc.Point( 475, 400 ) );
             this.addChild(this.ruleLabel);
@@ -132,37 +163,6 @@ var StartLayer = cc.LayerColor.extend({
             this.addChild(this.line6Label);
             this.addChild(this.Violet);
             this.Press.push(this.Violet);
-            this.addChild(this.menu);
-         }, this);
-        conItem2.attr({
-            x: 700,
-            y: 250,
-            anchorX: 0.5,
-            anchorY: 0.5
-        });
-        this.confirm2 = new cc.Menu(conItem2);
-        this.confirm2.x = 0;
-        this.confirm2.y = 0;
-
-
- 
-        
-        this.nameLabel = cc.LabelTTF.create( 'Player Name: ', 'Arial', 30 );
-        this.nameLabel.setPosition( new cc.Point( 200, 325 ) );
-        this.addChild( this.nameLabel );
-     
-        this.playName = ' ' ;  
-        this.Name = cc.LabelTTF.create( this.playName , 'Arial', 30);
-        this.Name.setPosition( new cc.Point( 500, 325 ) );
-        this.addChild( this.Name );
-
-        this.KB  = new KeyBoard();
-        this.setPosition(new cc.Point(0,0));
-        this.addChild(this.KB);
-
-      
-        this.addKeyboardHandlers( true );
-        return true;
     },
 
     onKeyDown: function( e ) {
