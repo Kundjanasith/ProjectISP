@@ -1,74 +1,98 @@
  var Press = cc.Sprite.extend({
-     
-    ctor: function(color) {
-        this._super();
-        this.colors = color;
-        if(this.colors=='Red'){
-            this.initWithFile( 'res/press/red1.png' );
-            this.setPosition(new cc.Point(125,400));
+    pressDown: function(e,bool){
+        if(e==this.key&&bool){
+            if(this.key==cc.KEY.s){
+              this.initWithFile( 'res/press/red2.png' );
+              cc.audioEngine.playMusic('sound/pressS.mp3',false);
+            }
+            if(this.key==cc.KEY.d){
+              this.initWithFile( 'res/press/orange2.png' );
+              cc.audioEngine.playMusic('sound/pressD.mp3',false);
+            }
+            if(this.key==cc.KEY.f){
+              this.initWithFile( 'res/press/yellow2.png' );
+              cc.audioEngine.playMusic('sound/pressF.mp3',false);
+            }
+            if(this.key==cc.KEY.j){
+              this.initWithFile( 'res/press/green2.png' );
+              cc.audioEngine.playMusic('sound/pressJ.mp3',false);
+            }
+            if(this.key==cc.KEY.k){
+              this.initWithFile( 'res/press/blue2.png' );
+              cc.audioEngine.playMusic('sound/pressK.mp3',false);
+            }
+            if(this.key==cc.KEY.l){
+              this.initWithFile( 'res/press/violet2.png' );
+              cc.audioEngine.playMusic('sound/pressL.mp3',false);
+            }
         }
-        if(this.colors=='Orange'){
-            this.initWithFile( 'res/press/orange1.png' );
-            this.setPosition(new cc.Point(225,400));
-        }
-        if(this.colors=='Yellow'){
-            this.initWithFile( 'res/press/yellow1.png' );
-            this.setPosition(new cc.Point(325,400));
-        }
-        if(this.colors=='Green'){
-            this.initWithFile( 'res/press/green1.png' );
-            this.setPosition(new cc.Point(425,400));
-        }
-        if(this.colors=='Blue'){
-            this.initWithFile( 'res/press/blue1.png' );
-            this.setPosition(new cc.Point(525,400));
-        }
-        if(this.colors=='Violet'){
-            this.initWithFile( 'res/press/violet1.png' );
-            this.setPosition(new cc.Point(625,400));   
-        }    
- 
     },
-
-    change: function(press){
-        if(press=='up'&&this.colors=='Red'){
-            this.initWithFile( 'res/press/red1.png' );
+    pressUp: function(e){
+        if(e==this.key){
+            if(this.key==cc.KEY.s)this.initWithFile( 'res/press/red1.png' );
+            if(this.key==cc.KEY.d)this.initWithFile( 'res/press/orange1.png' );
+            if(this.key==cc.KEY.f)this.initWithFile( 'res/press/yellow1.png' );
+            if(this.key==cc.KEY.j)this.initWithFile( 'res/press/green1.png' );
+            if(this.key==cc.KEY.k)this.initWithFile( 'res/press/blue1.png' );
+            if(this.key==cc.KEY.l)this.initWithFile( 'res/press/violet1.png' );
         }
-        if(press=='down'&&this.colors=='Red'){
-            this.initWithFile( 'res/press/red2.png' );
-        }
-        if(press=='up'&&this.colors=='Orange'){
-            this.initWithFile( 'res/press/orange1.png' );
-        }
-        if(press=='down'&&this.colors=='Orange'){
-            this.initWithFile( 'res/press/orange2.png' );
-        }
-        if(press=='up'&&this.colors=='Yellow'){
-            this.initWithFile( 'res/press/yellow1.png' );
-        }
-        if(press=='down'&&this.colors=='Yellow'){
-            this.initWithFile( 'res/press/yellow2.png' );
-        }
-        if(press=='up'&&this.colors=='Green'){
-            this.initWithFile( 'res/press/green1.png' );
-        }
-        if(press=='down'&&this.colors=='Green'){
-            this.initWithFile( 'res/press/green2.png' );
-        }
-        if(press=='up'&&this.colors=='Blue'){
-            this.initWithFile( 'res/press/blue1.png' );
-        }
-        if(press=='down'&&this.colors=='Blue'){
-            this.initWithFile( 'res/press/blue2.png' );
-        }
-        if(press=='up'&&this.colors=='Violet'){
-            this.initWithFile( 'res/press/violet1.png' );
-        }
-        if(press=='down'&&this.colors=='Violet'){
-            this.initWithFile( 'res/press/violet2.png' );
-        }        
+    },
+    destroy: function(){
+      this.removeFromParent();
     }
-
  });
 
+var Red = Press.extend({
+     ctor: function(){
+       this._super();
+       this.initWithFile( 'res/press/red1.png' );
+       this.setPosition(new cc.Point(125,400));
+       this.key=cc.KEY.s;
+     }
+ });
+
+var Orange = Press.extend({
+     ctor: function(){
+       this._super();
+       this.initWithFile( 'res/press/orange1.png' );
+       this.setPosition(new cc.Point(225,400));
+       this.key=cc.KEY.d;
+     }
+ });
+
+var Yellow = Press.extend({
+     ctor: function(){
+       this._super();
+       this.initWithFile( 'res/press/yellow1.png' );
+       this.setPosition(new cc.Point(325,400));
+       this.key=cc.KEY.f;
+     }
+ });
+
+var Green = Press.extend({
+     ctor: function(){
+       this._super();
+       this.initWithFile( 'res/press/green1.png' );
+       this.setPosition(new cc.Point(425,400));
+       this.key=cc.KEY.j;
+     }
+ });
+
+var Blue = Press.extend({
+     ctor: function(){
+       this._super();
+       this.initWithFile( 'res/press/blue1.png' );
+       this.setPosition(new cc.Point(525,400));
+       this.key=cc.KEY.k;
+     }
+ });
+
+var Violet = Press.extend({
+     ctor: function(){
+       this._super();
+       this.initWithFile( 'res/press/violet1.png' );
+       this.setPosition(new cc.Point(625,400));
+       this.key=cc.KEY.l;
+     }
+ });
  

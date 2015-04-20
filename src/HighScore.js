@@ -52,7 +52,6 @@ var ScoreLayer = cc.LayerColor.extend({
        var ls = cc.sys.localStorage;
        var score = [];
        for(var i=0 ; i<(24*3600) ; i++){
-        // ls.removeItem(i);
             if(ls.getItem(i)!=null){
                 score.push(ls.getItem(i)); 
             }
@@ -65,11 +64,18 @@ var ScoreLayer = cc.LayerColor.extend({
           var name = ex.split(".")[0];
           var sco = (ex.split(":")[1]).split(".")[0];
           var time = ex.split(".")[4];
-          var skill = ex.split(".")[6]+"."+ex.split(".")[7];
+          var skill0 = ex.split(".")[6];
+          if(skill0.length===1) skill0 = '0000'+skill0;
+          if(skill0.length===2) skill0 = '000'+skill0;
+          if(skill0.length===3) skill0 = '00'+skill0;
+          if(skill0.length===4) skill0 = '0'+skill0;
+          var skill = skill0+"."+ex.split(".")[7];
           detail.push(skill+"/"+sco+"/"+time+"/"+name);
         }
+        
 
         detail.sort();
+        detail.reverse();
 
         for(var i=0 ; i<5  ; i++){
           if(detail[i]!=null){
@@ -89,7 +95,7 @@ var ScoreLayer = cc.LayerColor.extend({
             timeLabel.setPosition( new cc.Point( 700 , 50*(5-i) ) );
             this.addChild( timeLabel );
             var skill= detail[i].split("/")[0];
-            var skillLabel = cc.LabelTTF.create( skill , 'Arial', 50 );
+            var skillLabel = cc.LabelTTF.create( parseFloat(skill).toFixed(2), 'Arial', 50 );
             skillLabel.setPosition( new cc.Point( 900 , 50*(5-i) ) );
             this.addChild( skillLabel );
           }

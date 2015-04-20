@@ -5,7 +5,7 @@ var GameLayer = cc.LayerColor.extend({
         this._super( new cc.Color( 0, 0, 0, 0 ) );
         this.setPosition(new cc.Point(0, 0)  );
         this.show=true;
-        
+        this.Press = [];
         this.namePlayer = name.split(":")[1] ;
         this.level = level.split(":")[1];
         this.showDetail();
@@ -28,6 +28,28 @@ var GameLayer = cc.LayerColor.extend({
         return true;
     },
 
+    showPress: function(){
+       
+        this.red = new Red();
+        this.addChild(this.red);
+        this.Press.push(this.red);
+        this.orange = new Orange();
+        this.addChild(this.orange);
+        this.Press.push(this.orange);
+        this.yellow = new Yellow();
+        this.addChild(this.yellow);
+        this.Press.push(this.yellow);
+        this.green = new Green();
+        this.addChild(this.green);
+        this.Press.push(this.green);
+        this.blue = new Blue();
+        this.addChild(this.blue);
+        this.Press.push(this.blue);
+        this.violet = new Violet();
+        this.addChild(this.violet);
+        this.Press.push(this.violet);
+    },
+
     checkItem: function(color){
        var posX = 0;
        if(color=='Red')posX=125;
@@ -45,39 +67,31 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     onKeyDown: function( e ) {
+        cc.log(this.Press.length);
+        for(var i=0 ; i<this.Press.length ; i++) {
+            this.Press[i].pressDown(e,this.show);
+        }
         if(e===cc.KEY.s){
-            this.red.change('down');
-            if(this.show)cc.audioEngine.playMusic('sound/pressS.mp3',false);
             this.pressCheck('Red');
             this.checkItem('Red');
         }
         if(e===cc.KEY.d){
-            this.orange.change('down');
-            if(this.show)cc.audioEngine.playMusic('sound/pressD.mp3',false);
             this.pressCheck('Orange');
             this.checkItem('Orange');
         }
         if(e===cc.KEY.f){
-            this.yellow.change('down');
-            if(this.show)cc.audioEngine.playMusic('sound/pressF.mp3',false);
             this.pressCheck('Yellow');
             this.checkItem('Yellow');
         }
         if(e===cc.KEY.j){
-            this.green.change('down');
-            if(this.show)cc.audioEngine.playMusic('sound/pressJ.mp3',false);
             this.pressCheck('Green');
             this.checkItem('Green');
         }
         if(e===cc.KEY.k){
-            this.blue.change('down');
-            if(this.show)cc.audioEngine.playMusic('sound/pressK.mp3',false);
             this.pressCheck('Blue');
             this.checkItem('Blue');
         }
         if(e===cc.KEY.l){
-            this.violet.change('down');
-            if(this.show)cc.audioEngine.playMusic('sound/pressL.mp3',false);
             this.pressCheck('Violet');
             this.checkItem('Violet');
         }
@@ -151,6 +165,9 @@ var GameLayer = cc.LayerColor.extend({
                 this.stopNow(this.noteBlue);
                 this.stopNow(this.noteViolet);
                 this.addChild(layer2);
+                for(var i=0 ; i<this.Press.length ; i++) {
+                   this.removeChild(this.Press[i]);
+                }
             }
             this.life--;
         }
@@ -185,28 +202,23 @@ var GameLayer = cc.LayerColor.extend({
 
     onKeyUp: function( e ) {
         cc.audioEngine.pauseMusic();
+        for(var i=0 ; i<this.Press.length ; i++) this.Press[i].pressUp(e);
         if(e===cc.KEY.s){
-            this.red.change('up');
             this.actionDestroy('Red');
         }
         if(e===cc.KEY.d){
-            this.orange.change('up');
             this.actionDestroy('Orange');
         }
         if(e===cc.KEY.f){
-            this.yellow.change('up');
             this.actionDestroy('Yellow');
         }
         if(e===cc.KEY.j){
-            this.green.change('up');
             this.actionDestroy('Green');
         }
         if(e===cc.KEY.k){
-            this.blue.change('up');
             this.actionDestroy('Blue');
         }
         if(e===cc.KEY.l){
-            this.violet.change('up');
             this.actionDestroy('Violet');
         }
 
@@ -347,20 +359,7 @@ var GameLayer = cc.LayerColor.extend({
         this.detail.push(this.timeLabel);
     },
 
-    showPress: function(){
-        this.red = new Press('Red');
-        this.addChild(this.red);
-        this.orange = new Press('Orange');
-        this.addChild(this.orange);
-        this.yellow = new Press('Yellow');
-        this.addChild(this.yellow);
-        this.green = new Press('Green');
-        this.addChild(this.green);
-        this.blue = new Press('Blue');
-        this.addChild(this.blue);
-        this.violet = new Press('Violet');
-        this.addChild(this.violet);
-    },
+    
 
     deleteScreen: function(){
         var Screen = [this.show,this.namePlayer,this.scoreLabel.getString(),this.timeLabel.getString()];

@@ -75,6 +75,12 @@ var EndLayer = cc.LayerColor.extend({
             res.Admin1_png,
             function () {
              cc.log('admin');
+             var ad = prompt('Want to clear hight score');
+             cc.log(ad);
+             if(ad=='YES'){
+                for(var i=0 ; i<(24*3600) ; i++)
+                    cc.sys.localStorage.removeItem(i);
+             }
          }, this);
         adminItem.attr({
             x: 500,
@@ -89,7 +95,7 @@ var EndLayer = cc.LayerColor.extend({
 
 
 
-        // this.collectScore(name,score,time,skill);
+        this.collectScore(name,score,time,skill);
         this.addKeyboardHandlers( true );
         return true;
     },

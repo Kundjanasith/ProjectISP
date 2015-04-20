@@ -21,15 +21,7 @@ var StartLayer = cc.LayerColor.extend({
              this.removeChild(this.line4Label);
              this.removeChild(this.line5Label);
              this.removeChild(this.line6Label);  
-             this.removeChild(this.Red);
-             this.removeChild(this.Orange);
-             this.removeChild(this.Yellow);
-             this.removeChild(this.Green);
-             this.removeChild(this.Blue);
-             this.removeChild(this.Violet);
-             this.removeChild(this.KeyDE);      
-             this.removeChild(this.KeyUP);      
-             this.removeChild(this.KeyDOWN);  
+             for(var i=0 ; i<this.Press.length ; i++ )  this.removeChild(this.Press[i]);
              this.removeChild(this.YlevLabel); 
              this.removeChild(this.helloLabel);   
              this.removeChild(this.KB);
@@ -81,17 +73,19 @@ var StartLayer = cc.LayerColor.extend({
         this.confirm1.y = 0;
         this.addChild(this.confirm1);
 
-        this.Red = new Press('Red');
+        this.Press = [];
+        this.Rule = [];
+        this.Red = new Red();
         this.Red.setPosition(new cc.Point( 850, 380));
-        this.Orange = new Press('Orange');
+        this.Orange = new Orange();
         this.Orange.setPosition(new cc.Point( 910, 355));
-        this.Yellow = new Press('Yellow');
+        this.Yellow = new Yellow();
         this.Yellow.setPosition(new cc.Point( 855, 325));
-        this.Green = new Press('Green');
+        this.Green = new Green();
         this.Green.setPosition(new cc.Point( 910, 300));
-        this.Blue = new Press('Blue');
+        this.Blue = new Blue();
         this.Blue.setPosition(new cc.Point( 857, 270));
-        this.Violet = new Press('Violet');
+        this.Violet = new Violet();
         this.Violet.setPosition(new cc.Point( 910, 245));
 
         var conItem2 = new cc.MenuItemImage(
@@ -112,26 +106,32 @@ var StartLayer = cc.LayerColor.extend({
             this.line1Label.setPosition( new cc.Point( 635, 375 ) );
             this.addChild(this.line1Label);
             this.addChild(this.Red);
+            this.Press.push(this.Red);
             this.line2Label = cc.LabelTTF.create('Press "D" for collect score in orange lane ', 'Arial', 20 );
             this.line2Label.setPosition( new cc.Point( 650, 350 ) );
             this.addChild(this.line2Label);
             this.addChild(this.Orange);
+            this.Press.push(this.Orange);
             this.line3Label = cc.LabelTTF.create('Press "F" for collect score in yellow lane ', 'Arial', 20 );
             this.line3Label.setPosition( new cc.Point( 647, 325 ) );
             this.addChild(this.line3Label);
             this.addChild(this.Yellow);
+            this.Press.push(this.Yellow);
             this.line4Label = cc.LabelTTF.create('Press "J" for collect score in green lane ', 'Arial', 20 );
             this.line4Label.setPosition( new cc.Point( 645, 300 ) );
             this.addChild(this.line4Label);
             this.addChild(this.Green);
+            this.Press.push(this.Green);
             this.line5Label = cc.LabelTTF.create('Press "K" for collect score in blue lane ', 'Arial', 20 );
             this.line5Label.setPosition( new cc.Point( 640, 275 ) );
             this.addChild(this.line5Label);
             this.addChild(this.Blue);
+            this.Press.push(this.Blue);
             this.line6Label = cc.LabelTTF.create('Press "L" for collect score in violet lane ', 'Arial', 20 );
             this.line6Label.setPosition( new cc.Point( 642, 250 ) );
             this.addChild(this.line6Label);
             this.addChild(this.Violet);
+            this.Press.push(this.Violet);
             this.addChild(this.menu);
          }, this);
         conItem2.attr({
@@ -168,10 +168,12 @@ var StartLayer = cc.LayerColor.extend({
     onKeyDown: function( e ) {
         this.KB.pressDownName(e,this.Name);
         this.KB.pressDownLevel(e,this.levelLabel);
+        for(var i=0 ; i<this.Press.length ; i++ )  this.Press[i].pressDown(e);
     },
 
     onKeyUp: function( e ) {
        this.KB.pressUp(e);
+       for(var i=0 ; i<this.Press.length ; i++ )  this.Press[i].pressUp(e);
     },
 
     addKeyboardHandlers: function() {
