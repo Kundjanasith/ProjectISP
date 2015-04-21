@@ -135,7 +135,6 @@ var EndLayer = cc.LayerColor.extend({
        ls.setItem(key,value); 
     }
 
-
 });
 
 

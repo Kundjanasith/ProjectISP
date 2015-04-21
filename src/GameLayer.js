@@ -8,7 +8,7 @@ var GameLayer = cc.LayerColor.extend({
         this.namePlayer = name.split(":")[1] ;
         this.level = level.split(":")[1];
         this.showDetail();
-        this.createAction();
+        this.show=true;
         this.life = 4 ;
         this.statusGame = 0;
         this.colors = [];
@@ -46,7 +46,6 @@ var GameLayer = cc.LayerColor.extend({
         this.violet = new Violet();
         this.addChild(this.violet);
         this.press.push(this.violet);
-      
     },
 
     checkItem: function(color){
@@ -66,11 +65,9 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     onKeyDown: function( e ) {
-            for(var i=0 ; i<this.press.length ; i++) {
-                 this.press[i].pressDown(e);
-            }
-    
-
+        for(var i=0 ; i<this.press.length ; i++) {
+             this.press[i].pressDown(e);
+         }
         if(e===cc.KEY.s){
             this.pressCheck('Red');
             this.checkItem('Red');
@@ -126,33 +123,47 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     pressCheck: function(color){
-        if(this.statusGame>0){
-            if(color=='Red')this.pressCheckHelper(this.noteRed,this.perfectRed,this.missRed);
-            if(color=='Orange')this.pressCheckHelper(this.noteOrange,this.perfectOrange,this.missOrange);
-            if(color=='Yellow')this.pressCheckHelper(this.noteYellow,this.perfectYellow,this.missYellow);
-            if(color=='Green')this.pressCheckHelper(this.noteGreen,this.perfectGreen,this.missGreen);
-            if(color=='Blue')this.pressCheckHelper(this.noteBlue,this.perfectBlue,this.missBlue);
-            if(color=='Violet')this.pressCheckHelper(this.noteViolet,this.perfectViolet,this.missViolet);
-        }
+       if(this.statusGame>0){
+           if(color=='Red')this.pressCheckHelper(this.noteRed,'Red');
+           if(color=='Orange')this.pressCheckHelper(this.noteOrange,'Orange');
+           if(color=='Yellow')this.pressCheckHelper(this.noteYellow,'Yellow');
+           if(color=='Green')this.pressCheckHelper(this.noteGreen,'Green');
+           if(color=='Blue')this.pressCheckHelper(this.noteBlue,'Blue');
+           if(color=='Violet')this.pressCheckHelper(this.noteViolet,'Violet');
+       }
     },
 
-    pressCheckHelper: function(Note,perfect,miss){
+    pressCheckHelper: function(Note,color){
         var check = true;
+        var posx = 0;
+        if(color=='Red') posx=125;
+        if(color=='Orange') posx=225;
+        if(color=='Yellow') posx=325;
+        if(color=='Green') posx=425;
+        if(color=='Blue') posx=525;
+        if(color=='Violet') posx=625;
+        this.removeChild(this.miss);
+        this.removeChild(this.perfect);
         for(var i=0 ; i<Note.length ; i++){
-            if(Note[i].getPosition().y>=325&&Note[i].getPosition().y<=450){
+            if(Note[i].getPosition().y>=325&&Note[i].getPosition().y<=450&&this.show){
                 this.score++;
-                miss.destroy();
-                perfect.destroy();
-                this.addChild(perfect);
+                this.removeChild(this.miss);
+                this.removeChild(this.perfect);
+                this.perfect = cc.Sprite.create('res/action/perfect.png');
+                this.perfect.setPosition(new cc.Point(posx,380));
+                this.addChild(this.perfect);
                 check = false;
             }
         }
-        if(check){
-            miss.destroy();
-            perfect.destroy();
-            this.addChild(miss);
+        if(check&&this.show){
+            this.removeChild(this.miss);
+            this.removeChild(this.perfect);
+            this.miss = cc.Sprite.create('res/action/miss.png');
+            this.miss.setPosition(new cc.Point(posx,380));
+            this.addChild(this.miss);
             if(this.life>=0)this.Heart[this.life].destroy();
             else{
+                this.show=false;
                 this.unscheduleUpdate();
                 cc.audioEngine.setMusicVolume(0);
                 var layer2 = new EndLayer();
@@ -169,55 +180,12 @@ var GameLayer = cc.LayerColor.extend({
         }
     },
 
-    actionDestroy: function(color){
-        if(color=='Red'){
-            this.perfectRed.destroy();
-            this.missRed.destroy();
-        }
-        if(color=='Orange'){
-            this.perfectOrange.destroy();
-            this.missOrange.destroy();
-        }
-        if(color=='Yellow'){
-            this.perfectYellow.destroy();
-            this.missYellow.destroy();
-        }
-        if(color=='Green'){
-            this.perfectGreen.destroy();
-            this.missGreen.destroy();
-        }
-        if(color=='Blue'){
-            this.perfectBlue.destroy();
-            this.missBlue.destroy();
-        }
-        if(color=='Violet'){
-            this.perfectViolet.destroy();
-            this.missViolet.destroy();
-        }
-    },
 
     onKeyUp: function( e ) {
         cc.audioEngine.pauseMusic();
         for(var i=0 ; i<this.press.length ; i++) this.press[i].pressUp(e);
-        if(e===cc.KEY.s){
-            this.actionDestroy('Red');
-        }
-        if(e===cc.KEY.d){
-            this.actionDestroy('Orange');
-        }
-        if(e===cc.KEY.f){
-            this.actionDestroy('Yellow');
-        }
-        if(e===cc.KEY.j){
-            this.actionDestroy('Green');
-        }
-        if(e===cc.KEY.k){
-            this.actionDestroy('Blue');
-        }
-        if(e===cc.KEY.l){
-            this.actionDestroy('Violet');
-        }
-
+        this.removeChild(this.perfect);
+        this.removeChild(this.miss);
     },
 
     addKeyboardHandlers: function() {
@@ -237,7 +205,7 @@ var GameLayer = cc.LayerColor.extend({
         var note1 = [];
         for ( var i = 0; i < 1000 ; i++ ){
             var x = Math.random();
-            if(x*10<2){
+            if(x*10<0.5){
                 note1.push(1);
             }
             else{
@@ -355,21 +323,6 @@ var GameLayer = cc.LayerColor.extend({
         this.detail.push(this.timeLabel);
     },
 
-    createAction: function(){
-        this.perfectRed = new Action('perfect','Red');
-        this.missRed = new Action('miss','Red');
-        this.perfectOrange = new Action('perfect','Orange');
-        this.missOrange = new Action('miss','Orange');
-        this.perfectYellow = new Action('perfect','Yellow');
-        this.missYellow = new Action('miss','Yellow');
-        this.perfectGreen = new Action('perfect','Green');
-        this.missGreen = new Action('miss','Green');
-        this.perfectBlue = new Action('perfect','Blue');
-        this.missBlue = new Action('miss','Blue');
-        this.perfectViolet = new Action('perfect','Violet');
-        this.missViolet = new Action('miss','Violet');
-    },
-
     subArray: function(array){
         var subArr = [];
         for(var i=0 ; i<array.length ; i++){
@@ -380,8 +333,8 @@ var GameLayer = cc.LayerColor.extend({
 
     stopNow: function(array){
         for(var i=0 ; i<array.length ; i++){
-                    array[i].unscheduleUpdate();
-            }
+            this.removeChild(array[i]);
+        }
     },
 
     createItem: function(){
