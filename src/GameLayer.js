@@ -3,12 +3,13 @@ var GameLayer = cc.LayerColor.extend({
     init: function(name,level) {
         cc.log(name+level);
         this._super( new cc.Color( 0, 0, 0, 0 ) );
-        this.setPosition(new cc.Point(0, 0)  );
-        this.showPress();
-        this.namePlayer = name.split(":")[1] ;
+        this.setPosition(new cc.Point(0, 0)  ); 
         this.back = cc.Sprite.create('res/back.png');
         this.back.setPosition(new cc.Point(375,0));
         this.addChild(this.back);
+
+        this.showPress();
+        this.namePlayer = name.split(":")[1] ;
         this.level = level.split(":")[1];
         this.showDetail();
         this.show=true;
@@ -207,8 +208,8 @@ var GameLayer = cc.LayerColor.extend({
     randomPosition: function(){
         var note1 = [];
         for ( var i = 0; i < 1000 ; i++ ){
-            var x = Math.random();
-            if(x*10<0.5){
+            var x = (Math.random()*5)+(Math.random()*5);
+            if(x<2){
                 note1.push(1);
             }
             else{
@@ -342,10 +343,9 @@ var GameLayer = cc.LayerColor.extend({
 
     createItem: function(){
         var it = [];
-        cc.log(this.level+"PP");
         for(var i=0 ; i<100 ; i++){
             var items = [new speedUp(),new speedDown(),new healUp()];
-            var x = Math.round(Math.random()*2);
+            var x = Math.round(Math.random()*(items.length-1));
             it.push(items[x]);
             it[i].setStartPos(-((i+1)*1000*this.level));
             this.addChild(it[i]);

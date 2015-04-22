@@ -4,35 +4,20 @@ var StartLayer = cc.LayerColor.extend({
         this._super( new cc.Color( 195, 195, 195, 0 ) );
         this.setPosition( new cc.Point( 0, 0 ) );
         this.showGame = false;
-
-        var startItem = new cc.MenuItemImage(
+        this.click = 0;
+        this.startItem = new cc.MenuItemImage(
             res.StartNormal_png,
             res.StartSelected_png,
             function () {
-             this.showGame = true;
-             var layer1 = new GameLayer();
-             layer1.init(this.helloLabel.getString(),this.YlevLabel.getString());
-             this.addChild(layer1);
-             startItem.removeFromParent();
-             this.removeChild(this.ruleLabel);
-             this.removeChild(this.line1Label);
-             this.removeChild(this.line2Label);
-             this.removeChild(this.line3Label);
-             this.removeChild(this.line4Label);
-             this.removeChild(this.line5Label);
-             this.removeChild(this.line6Label);  
-             for(var i=0 ; i<this.Press.length ; i++ )  this.removeChild(this.Press[i]);
-             this.removeChild(this.YlevLabel); 
-             this.removeChild(this.helloLabel);   
-             this.removeChild(this.KB);
+            this.clickThird();
          }, this);
-        startItem.attr({
+        this.startItem.attr({
             x: 250,
             y: 400,
             anchorX: 0.5,
             anchorY: 0.5
         });
-        this.menu = new cc.Menu(startItem);
+        this.menu = new cc.Menu(this.startItem);
         this.menu.x = 0;
         this.menu.y = 0;
 
@@ -47,19 +32,7 @@ var StartLayer = cc.LayerColor.extend({
             res.Confirm0_png,
             res.Confirm1_png,
             function () {
-            this.helloLabel = cc.LabelTTF.create( 'Hello:  '+this.Name.getString(), 'Arial', 30 );
-            this.helloLabel.setPosition( new cc.Point( 300, 325 ) );
-            this.helloLabel.setColor(new cc.Color(125,125,125,0));
-            this.addChild( this.helloLabel );
-            this.removeChild(this.nameLabel);
-            this.removeChild(this.Name);
-            this.removeChild(this.confirm1);
-            this.selectLabel = cc.LabelTTF.create( 'Speed Level' , 'Arial', 30);
-            this.selectLabel.setPosition( new cc.Point( 200 , 250) );
-            this.addChild(this.selectLabel);
-            this.addChild(this.levelLabel);
-            this.addChild(this.confirm2);
-            
+            this.clickFirst();
          }, this);
         conItem1.attr({
             x: 700,
@@ -91,15 +64,7 @@ var StartLayer = cc.LayerColor.extend({
             res.Confirm0_png,
             res.Confirm1_png,
             function () {
-            this.YlevLabel = cc.LabelTTF.create( 'Your level is:      '+this.levelLabel.getString(), 'Arial', 30 );
-            this.YlevLabel.setPosition( new cc.Point( 300, 250 ) );
-            this.YlevLabel.setColor(new cc.Color(125,125,125,0));
-            this.addChild( this.YlevLabel );
-            this.removeChild(this.levelLabel);
-            this.removeChild(this.selectLabel);  
-            this.removeChild(this.confirm2); 
-            this.showRule();
-            this.addChild(this.menu);
+            this.clickSecond();
          }, this);
         conItem2.attr({
             x: 700,
@@ -169,11 +134,64 @@ var StartLayer = cc.LayerColor.extend({
         this.KB.pressDownName(e,this.Name);
         this.KB.pressDownLevel(e,this.levelLabel);
         for(var i=0 ; i<this.Press.length ; i++ )  this.Press[i].pressDown(e);
+            cc.log(this.click);
+        if(e===cc.KEY.enter&&this.click===0) this.clickFirst();
+        else if(e===cc.KEY.enter&&this.click===1) this.clickSecond();
+        else if(e===cc.KEY.enter&&this.click===2) this.clickThird();   
     },
 
     onKeyUp: function( e ) {
        this.KB.pressUp(e);
        for(var i=0 ; i<this.Press.length ; i++ )  this.Press[i].pressUp(e);
+    },
+
+    clickFirst: function(){
+            this.click=1;
+            this.helloLabel = cc.LabelTTF.create( 'Hello:  '+this.Name.getString(), 'Arial', 30 );
+            this.helloLabel.setPosition( new cc.Point( 300, 325 ) );
+            this.helloLabel.setColor(new cc.Color(125,125,125,0));
+            this.addChild( this.helloLabel );
+            this.removeChild(this.nameLabel);
+            this.removeChild(this.Name);
+            this.removeChild(this.confirm1);
+            this.selectLabel = cc.LabelTTF.create( 'Speed Level' , 'Arial', 30);
+            this.selectLabel.setPosition( new cc.Point( 200 , 250) );
+            this.addChild(this.selectLabel);
+            this.addChild(this.levelLabel);
+            this.addChild(this.confirm2);      
+    },
+
+    clickSecond: function(){
+            this.click=2;
+            this.YlevLabel = cc.LabelTTF.create( 'Your level is:      '+this.levelLabel.getString(), 'Arial', 30 );
+            this.YlevLabel.setPosition( new cc.Point( 300, 250 ) );
+            this.YlevLabel.setColor(new cc.Color(125,125,125,0));
+            this.addChild( this.YlevLabel );
+            this.removeChild(this.levelLabel);
+            this.removeChild(this.selectLabel);  
+            this.removeChild(this.confirm2); 
+            this.showRule();
+            this.addChild(this.menu);
+    },
+
+    clickThird: function(){
+            this.click=3;
+            this.showGame = true;
+            var layer1 = new GameLayer();
+             layer1.init(this.helloLabel.getString(),this.YlevLabel.getString());
+             this.addChild(layer1);
+             this.startItem.removeFromParent();
+             this.removeChild(this.ruleLabel);
+             this.removeChild(this.line1Label);
+             this.removeChild(this.line2Label);
+             this.removeChild(this.line3Label);
+             this.removeChild(this.line4Label);
+             this.removeChild(this.line5Label);
+             this.removeChild(this.line6Label);  
+             for(var i=0 ; i<this.Press.length ; i++ )  this.removeChild(this.Press[i]);
+             this.removeChild(this.YlevLabel); 
+             this.removeChild(this.helloLabel);   
+             this.removeChild(this.KB);
     },
 
     addKeyboardHandlers: function() {
