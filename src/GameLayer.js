@@ -7,7 +7,6 @@ var GameLayer = cc.LayerColor.extend({
         this.back = cc.Sprite.create('res/back.png');
         this.back.setPosition(new cc.Point(375,0));
         this.addChild(this.back);
-
         this.showPress();
         this.namePlayer = name.split(":")[1] ;
         this.level = level.split(":")[1];
@@ -53,6 +52,7 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     checkItem: function(color){
+       var check = true;
        var posX = 0;
        if(color=='Red')posX=125;
        if(color=='Orange')posX=225;
@@ -62,39 +62,49 @@ var GameLayer = cc.LayerColor.extend({
        if(color=='Violet')posX=625;
        for(var i=0 ; i<this.Item.length ; i++){
             if(this.Item[i].getPosition().y>=325&&this.Item[i].getPosition().y<=450&&posX==this.Item[i].getPosition().x){
-            cc.log(this.Item[i].getName());
-            this.itemLabel.setString('Item:  '+this.Item[i].getName());
+            var iname = this.Item[i].getName();
+            this.itemLabel.setString('Item:  '+iname);
+            check = false;
+              if(iname=='SpeedUp') ;
+              if(iname=='SpeedDown') ;
+              if(iname=='HealUp'){
+                if(this.life<this.Heart.length-1){
+                    this.life++;
+                    if(this.show)this.addChild(this.Heart[this.life]); 
+                }
+              } ;
+              if(iname=='KeyXei') ;
+              if(iname=='KeyYei') ;
+              if(iname=='KeyZei') ;
             }
         }
+        return check;
     },
 
     onKeyDown: function( e ) {
         for(var i=0 ; i<this.press.length ; i++) {
              this.press[i].pressDown(e);
          }
+        if(e===cc.KEY.space){
+           cc.log('LIFE'+this.life);
+        }
         if(e===cc.KEY.s){
             this.pressCheck('Red');
-            this.checkItem('Red');
         }
         if(e===cc.KEY.d){
             this.pressCheck('Orange');
-            this.checkItem('Orange');
         }
         if(e===cc.KEY.f){
             this.pressCheck('Yellow');
-            this.checkItem('Yellow');
         }
         if(e===cc.KEY.j){
             this.pressCheck('Green');
-            this.checkItem('Green');
         }
         if(e===cc.KEY.k){
             this.pressCheck('Blue');
-            this.checkItem('Blue');
         }
         if(e===cc.KEY.l){
             this.pressCheck('Violet');
-            this.checkItem('Violet');
         }
         if(e===cc.KEY.enter){
             this.statusGame++;
@@ -159,29 +169,35 @@ var GameLayer = cc.LayerColor.extend({
                 check = false;
             }
         }
-        if(check&&this.show){
+        var checkI = this.checkItem(color);
+        var c = check&&checkI;
+            if((this.show&&c)){
+            cc.log('FFFFFFF');
             this.removeChild(this.miss);
             this.removeChild(this.perfect);
             this.miss = cc.Sprite.create('res/action/miss.png');
             this.miss.setPosition(new cc.Point(posx,380));
             this.addChild(this.miss);
-            if(this.life>=0)this.Heart[this.life].destroy();
-            else{
-                this.show=false;
-                this.unscheduleUpdate();
-                cc.audioEngine.setMusicVolume(0);
-                var layer2 = new EndLayer();
-                layer2.init(this.namePlayer,this.scoreLabel.getString(),this.timeLabel.getString());
-                this.stopNow(this.noteRed);
-                this.stopNow(this.noteOrange);
-                this.stopNow(this.noteYellow);
-                this.stopNow(this.noteGreen);
-                this.stopNow(this.noteBlue);
-                this.stopNow(this.noteViolet);
-                this.addChild(layer2);
+                if(this.life>=0){
+                    this.Heart[this.life].destroy();
+                    this.life--;
+                }
+                else{
+                   this.show=false;
+                   this.unscheduleUpdate();
+                   cc.audioEngine.setMusicVolume(0);
+                   var layer2 = new EndLayer();
+                   layer2.init(this.namePlayer,this.scoreLabel.getString(),this.timeLabel.getString());
+                   this.stopNow(this.noteRed);
+                   this.stopNow(this.noteOrange);
+                   this.stopNow(this.noteYellow);
+                   this.stopNow(this.noteGreen);
+                   this.stopNow(this.noteBlue);
+                   this.stopNow(this.noteViolet);
+                   for(var i=0 ; i<this.Heart.length ; i++) this.removeChild(this.Heart[i]);
+                   this.addChild(layer2);
+                }   
             }
-            this.life--;
-        }
     },
 
 
@@ -286,6 +302,13 @@ var GameLayer = cc.LayerColor.extend({
             this.addChild( H );
             Heart0.push( H );
         }
+        for ( var i = 0; i < 5; i++ ) {
+            var H = new Heart( );
+            H.change(1);
+            H.setPosition( new cc.Point(850, 275 - ( i * 40 )) );
+            Heart0.push( H );
+        }
+        for ( var i = 0; i < Heart0.length ; i++ )cc.log(i+'HH))))'+Heart0[i].getPosition().y);
         return Heart0;
     },
 
@@ -345,9 +368,10 @@ var GameLayer = cc.LayerColor.extend({
         var it = [];
         for(var i=0 ; i<100 ; i++){
             var items = [new speedUp(),new speedDown(),new healUp(),new keyXei(),new keyYei(),new keyZei()];
+            // var items = [new healUp()];
             var x = Math.round(Math.random()*(items.length-1));
             it.push(items[x]);
-            it[i].setStartPos(-((i+1)*1000*this.level));
+            it[i].setStartPos(-((i+1)*100*this.level));
             this.addChild(it[i]);
         }
         return it;
