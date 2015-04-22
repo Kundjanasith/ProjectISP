@@ -56,7 +56,7 @@ var keyXei = Item.extend({
      
     ctor: function(){
        this._super();
-       this.initWithFile( 'res/item/key0.png');
+       this.initWithFile( 'res/item/key00.png');
        this.nameItem = 'KeyXei';
     }
 
@@ -66,7 +66,7 @@ var keyYei = Item.extend({
     
     ctor: function(){
        this._super();
-       this.initWithFile( 'res/item/key1.png');
+       this.initWithFile( 'res/item/key01.png');
        this.nameItem = 'KeyYei';
     }
 
@@ -76,7 +76,7 @@ var keyZei = Item.extend({
 
     ctor: function(){
        this._super();
-       this.initWithFile( 'res/item/key2.png');
+       this.initWithFile( 'res/item/key02.png');
        this.nameItem = 'KeyZei';
     }
 });

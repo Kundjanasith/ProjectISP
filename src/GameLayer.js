@@ -344,7 +344,7 @@ var GameLayer = cc.LayerColor.extend({
     createItem: function(){
         var it = [];
         for(var i=0 ; i<100 ; i++){
-            var items = [new speedUp(),new speedDown(),new healUp()];
+            var items = [new speedUp(),new speedDown(),new healUp(),new keyXei(),new keyYei(),new keyZei()];
             var x = Math.round(Math.random()*(items.length-1));
             it.push(items[x]);
             it[i].setStartPos(-((i+1)*1000*this.level));
