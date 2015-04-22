@@ -6,6 +6,9 @@ var GameLayer = cc.LayerColor.extend({
         this.setPosition(new cc.Point(0, 0)  );
         this.showPress();
         this.namePlayer = name.split(":")[1] ;
+        this.back = cc.Sprite.create('res/back.png');
+        this.back.setPosition(new cc.Point(375,0));
+        this.addChild(this.back);
         this.level = level.split(":")[1];
         this.showDetail();
         this.show=true;

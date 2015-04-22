@@ -3,27 +3,27 @@
         if(e==this.key){
             if(this.key==cc.KEY.s){
               this.initWithFile( 'res/press/red2.png' );
-              cc.audioEngine.playMusic('sound/pressS.mp3',false);
+              cc.audioEngine.playMusic('sound/Do1.mp3',false);
             }
             if(this.key==cc.KEY.d){
               this.initWithFile( 'res/press/orange2.png' );
-              cc.audioEngine.playMusic('sound/pressD.mp3',false);
+              cc.audioEngine.playMusic('sound/Ra1.mp3',false);
             }
             if(this.key==cc.KEY.f){
               this.initWithFile( 'res/press/yellow2.png' );
-              cc.audioEngine.playMusic('sound/pressF.mp3',false);
+              cc.audioEngine.playMusic('sound/Me1.mp3',false);
             }
             if(this.key==cc.KEY.j){
               this.initWithFile( 'res/press/green2.png' );
-              cc.audioEngine.playMusic('sound/pressJ.mp3',false);
+              cc.audioEngine.playMusic('sound/Fa1.mp3',false);
             }
             if(this.key==cc.KEY.k){
               this.initWithFile( 'res/press/blue2.png' );
-              cc.audioEngine.playMusic('sound/pressK.mp3',false);
+              cc.audioEngine.playMusic('sound/Sol1.mp3',false);
             }
             if(this.key==cc.KEY.l){
               this.initWithFile( 'res/press/violet2.png' );
-              cc.audioEngine.playMusic('sound/pressL.mp3',false);
+              cc.audioEngine.playMusic('sound/La1.mp3',false);
             }
         }
     },
