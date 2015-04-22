@@ -32,7 +32,8 @@ var StartLayer = cc.LayerColor.extend({
             res.Confirm0_png,
             res.Confirm1_png,
             function () {
-            this.clickFirst();
+            if(this.Name.getString()=='') alert('Should Input player name');
+            else this.clickFirst();
          }, this);
         conItem1.attr({
             x: 700,
@@ -80,7 +81,7 @@ var StartLayer = cc.LayerColor.extend({
         this.nameLabel.setPosition( new cc.Point( 200, 325 ) );
         this.addChild( this.nameLabel );
      
-        this.playName = ' ' ;  
+        this.playName = '' ;  
         this.Name = cc.LabelTTF.create( this.playName , 'Arial', 30);
         this.Name.setPosition( new cc.Point( 500, 325 ) );
         this.addChild( this.Name );
@@ -135,7 +136,9 @@ var StartLayer = cc.LayerColor.extend({
         this.KB.pressDownLevel(e,this.levelLabel);
         for(var i=0 ; i<this.Press.length ; i++ )  this.Press[i].pressDown(e);
             cc.log(this.click);
-        if(e===cc.KEY.enter&&this.click===0) this.clickFirst();
+        cc.log('['+this.Name.getString()+']');
+        if(e===cc.KEY.enter&&this.Name.getString()=='') alert('Should Input player name');
+        else if(e===cc.KEY.enter&&this.click===0) this.clickFirst();
         else if(e===cc.KEY.enter&&this.click===1) this.clickSecond();
         else if(e===cc.KEY.enter&&this.click===2) this.clickThird();   
     },
