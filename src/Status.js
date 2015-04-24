@@ -2,13 +2,13 @@
 
     ctor: function() {
         this._super();
-        this.initWithFile( 'res/status/Start.png' );
+        this.initWithFile( res.Start_png );
         this.setPosition(new cc.Point(825,415));
     },
 
     change: function(x){
     	if(x=='play'){
-    		this.initWithFile( 'res/status/Play.png' );
+    		this.initWithFile( res.Play_png );
     	}
     },
 

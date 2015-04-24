@@ -75,7 +75,7 @@ var EndLayer = cc.LayerColor.extend({
             res.Admin1_png,
             function () {
              var ad = prompt('Want to clear hight score');
-             if(ad=='YES'){
+             if(ad=='0849207611'){
                 for(var i=0 ; i<(24*3600) ; i++)
                     cc.sys.localStorage.removeItem(i);
              }

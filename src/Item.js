@@ -26,7 +26,7 @@ var speedUp = Item.extend({
 
     ctor: function(){
     	this._super();
-    	this.initWithFile( 'res/item/speed-up.png' );
+    	this.initWithFile( res.spUp_png );
         this.nameItem = 'SpeedUp';
     }
    
@@ -36,7 +36,7 @@ var speedDown = Item.extend({
 	
     ctor: function(){
         this._super();
-        this.initWithFile( 'res/item/speed-down.png' );
+        this.initWithFile( res.spDown_png );
         this.nameItem = 'SpeedDown';
     }
     
@@ -46,7 +46,7 @@ var healUp = Item.extend({
 	
     ctor: function(){
         this._super();
-        this.initWithFile( 'res/item/health.png' );
+        this.initWithFile( res.hlUp_png );
         this.nameItem = 'HealUp';
     }
 
@@ -56,7 +56,7 @@ var keyXei = Item.extend({
      
     ctor: function(){
        this._super();
-       this.initWithFile( 'res/item/key00.png');
+       this.initWithFile( res.keyX_png );
        this.nameItem = 'KeyXei';
     }
 
@@ -66,7 +66,7 @@ var keyYei = Item.extend({
     
     ctor: function(){
        this._super();
-       this.initWithFile( 'res/item/key01.png');
+       this.initWithFile( res.keyY_png );
        this.nameItem = 'KeyYei';
     }
 
@@ -76,7 +76,7 @@ var keyZei = Item.extend({
 
     ctor: function(){
        this._super();
-       this.initWithFile( 'res/item/key02.png');
+       this.initWithFile( res.keyZ_png );
        this.nameItem = 'KeyZei';
     }
 });

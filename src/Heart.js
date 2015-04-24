@@ -1,7 +1,7 @@
  var Heart = cc.Sprite.extend({
     ctor: function() {
         this._super();
-        this.initWithFile( 'res/heart.png' );
+        this.initWithFile( res.Heart0_png );
     },
     
     destroy: function(){
@@ -9,7 +9,7 @@
     },
 
     change: function(step){
-       if(step==1) this.initWithFile ( 'res/heart1.png' );
+       if(step==1) this.initWithFile ( res.Heart1_png );
     }
 
 }); 

@@ -4,13 +4,12 @@ var Note = cc.Sprite.extend({
         this.speed = 5;
         this._super();
         this.colors = color;
-        if(this.colors=='Red')this.initWithFile( 'res/note/NoteRed.png' );
-        if(this.colors=='Orange')this.initWithFile( 'res/note/NoteOrange.png' );
-        if(this.colors=='Yellow')this.initWithFile( 'res/note/NoteYellow.png' );
-        if(this.colors=='Green')this.initWithFile( 'res/note/NoteGreen.png' );
-        if(this.colors=='Blue')this.initWithFile( 'res/note/NoteBlue.png' );
-        if(this.colors=='Green')this.initWithFile( 'res/note/NoteGreen.png' );
-        if(this.colors=='Violet')this.initWithFile( 'res/note/NoteViolet.png' );
+        if(this.colors=='Red')this.initWithFile( res.NoteRed_png );
+        if(this.colors=='Orange')this.initWithFile( res.NoteOrange_png );
+        if(this.colors=='Yellow')this.initWithFile( res.NoteYellow_png );
+        if(this.colors=='Green')this.initWithFile( res.NoteGreen_png );
+        if(this.colors=='Blue')this.initWithFile( res.NoteBlue_png );
+        if(this.colors=='Violet')this.initWithFile( res.NoteViolet_png );
     },
 
     update: function(){
