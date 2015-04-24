@@ -73,9 +73,9 @@ var GameLayer = cc.LayerColor.extend({
                     if(this.show)this.addChild(this.Heart[this.life]); 
                 }
               } ;
-              if(iname=='KeyXei') ;
-              if(iname=='KeyYei') ;
-              if(iname=='KeyZei') ;
+              if(iname=='KeyXei') this.score+=2;
+              if(iname=='KeyYei') this.score+=5;
+              if(iname=='KeyZei') this.score+=10;
             }
         }
         return check;
