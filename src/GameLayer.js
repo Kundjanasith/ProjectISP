@@ -8,6 +8,9 @@ var GameLayer = cc.LayerColor.extend({
         this.back.setPosition(new cc.Point(375,0));
         this.addChild(this.back);
         this.showPress();
+        this.bar = cc.Sprite.create(res.Ba_png);
+        this.bar.setPosition(new cc.Point(375,430));
+    
         this.namePlayer = name.split(":")[1] ;
         this.level = level.split(":")[1];
         this.showDetail();
@@ -21,6 +24,7 @@ var GameLayer = cc.LayerColor.extend({
         this.noteGreen = this.createNote('Green');
         this.noteBlue = this.createNote('Blue');
         this.noteViolet = this.createNote('Violet');
+        this.addChild(this.bar);
         this.Item = this.createItem();
         this.showPress();
         this.ItemName = '';
@@ -367,11 +371,10 @@ var GameLayer = cc.LayerColor.extend({
     createItem: function(){
         var it = [];
         for(var i=0 ; i<100 ; i++){
-            var items = [new speedUp(),new speedDown(),new healUp(),new keyXei(),new keyYei(),new keyZei()];
-            // var items = [new healUp()];
+            var items = [new speedUp(),new speedDown(),new healUp(),new keyXei(),new keyYei(),new keyZei()];            // var items = [new healUp()];
             var x = Math.round(Math.random()*(items.length-1));
             it.push(items[x]);
-            it[i].setStartPos(-((i+1)*100*this.level));
+            it[i].setStartPos(-((i+1)*10000*this.level));
             this.addChild(it[i]);
         }
         return it;

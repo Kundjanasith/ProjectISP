@@ -14,6 +14,7 @@ var res = {
     Confirm1_png: "res/key/Confirm1.png",
     Admin0_png: "res/Admin0.png",
     Admin1_png: "res/Admin1.png",
+    Ba_png: "res/ba.png"
 };
 
 var g_resources = [];
