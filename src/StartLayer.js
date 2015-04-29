@@ -3,6 +3,7 @@ var StartLayer = cc.LayerColor.extend({
     init: function() {
         this._super( new cc.Color( 195, 195, 195, 0 ) );
         this.setPosition( new cc.Point( 0, 0 ) );
+       
         this.showGame = false;
         this.click = 0;
         this.startItem = new cc.MenuItemImage(
@@ -134,9 +135,8 @@ var StartLayer = cc.LayerColor.extend({
     onKeyDown: function( e ) {
         this.KB.pressDownName(e,this.Name);
         this.KB.pressDownLevel(e,this.levelLabel);
-        for(var i=0 ; i<this.Press.length ; i++ )  this.Press[i].pressDown(e);
-            cc.log(this.click);
-        cc.log('['+this.Name.getString()+']');
+        for(var i=0 ; i<this.Press.length ; i++ ) 
+        this.Press[i].pressDown(e);
         if(e===cc.KEY.enter&&this.Name.getString()=='') alert('Should Input player name');
         else if(e===cc.KEY.enter&&this.click===0) this.clickFirst();
         else if(e===cc.KEY.enter&&this.click===1) this.clickSecond();

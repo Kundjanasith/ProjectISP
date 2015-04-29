@@ -6,6 +6,6 @@ var StartScene = cc.Scene.extend({
         this.layer = new StartLayer();
         this.layer.init();
         this.addChild( this.layer );     
-    },
+    }
 
 });

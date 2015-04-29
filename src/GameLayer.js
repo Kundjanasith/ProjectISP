@@ -1,10 +1,9 @@
 var GameLayer = cc.LayerColor.extend({
 
     init: function(name,level) {
-        cc.log(name+level);
         this._super( new cc.Color( 0, 0, 0, 0 ) );
         this.setPosition(new cc.Point(0, 0)  ); 
-        this.back = cc.Sprite.create('res/back.png');
+        this.back = cc.Sprite.create(res.Back_png);
         this.back.setPosition(new cc.Point(375,0));
         this.addChild(this.back);
         this.showPress();
@@ -89,9 +88,6 @@ var GameLayer = cc.LayerColor.extend({
         for(var i=0 ; i<this.press.length ; i++) {
              this.press[i].pressDown(e);
          }
-        if(e===cc.KEY.space){
-           cc.log('LIFE'+this.life);
-        }
         if(e===cc.KEY.s){
             this.pressCheck('Red');
         }
@@ -167,7 +163,7 @@ var GameLayer = cc.LayerColor.extend({
                 this.score++;
                 this.removeChild(this.miss);
                 this.removeChild(this.perfect);
-                this.perfect = cc.Sprite.create('res/action/perfect.png');
+                this.perfect = cc.Sprite.create(res.Perfect_png);
                 this.perfect.setPosition(new cc.Point(posx,380));
                 this.addChild(this.perfect);
                 check = false;
@@ -176,10 +172,9 @@ var GameLayer = cc.LayerColor.extend({
         var checkI = this.checkItem(color);
         var c = check&&checkI;
             if((this.show&&c)){
-            cc.log('FFFFFFF');
             this.removeChild(this.miss);
             this.removeChild(this.perfect);
-            this.miss = cc.Sprite.create('res/action/miss.png');
+            this.miss = cc.Sprite.create(res.Miss_png);
             this.miss.setPosition(new cc.Point(posx,380));
             this.addChild(this.miss);
                 if(this.life>=0){
@@ -270,6 +265,7 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     update: function(){
+        
         if(this.statusGame!=0){
             this.sts.setTime(this.hr,this.min,this.sec,this.timeLabel);
         }
@@ -312,7 +308,6 @@ var GameLayer = cc.LayerColor.extend({
             H.setPosition( new cc.Point(850, 275 - ( i * 40 )) );
             Heart0.push( H );
         }
-        for ( var i = 0; i < Heart0.length ; i++ )cc.log(i+'HH))))'+Heart0[i].getPosition().y);
         return Heart0;
     },
 
