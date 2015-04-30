@@ -7,9 +7,20 @@ var GameLayer = cc.LayerColor.extend({
         this.back.setPosition(new cc.Point(375,0));
         this.addChild(this.back);
         this.showPress();
+        this.lightRed = new LightRed();
+        this.addChild(this.lightRed);
+        this.lightOrange = new LightOrange();
+        this.addChild(this.lightOrange);
+        this.lightYellow = new LightYellow();
+        this.addChild(this.lightYellow);
+        this.lightGreen = new LightGreen();
+        this.addChild(this.lightGreen);
+        this.lightBlue = new LightBlue();
+        this.addChild(this.lightBlue);
+        this.lightViolet = new LightViolet();
+        this.addChild(this.lightViolet);
         this.bar = cc.Sprite.create(res.Ba_png);
         this.bar.setPosition(new cc.Point(375,430));
-    
         this.namePlayer = name.split(":")[1] ;
         this.level = level.split(":")[1];
         this.showDetail();
@@ -23,11 +34,14 @@ var GameLayer = cc.LayerColor.extend({
         this.noteGreen = this.createNote('Green');
         this.noteBlue = this.createNote('Blue');
         this.noteViolet = this.createNote('Violet');
-        this.addChild(this.bar);
         this.Item = this.createItem();
+        this.addChild(this.bar);
+
         this.showPress();
         this.ItemName = '';
         this.addKeyboardHandlers( true );
+
+        
 
         return true;
     },
@@ -90,21 +104,27 @@ var GameLayer = cc.LayerColor.extend({
          }
         if(e===cc.KEY.s){
             this.pressCheck('Red');
+            this.lightRed.isOn = true;
         }
         if(e===cc.KEY.d){
             this.pressCheck('Orange');
+            this.lightOrange.isOn = true;
         }
         if(e===cc.KEY.f){
             this.pressCheck('Yellow');
+            this.lightYellow.isOn = true;
         }
         if(e===cc.KEY.j){
             this.pressCheck('Green');
+            this.lightGreen.isOn = true;
         }
         if(e===cc.KEY.k){
             this.pressCheck('Blue');
+            this.lightBlue.isOn = true;
         }
         if(e===cc.KEY.l){
             this.pressCheck('Violet');
+            this.lightViolet.isOn = true;
         }
         if(e===cc.KEY.enter){
             this.statusGame++;
