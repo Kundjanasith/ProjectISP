@@ -78,7 +78,9 @@ var EndLayer = cc.LayerColor.extend({
              if(ad=='0849207611'){
                 for(var i=0 ; i<(24*3600) ; i++)
                     cc.sys.localStorage.removeItem(i);
+                alert('Hight score is clear !');
              }
+             else alert('Incorrect password !');
          }, this);
         adminItem.attr({
             x: 500,
