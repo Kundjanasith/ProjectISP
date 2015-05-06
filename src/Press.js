@@ -1,4 +1,5 @@
  var Press = cc.Sprite.extend({
+  
     pressDown: function(e){
         if(e==this.key){
             if(this.key==cc.KEY.s){
@@ -27,6 +28,7 @@
             }
         }
     },
+
     pressUp: function(e){
         if(e==this.key){
             if(this.key==cc.KEY.s)this.initWithFile( res.Red1_png );
@@ -37,9 +39,11 @@
             if(this.key==cc.KEY.l)this.initWithFile( res.Violet1_png );
         }
     },
+
     destroy: function(){
       this.removeFromParent();
     }
+
  });
 
 var Red = Press.extend({

@@ -324,11 +324,11 @@
         this.DE.initWithFile( res.keyDE0_png );
        }
        if(e==cc.KEY.up){
-            this.Up.initWithFile( res.keyUP0_png );
-        }
-        if(e==cc.KEY.down){
-            this.Down.initWithFile( res.keyDOWN0_png );
-        }
+          this.Up.initWithFile( res.keyUP0_png );
+       }
+       if(e==cc.KEY.down){
+         this.Down.initWithFile( res.keyDOWN0_png );
+       }
     }
 
     

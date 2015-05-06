@@ -26,9 +26,6 @@ var StartLayer = cc.LayerColor.extend({
         this.levelLabel = cc.LabelTTF.create(this.level+'','Arial',30);
         this.levelLabel.setPosition( new cc.Point( 400 , 250) );
 
-        
-        
-
         var conItem1 = new cc.MenuItemImage(
             res.Confirm0_png,
             res.Confirm1_png,
@@ -91,7 +88,6 @@ var StartLayer = cc.LayerColor.extend({
         this.setPosition(new cc.Point(0,0));
         this.addChild(this.KB);
 
-      
         this.addKeyboardHandlers( true );
         return true;
     },
